@@ -1,0 +1,21 @@
+ARG  Argentina
+BEL  Belgium
+BRA  Brazil
+CIV  Ivory Coast
+CMR  Cameroon
+DEU  Germany
+DZA  Algeria
+ESP  Spain
+FRA  France
+ENG  England
+HRV  Croatia
+ITA  Italy
+MAR  Morocco
+MLI  Mali
+NGA  Nigeria
+NLD  Netherlands
+POL  Poland
+PRT  Portugal
+ROU  Romania
+RUS  Russia
+SEN  Senegal
