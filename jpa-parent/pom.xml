@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
@@ -19,8 +20,8 @@
 	</repositories>
 	
 	<modules>
-	    <module>../jpa-service1</module>
-	    <module>jpa-domain</module>
+	    <module>../jpa-core</module>
+	    <module>../jpa-dao</module>
 	</modules>
 	
 	<properties>
@@ -89,6 +90,7 @@
 	    </dependency>  
 	
 		<!-- Hibernate Core API - JPA Implementation -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
