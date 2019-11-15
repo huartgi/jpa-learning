@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.league.service;
+package fr.huartgi.jpa.initializer.service;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -6,7 +6,7 @@ import javax.inject.Named;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.huartgi.jpa.core.domain.league.Season;
-import fr.huartgi.jpa.league.dao.SeasonDao;
+import fr.huartgi.jpa.initializer.dao.SeasonDao;
 
 @Named
 @Transactional

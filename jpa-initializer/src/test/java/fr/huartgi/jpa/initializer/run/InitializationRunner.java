@@ -1,10 +1,10 @@
-package fr.huartgi.jpa.dao1.test;
+package fr.huartgi.jpa.initializer.run;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Runner1 {
+public class InitializationRunner {
 
 	public static String CONFIG_FILE = "spring/test1/spring-config-1.xml";
 
@@ -14,9 +14,9 @@ public class Runner1 {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext(CONFIG_FILE);
 
-		Tester1 tester1 = (Tester1) context.getBean("tester1");
-		tester1.testQueries();
-
+		DatabaseInitializer databaseInitializer = (DatabaseInitializer) context.getBean("databaseInitializer");
+		databaseInitializer.initDatabase();
+		
 		((ConfigurableApplicationContext) context).close();
 	}
 

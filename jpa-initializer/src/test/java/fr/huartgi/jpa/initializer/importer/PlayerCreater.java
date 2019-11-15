@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.club.importer;
+package fr.huartgi.jpa.initializer.importer;
 
 import java.util.Calendar;
 import java.util.Date;

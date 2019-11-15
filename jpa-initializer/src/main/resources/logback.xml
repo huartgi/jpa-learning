@@ -11,8 +11,10 @@
 
 	<logger name="fr.huartgi" level="debug" />
 	
+    <!--
     <logger name="org.hibernate.SQL" level="DEBUG" />
-    <!--<logger name="org.hibernate.type.descriptor" level="TRACE" />-->
+    <logger name="org.hibernate.type.descriptor" level="TRACE" />
+    -->
  	
 	<root level="info">
 		<appender-ref ref="CONSOLE" />

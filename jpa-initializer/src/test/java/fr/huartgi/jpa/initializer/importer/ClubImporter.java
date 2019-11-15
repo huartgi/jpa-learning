@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.club.importer;
+package fr.huartgi.jpa.initializer.importer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +14,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.club.run.DatabaseInitializer;
 import fr.huartgi.jpa.core.domain.club.Club;
 import fr.huartgi.jpa.core.domain.club.Country;
 import fr.huartgi.jpa.core.domain.club.Stadium;
 import fr.huartgi.jpa.core.service.club.ClubService;
 import fr.huartgi.jpa.core.service.club.StadiumService;
+import fr.huartgi.jpa.initializer.run.DatabaseInitializer;
 
 @Named
 public class ClubImporter {

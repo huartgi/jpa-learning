@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.club.importer;
+package fr.huartgi.jpa.initializer.importer;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -10,8 +10,8 @@ import fr.huartgi.jpa.core.domain.league.Competition;
 import fr.huartgi.jpa.core.domain.league.Match;
 import fr.huartgi.jpa.core.domain.league.Season;
 import fr.huartgi.jpa.core.service.league.MatchService;
-import fr.huartgi.jpa.league.service.CompetitionService;
-import fr.huartgi.jpa.league.service.SeasonService;
+import fr.huartgi.jpa.initializer.service.CompetitionService;
+import fr.huartgi.jpa.initializer.service.SeasonService;
 
 @Named
 public class MatchCreater {

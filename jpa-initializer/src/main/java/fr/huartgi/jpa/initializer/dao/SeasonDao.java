@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.league.dao;
+package fr.huartgi.jpa.initializer.dao;
 
 import javax.inject.Named;
 

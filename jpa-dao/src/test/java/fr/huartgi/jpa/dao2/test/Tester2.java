@@ -5,6 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.huartgi.jpa.core.domain.club.Club;
 import fr.huartgi.jpa.core.domain.club.Country;
 import fr.huartgi.jpa.core.domain.club.Player;
@@ -22,7 +25,7 @@ import fr.huartgi.jpa.core.service.league.MatchService;
 @Named
 public class Tester2 {
 
-//	private static final Logger logger = LoggerFactory.getLogger(Service1QueryTester.class);
+	private static final Logger logger = LoggerFactory.getLogger(Tester2.class);
 	
 	@Inject
 	private ClubService clubService;
@@ -37,26 +40,30 @@ public class Tester2 {
 	
 	
 	public void testQueries() {
+		
+		//test cache
+		logger.debug("Récupération pays FRA par code");
 		Country france = countryService.findByCode("FRA");
+		logger.debug("Récupération pays FRA par id");
 		countryService.findById(france.getId());
-		countryService.findById(france.getId());
+		logger.debug("Récupération pays FRA par code");
+		countryService.findByCode("FRA");
+		logger.debug("Récupération pays FRA par id");
 		countryService.findById(france.getId());
 		
-		System.out.println("Loading clubs");
+		logger.debug("Loading clubs");
 		List<Club> clubs = clubService.findAll();
-		System.out.printf("%d clubs found\n", clubs.size());
+		logger.debug(String.format("%d clubs found\n", clubs.size()));
 		//displayClubs(clubs);
 		
-		System.out.println("Loading matchs");
+		logger.debug("Loading matchs");
 		List<Match> matchs = matchService.findAll();
-		System.out.printf("%d matchs found\n", matchs.size());
+		logger.debug(String.format("%d matchs found\n", matchs.size()));
 		//displayMatchs(matchs);
 		
-		System.out.println("Loading players");
+		logger.debug("Loading players");
 		List<Player> players = playerService.findAll();
-		System.out.printf("%d players found\n", players.size());
-		
-		
+		logger.debug(String.format("%d players found\n", players.size()));
 	}
 	
 	@SuppressWarnings("unused")
