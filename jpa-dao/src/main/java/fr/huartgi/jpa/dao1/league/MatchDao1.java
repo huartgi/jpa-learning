@@ -16,6 +16,7 @@ public class MatchDao1 extends GenericDao<Long, Match> implements MatchDao {
 		super(Match.class);
 	}
 
+	@Override
 	public List<Match> findAll() {
 		String jpql = "select match from Match match ";
 		

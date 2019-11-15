@@ -17,6 +17,7 @@ public class PlayerDao2 extends GenericDao<Long, Player> implements PlayerDao {
 		super(Player.class);
 	}
 
+	@Override
 	public List<Player> findAll() {
 		
 		String jpql = "select player from Player player ";
@@ -26,6 +27,7 @@ public class PlayerDao2 extends GenericDao<Long, Player> implements PlayerDao {
 		
 	}
 
+	@Override
 	public List<Player> findByClub(Club club) {
 		
 		String jpql = "select player from Player player where player.club = :club ";
@@ -36,6 +38,7 @@ public class PlayerDao2 extends GenericDao<Long, Player> implements PlayerDao {
 		
 	}
 
+	@Override
 	public List<Player> findByClub(Long id) {
 		
 		String jpql = "select player from Player player where player.club.id = :id ";
