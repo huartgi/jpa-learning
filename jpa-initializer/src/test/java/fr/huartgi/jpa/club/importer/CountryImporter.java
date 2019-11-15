@@ -15,8 +15,9 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.club.service.CountryService;
+import fr.huartgi.jpa.club.run.DatabaseInitializer;
 import fr.huartgi.jpa.core.domain.club.Country;
+import fr.huartgi.jpa.core.service.club.CountryService;
 
 @Named
 public class CountryImporter {
@@ -35,7 +36,7 @@ public class CountryImporter {
 	 */
 	public void importCountries() {
 		
-		InputStream is = JpaInitializer.class.getResourceAsStream("/data/countries.txt");
+		InputStream is = DatabaseInitializer.class.getResourceAsStream("/data/countries.txt");
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         try {

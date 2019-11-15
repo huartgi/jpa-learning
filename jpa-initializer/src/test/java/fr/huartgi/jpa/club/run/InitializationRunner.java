@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.club.importer;
+package fr.huartgi.jpa.club.run;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,7 +10,7 @@ public class InitializationRunner {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-config.xml");      
 		
-		JpaInitializer jpaInitializer = (JpaInitializer) context.getBean("jpaInitializer");
+		DatabaseInitializer jpaInitializer = (DatabaseInitializer) context.getBean("jpaInitializer");
 		jpaInitializer.initDatabase();
 		
 		((ConfigurableApplicationContext) context).close();

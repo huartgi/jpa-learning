@@ -9,8 +9,8 @@ import fr.huartgi.jpa.core.domain.club.Club;
 import fr.huartgi.jpa.core.domain.league.Competition;
 import fr.huartgi.jpa.core.domain.league.Match;
 import fr.huartgi.jpa.core.domain.league.Season;
+import fr.huartgi.jpa.core.service.league.MatchService;
 import fr.huartgi.jpa.league.service.CompetitionService;
-import fr.huartgi.jpa.league.service.MatchService;
 import fr.huartgi.jpa.league.service.SeasonService;
 
 @Named

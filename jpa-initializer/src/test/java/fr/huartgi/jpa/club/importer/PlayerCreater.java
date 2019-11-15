@@ -10,9 +10,9 @@ import javax.inject.Named;
 
 import com.github.javafaker.Faker;
 
-import fr.huartgi.jpa.club.service.PlayerService;
 import fr.huartgi.jpa.core.domain.club.Club;
 import fr.huartgi.jpa.core.domain.club.Player;
+import fr.huartgi.jpa.core.service.club.PlayerService;
 
 @Named
 public class PlayerCreater {

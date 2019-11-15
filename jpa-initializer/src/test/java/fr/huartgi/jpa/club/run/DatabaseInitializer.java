@@ -1,12 +1,15 @@
-package fr.huartgi.jpa.club.importer;
+package fr.huartgi.jpa.club.run;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import fr.huartgi.jpa.club.importer.ClubImporter;
+import fr.huartgi.jpa.club.importer.CountryImporter;
+import fr.huartgi.jpa.club.importer.MatchCreater;
 import fr.huartgi.jpa.core.dao.fwk.TechnicalDao;
 
 @Named
-public class JpaInitializer {
+public class DatabaseInitializer {
 
 	@Inject
 	private TechnicalDao technicalDao;

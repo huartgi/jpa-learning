@@ -14,11 +14,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.club.service.ClubService;
-import fr.huartgi.jpa.club.service.StadiumService;
+import fr.huartgi.jpa.club.run.DatabaseInitializer;
 import fr.huartgi.jpa.core.domain.club.Club;
 import fr.huartgi.jpa.core.domain.club.Country;
 import fr.huartgi.jpa.core.domain.club.Stadium;
+import fr.huartgi.jpa.core.service.club.ClubService;
+import fr.huartgi.jpa.core.service.club.StadiumService;
 
 @Named
 public class ClubImporter {
@@ -40,7 +41,7 @@ public class ClubImporter {
 	
 	public void importClubs() {
 		
-		InputStream is = JpaInitializer.class.getResourceAsStream("/data/clubs.txt");
+		InputStream is = DatabaseInitializer.class.getResourceAsStream("/data/clubs.txt");
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         try {
