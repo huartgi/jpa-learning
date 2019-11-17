@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.dao2.test;
+package fr.huartgi.jpa.test1;
 
 import java.util.List;
 
@@ -9,11 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Country;
 import fr.huartgi.jpa.core.domain.club.Player;
 import fr.huartgi.jpa.core.domain.league.Match;
 import fr.huartgi.jpa.core.service.club.ClubService;
-import fr.huartgi.jpa.core.service.club.CountryService;
 import fr.huartgi.jpa.core.service.club.PlayerService;
 import fr.huartgi.jpa.core.service.league.MatchService;
 
@@ -23,9 +21,9 @@ import fr.huartgi.jpa.core.service.league.MatchService;
  *
  */
 @Named
-public class Tester2 {
+public class Tester1 {
 
-	private static final Logger logger = LoggerFactory.getLogger(Tester2.class);
+	private static final Logger logger = LoggerFactory.getLogger(Tester1.class);
 	
 	@Inject
 	private ClubService clubService;
@@ -33,23 +31,9 @@ public class Tester2 {
 	private MatchService matchService;
 	@Inject
 	private PlayerService playerService;
-	@Inject
-	private CountryService countryService;
-//	@Inject
-//	private StadiumService stadiumService;
 	
 	
 	public void testQueries() {
-		
-		//test cache
-		logger.debug("Récupération pays FRA par code");
-		Country france = countryService.findByCode("FRA");
-		logger.debug("Récupération pays FRA par id");
-		countryService.findById(france.getId());
-		logger.debug("Récupération pays FRA par code");
-		countryService.findByCode("FRA");
-		logger.debug("Récupération pays FRA par id");
-		countryService.findById(france.getId());
 		
 		logger.debug("Loading clubs");
 		List<Club> clubs = clubService.findAll();

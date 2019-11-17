@@ -15,6 +15,6 @@
 	<import resource="classpath:spring/spring-config-common.xml" />
 
 	<context:property-placeholder location="spring/test2/spring-config-2.properties"/>
-	<context:component-scan base-package="fr.huartgi.jpa.core, fr.huartgi.jpa.dao2" />
+	<context:component-scan base-package="fr.huartgi.jpa.core, fr.huartgi.jpa.dao1, fr.huartgi.jpa.test2" />
  
 </beans>

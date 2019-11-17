@@ -1,5 +1,7 @@
 package fr.huartgi.jpa.core.service.club;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,6 +19,10 @@ public class StadiumService {
 	
 	public void create(Stadium stadium) {
 		stadiumDao.create(stadium);
+	}
+
+	public List<Stadium> findAll() {
+		return stadiumDao.findAll();
 	}
 	
 }

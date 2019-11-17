@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.dao1.test;
+package fr.huartgi.jpa.test2;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.huartgi.jpa.core.domain.club.Club;
+import fr.huartgi.jpa.core.domain.club.Country;
 import fr.huartgi.jpa.core.domain.club.Player;
 import fr.huartgi.jpa.core.domain.league.Match;
 import fr.huartgi.jpa.core.service.club.ClubService;
@@ -17,14 +18,16 @@ import fr.huartgi.jpa.core.service.club.PlayerService;
 import fr.huartgi.jpa.core.service.league.MatchService;
 
 /**
- * Test comment 
+ * Bringing 2nd level cache.
+
+ *
  * @author Gildas
  *
  */
 @Named
-public class Tester1 {
+public class Tester2 {
 
-	private static final Logger logger = LoggerFactory.getLogger(Tester1.class);
+	private static final Logger logger = LoggerFactory.getLogger(Tester2.class);
 	
 	@Inject
 	private ClubService clubService;
@@ -34,14 +37,27 @@ public class Tester1 {
 	private PlayerService playerService;
 	@Inject
 	private CountryService countryService;
-//	@Inject
-//	private StadiumService stadiumService;
 	
-	
+	/**
+	 * In the scenario :
+	 * - the 2nd level cache of JPA is enabled for entities
+	 * - the entity Country is tagged as cacheable
+	 * - we get a country successively by code, id, code and id 
+	 *  
+	 * Then we replay the same queries that are played in Test 1.
+	 * We can notice that every country read once is never read twice.
+	 */
 	public void testQueries() {
+		
+		// test cache
+		logger.debug("Récupération pays FRA par code");
+		Country france = countryService.findByCode("FRA");
+		logger.debug("Récupération pays FRA par id");
+		countryService.findById(france.getId());
+		logger.debug("Récupération pays FRA par code");
 		countryService.findByCode("FRA");
-		countryService.findByCode("FRA");
-		countryService.findByCode("FRA");
+		logger.debug("Récupération pays FRA par id");
+		countryService.findById(france.getId());
 		
 		logger.debug("Loading clubs");
 		List<Club> clubs = clubService.findAll();

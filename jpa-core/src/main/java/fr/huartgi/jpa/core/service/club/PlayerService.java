@@ -25,6 +25,10 @@ public class PlayerService {
 		playerDao.create(player);
 	}
 
+	public Player findById(Long id) {
+		return playerDao.findById(id);
+	}
+
 	public List<Player> findAll() {
 		return playerDao.findAll();
 	}

@@ -1,4 +1,4 @@
-package fr.huartgi.jpa.dao2.test;
+package fr.huartgi.jpa.test2;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
