@@ -39,13 +39,18 @@ public class Tester2 {
 	private CountryService countryService;
 	
 	/**
-	 * In the scenario :
+	 * In this scenario :
 	 * - the 2nd level cache of JPA is enabled for entities
 	 * - the entity Country is tagged as cacheable
-	 * - we get a country successively by code, id, code and id 
+	 * - we get a country successively by code, id, code and id.
 	 *  
-	 * Then we replay the same queries that are played in Test 1.
-	 * We can notice that every country read once is never read twice.
+	 * Then we play the following queries :
+	 * - load all clubs
+	 * - load all matches
+	 * - load all players.
+	 * 
+	 * We can notice that :
+	 * - every country read once is never read twice.
 	 */
 	public void testQueries() {
 		
@@ -59,34 +64,17 @@ public class Tester2 {
 		logger.debug("Récupération pays FRA par id");
 		countryService.findById(france.getId());
 		
-		logger.debug("Loading clubs");
+		logger.debug("1. Loading clubs");
 		List<Club> clubs = clubService.findAll();
 		logger.debug(String.format("%d clubs found\n", clubs.size()));
-		//displayClubs(clubs);
 		
-		logger.debug("Loading matchs");
+		logger.debug("2. Loading matchs");
 		List<Match> matchs = matchService.findAll();
 		logger.debug(String.format("%d matchs found\n", matchs.size()));
-		//displayMatchs(matchs);
 		
-		logger.debug("Loading players");
+		logger.debug("3. Loading players");
 		List<Player> players = playerService.findAll();
 		logger.debug(String.format("%d players found\n", players.size()));
 	}
-	
-	@SuppressWarnings("unused")
-	private void displayClubs(List<Club> clubs) {
-		for (Club club : clubs) {
-			System.out.printf("%-25s %-7s %-100s\n", club.getName(), club.getCountry().getCode(), club.getStadium().getName());
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void displayMatchs(List<Match> matchs) {
-		for (Match match : matchs) {
-			System.out.printf("%25s %-1d - %-1d %-25s\n", match.getClubHome().getName(), match.getGoalHome(), match.getGoalAway(), match.getClubAway().getName());
-		}
-	}
-	
 
 }

@@ -41,53 +41,31 @@ public class Tester5 {
 	private StadiumService stadiumService;
 	
 	/**
-	 * In the scenario :
-	 * - the 2nd level cache of JPA is enabled
-	 * - the entity Country is tagged as cacheable
-	 * - we get the whole list of countries from the table .
-	 * 
-	 * Then we replay the same queries that are played in Test 1.
+	 * We do the same queries as in the previous scenario, but replacing join fetch in queries by entity graphs.
+	 * Not the same code, but the exact same result. 
 	 * 
 	 */
-	
 	public void testQueries() {
 		
-		logger.debug("Loading countries");
+		logger.debug("1. Loading countries");
 		List<Country> countries = countryService.findAll();
 		logger.debug(String.format("%d countries found\n", countries.size()));
 		
-		logger.debug("Loading stadiums");
+		logger.debug("2. Loading stadiums");
 		List<Stadium> stadiums = stadiumService.findAll();
 		logger.debug(String.format("%d stadiums found\n", stadiums.size()));
 		
-		logger.debug("Loading clubs");
+		logger.debug("3. Loading clubs");
 		List<Club> clubs = clubService.findAll();
 		logger.debug(String.format("%d clubs found\n", clubs.size()));
-		//displayClubs(clubs);
 		
-		logger.debug("Loading matchs");
+		logger.debug("4. Loading matchs");
 		List<Match> matchs = matchService.findAll();
 		logger.debug(String.format("%d matchs found\n", matchs.size()));
-		//displayMatchs(matchs);
 		
-		logger.debug("Loading players");
+		logger.debug("5. Loading players");
 		List<Player> players = playerService.findAll();
 		logger.debug(String.format("%d players found\n", players.size()));
 	}
-	
-	@SuppressWarnings("unused")
-	private void displayClubs(List<Club> clubs) {
-		for (Club club : clubs) {
-			System.out.printf("%-25s %-7s %-100s\n", club.getName(), club.getCountry().getCode(), club.getStadium().getName());
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void displayMatchs(List<Match> matchs) {
-		for (Match match : matchs) {
-			System.out.printf("%25s %-1d - %-1d %-25s\n", match.getClubHome().getName(), match.getGoalHome(), match.getGoalAway(), match.getClubAway().getName());
-		}
-	}
-	
 
 }

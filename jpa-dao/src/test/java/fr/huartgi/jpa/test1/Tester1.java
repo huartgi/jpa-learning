@@ -33,36 +33,50 @@ public class Tester1 {
 	private PlayerService playerService;
 	
 	
+	/**
+	 * In this scenario, we query the database without any optimization to :
+	 * - load all clubs
+	 * - load all matches
+	 * - load all players.
+	 * 
+	 * 1. Loading clubs
+	 * - for each club, JPA retrieves : 
+	 * --> its country
+	 * --> its stadium
+	 * - a country read once is not read twice for another club (because same transaction / persistence context)
+	 * 
+	 * Notice that : 
+	 * - a country read once is not read twice for another club (because same transaction / persistence context)
+	 * 
+	 * 
+	 * 2. Loading matches
+	 * - for each match (select N+1 problem), JPA retrieves : 
+	 * --> the home club... and for that club, retrieves 
+	 * ----> the country of the home club
+	 * ----> the stadium of the home club.
+	 * --> same for the away club (even if the country is the same as the home club's). 
+	 * ----> the country of the away club
+	 * ----> the stadium of the away club.
+	 * --> the season of the match
+	 * ----> the competition related to this season
+	 * ----> the club winner 
+	 * ------> the country of the club winner
+	 * ------> the stadium of the club winner
+	 * 
+	 */
 	public void testQueries() {
 		
-		logger.debug("Loading clubs");
+		logger.debug("1. Loading clubs");
 		List<Club> clubs = clubService.findAll();
 		logger.debug(String.format("%d clubs found\n", clubs.size()));
-		//displayClubs(clubs);
 		
-		logger.debug("Loading matchs");
+		logger.debug("2. Loading matches");
 		List<Match> matchs = matchService.findAll();
 		logger.debug(String.format("%d matchs found\n", matchs.size()));
-		//displayMatchs(matchs);
 		
-		logger.debug("Loading players");
+		logger.debug("3. Loading players");
 		List<Player> players = playerService.findAll();
 		logger.debug(String.format("%d players found\n", players.size()));
 	}
-	
-	@SuppressWarnings("unused")
-	private void displayClubs(List<Club> clubs) {
-		for (Club club : clubs) {
-			System.out.printf("%-25s %-7s %-100s\n", club.getName(), club.getCountry().getCode(), club.getStadium().getName());
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void displayMatchs(List<Match> matchs) {
-		for (Match match : matchs) {
-			System.out.printf("%25s %-1d - %-1d %-25s\n", match.getClubHome().getName(), match.getGoalHome(), match.getGoalAway(), match.getClubAway().getName());
-		}
-	}
-	
 
 }

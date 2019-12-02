@@ -18,7 +18,8 @@ import fr.huartgi.jpa.core.service.club.StadiumService;
 import fr.huartgi.jpa.core.service.league.MatchService;
 
 /**
- * Test comment 
+ * Preloading cache 
+ * 
  * @author Gildas
  *
  */
@@ -39,51 +40,39 @@ public class Tester3 {
 	private StadiumService stadiumService;
 	
 	/**
-	 * In the scenario :
+	 * In this scenario :
 	 * - the 2nd level cache of JPA is enabled
-	 * - the entity Country is tagged as cacheable
-	 * - we get the whole list of countries from the table .
+	 * - the entity Country is tagged as cacheable..
 	 * 
-	 * Then we replay the same queries that are played in Test 1.
+	 * Then we play the following queries :
+	 * - load all countries --> fills the cache
+	 * - load all stadiums
+	 * - load all clubs
+	 * - load all matches
+	 * - load all players.
 	 * 
+	 * We can notice that :
+	 * - no country is read apart from the loading cache query (1 query).
 	 */
-	
 	public void testQueries() {
 		
-		logger.debug("Loading countries");
+		logger.debug("1. Loading countries");
 		countryService.findAll();
 		
-		logger.debug("Loading stadiums");
+		logger.debug("2. Loading stadiums");
 		stadiumService.findAll();
 		
-		logger.debug("Loading clubs");
+		logger.debug("3. Loading clubs");
 		List<Club> clubs = clubService.findAll();
 		logger.debug(String.format("%d clubs found\n", clubs.size()));
-		//displayClubs(clubs);
 		
-		logger.debug("Loading matchs");
+		logger.debug("4. Loading matchs");
 		List<Match> matchs = matchService.findAll();
 		logger.debug(String.format("%d matchs found\n", matchs.size()));
-		//displayMatchs(matchs);
 		
-		logger.debug("Loading players");
+		logger.debug("5. Loading players");
 		List<Player> players = playerService.findAll();
 		logger.debug(String.format("%d players found\n", players.size()));
 	}
 	
-	@SuppressWarnings("unused")
-	private void displayClubs(List<Club> clubs) {
-		for (Club club : clubs) {
-			System.out.printf("%-25s %-7s %-100s\n", club.getName(), club.getCountry().getCode(), club.getStadium().getName());
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void displayMatchs(List<Match> matchs) {
-		for (Match match : matchs) {
-			System.out.printf("%25s %-1d - %-1d %-25s\n", match.getClubHome().getName(), match.getGoalHome(), match.getGoalAway(), match.getClubAway().getName());
-		}
-	}
-	
-
 }
