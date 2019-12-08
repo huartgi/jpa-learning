@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import fr.huartgi.jpa.core.domain.league.Match;
 import fr.huartgi.jpa.core.domain.league.Season;
 
 @Entity
@@ -44,6 +45,14 @@ public class Club {
 	
 	@OneToMany(mappedBy="winner", cascade = CascadeType.ALL)
 	private List<Season> palmares;
+	
+	@OneToMany(mappedBy="clubHome", cascade = CascadeType.ALL)
+	private List<Match> matchesHome;
+	
+	@OneToMany(mappedBy="clubAway", cascade = CascadeType.ALL)
+	private List<Match> matchesAway;
+	
+	
 	
 	// ========== CONSTRUCTORS ==========
 	
@@ -102,6 +111,22 @@ public class Club {
 
 	public void setPlayers(List<Player> players) {
 		this.players = players;
+	}
+
+	public List<Match> getMatchesHome() {
+		return matchesHome;
+	}
+
+	public void setMatchesHome(List<Match> matchesHome) {
+		this.matchesHome = matchesHome;
+	}
+
+	public List<Match> getMatchesAway() {
+		return matchesAway;
+	}
+
+	public void setMatchesAway(List<Match> matchesAway) {
+		this.matchesAway = matchesAway;
 	}
 
 }
