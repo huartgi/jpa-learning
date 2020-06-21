@@ -1,18 +1,16 @@
 package fr.huartgi.jpa.initializer.importer;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.ThreadLocalRandom;
+import com.github.javafaker.Faker;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Player;
+import fr.huartgi.jpa.core.service.club.PlayerService;
+import org.terracotta.statistics.jsr166e.ThreadLocalRandom;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.github.javafaker.Faker;
-
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Player;
-import fr.huartgi.jpa.core.service.club.PlayerService;
+import java.util.Calendar;
+import java.util.Date;
 
 @Named
 public class PlayerCreater {

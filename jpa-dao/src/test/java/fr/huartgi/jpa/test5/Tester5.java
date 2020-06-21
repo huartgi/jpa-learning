@@ -8,11 +8,11 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Country;
-import fr.huartgi.jpa.core.domain.club.Player;
-import fr.huartgi.jpa.core.domain.club.Stadium;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Country;
+import fr.huartgi.jpa.core.domain.Player;
+import fr.huartgi.jpa.core.domain.Stadium;
+import fr.huartgi.jpa.core.domain.Match;
 import fr.huartgi.jpa.core.service.club.ClubService;
 import fr.huartgi.jpa.core.service.club.CountryService;
 import fr.huartgi.jpa.core.service.club.PlayerService;

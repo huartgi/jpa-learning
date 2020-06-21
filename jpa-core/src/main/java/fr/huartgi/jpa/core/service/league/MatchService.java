@@ -8,7 +8,7 @@ import javax.inject.Named;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.huartgi.jpa.core.dao.league.MatchDao;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Match;
 
 @Named
 @Transactional

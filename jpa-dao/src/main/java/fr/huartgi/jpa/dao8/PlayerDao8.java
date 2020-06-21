@@ -8,8 +8,8 @@ import javax.persistence.TypedQuery;
 
 import fr.huartgi.jpa.core.dao.club.PlayerDao;
 import fr.huartgi.jpa.core.dao.fwk.GenericDao;
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Player;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Player;
 
 @Named
 public class PlayerDao8 extends GenericDao<Long, Player> implements PlayerDao {

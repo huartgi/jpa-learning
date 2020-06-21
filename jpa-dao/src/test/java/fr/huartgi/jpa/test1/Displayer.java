@@ -2,8 +2,8 @@ package fr.huartgi.jpa.test1;
 
 import java.util.List;
 
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Match;
 
 public class Displayer {
 	

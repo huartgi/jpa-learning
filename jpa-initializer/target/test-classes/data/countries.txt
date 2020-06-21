@@ -1,6 +1,7 @@
 ARG  Argentina
 BEL  Belgium
 BRA  Brazil
+CHL  Chile
 CIV  Ivory Coast
 CMR  Cameroon
 DEU  Germany
@@ -15,7 +16,9 @@ MLI  Mali
 NGA  Nigeria
 NLD  Netherlands
 POL  Poland
+URY  Uruguay
 PRT  Portugal
 ROU  Romania
 RUS  Russia
 SEN  Senegal
+WAL  Wales

@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 
 import fr.huartgi.jpa.core.dao.fwk.GenericDao;
 import fr.huartgi.jpa.core.dao.league.MatchDao;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Match;
 
 @Named
 public class MatchDao7 extends GenericDao<Long, Match> implements MatchDao {

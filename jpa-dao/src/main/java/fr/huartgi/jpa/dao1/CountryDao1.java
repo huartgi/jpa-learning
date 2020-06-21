@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 
 import fr.huartgi.jpa.core.dao.club.CountryDao;
 import fr.huartgi.jpa.core.dao.fwk.GenericDao;
-import fr.huartgi.jpa.core.domain.club.Country;
+import fr.huartgi.jpa.core.domain.Country;
 
 @Named
 public class CountryDao1 extends GenericDao<Long, Country> implements CountryDao {

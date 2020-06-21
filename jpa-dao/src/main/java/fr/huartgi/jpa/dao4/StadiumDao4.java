@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 
 import fr.huartgi.jpa.core.dao.club.StadiumDao;
 import fr.huartgi.jpa.core.dao.fwk.GenericDao;
-import fr.huartgi.jpa.core.domain.club.Stadium;
+import fr.huartgi.jpa.core.domain.Stadium;
 
 @Named
 public class StadiumDao4 extends GenericDao<Long, Stadium> implements StadiumDao {

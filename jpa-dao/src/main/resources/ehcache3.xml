@@ -22,6 +22,6 @@
     <key-type>java.lang.Number</key-type>
   </cache>
 
-  <cache alias="fr.huartgi.jpa.core.domain.club.Country" uses-template="myDefaults" /> 
+  <cache alias="fr.huartgi.jpa.core.domain.Country" uses-template="myDefaults" />
 
 </config>

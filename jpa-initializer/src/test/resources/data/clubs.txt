@@ -1,32 +1,20 @@
-Lille OSC;FRA;Stade Pierre Mauroy;50200;Y
-Paris SG;FRA;Parc des princes;45000;Y
-Marseille;FRA;Orange Vélodrome;66000;Y
-Lyon;FRA;Groupama stadium;60000;Y
-Barcelona;ESP;Camp Nou;90000;Y
-Real Madrid;ESP;Santiago Bernabeu;82000;Y
-Manchester United;ENG;Old Trafford;70000;Y
-Chelsea;ENG;Stamford Bridge;40000;Y
-Arsenal;ENG;Emirates Stadium;65000;Y
-Liverpool;ENG;Anfield Road;45000;Y
-Manchester City;ENG;Etihad Stadium;40000;Y
-Tottenham;ENG;White Hart Lane;70000;Y
-Bayern Munchen;DEU;Allianz Arena;65000;Y
-Borussia Dortmund;DEU;Westfalen Stadion;80000;Y
-Juventus;ITA;Juventus Stadium;65000;Y
-Napoli;ITA;San Paolo;55000;Y
-Saint-Etienne;FRA;Stade Geoffroy Guichard;42000;N
-Montpellier;FRA;Stade de la Mosson;22000;N
-Nice;FRA;Allianz Riviera;35600;N
-Reims;FRA;Stade Auguste-Delaune;20500;N
-Nîmes;FRA;Stade des Costières;15700;N
-Rennes;FRA;Roazhon Park;29000;N
-Strasbourg;FRA;Stade de la Meinau;26000;N
-Nantes;FRA;Stade de la Baujeoire;35000;N
-Angers;FRA;Stade Raymon Kopa;17000;N
-Bordeaux;FRA;Matmut Atlantique;42000;N
-Amiens;FRA;Stade de la Licorne;13000;N
-Toulouse;FRA;Stadium de Toulouse;33000;N
-Monaco;FRA;Stade Louis II;16000;N
-Dijon;FRA;Parc des sports Gaston-Gérard;15500;N
-Metz;FRA;Stade Saint-Symphorien;25800;N
-Brest;FRA;Stade Francis Le Blé;15000;N
+Lille OSC;FRA;Stade Pierre Mauroy;50200
+Paris SG;FRA;Parc des princes;45000
+Marseille;FRA;Orange Vélodrome;66000
+Lyon;FRA;Groupama stadium;60000
+Barcelona;ESP;Camp Nou;90000
+Real Madrid;ESP;Santiago Bernabeu;82000
+Atlético Madrid;ESP;Wanda Metropolitano;67829
+Manchester United;ENG;Old Trafford;70000
+Chelsea;ENG;Stamford Bridge;40000
+Arsenal;ENG;Emirates Stadium;65000
+Liverpool;ENG;Anfield Road;45000
+Manchester City;ENG;Etihad Stadium;40000
+Tottenham;ENG;White Hart Lane;70000
+Bayern Munchen;DEU;Allianz Arena;65000
+Borussia Dortmund;DEU;Westfalen Stadion;80000
+Juventus;ITA;Juventus Stadium;65000
+Napoli;ITA;San Paolo;55000
+Roma;ITA;Stadio Olimpico;72698
+Porto;PRT;Estádio do Dragão;50033
+Benfica;PRT;Stade de Luz;64642

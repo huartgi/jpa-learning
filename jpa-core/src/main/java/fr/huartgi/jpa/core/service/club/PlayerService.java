@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.huartgi.jpa.core.dao.club.ClubDao;
 import fr.huartgi.jpa.core.dao.club.PlayerDao;
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Player;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Player;
 
 @Named
 @Transactional

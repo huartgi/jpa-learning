@@ -15,7 +15,7 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.core.domain.club.Country;
+import fr.huartgi.jpa.core.domain.Country;
 import fr.huartgi.jpa.core.service.club.CountryService;
 import fr.huartgi.jpa.initializer.run.DatabaseInitializer;
 

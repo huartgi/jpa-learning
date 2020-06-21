@@ -10,13 +10,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Country;
-import fr.huartgi.jpa.core.domain.club.Stadium;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Country;
+import fr.huartgi.jpa.core.domain.Stadium;
 import fr.huartgi.jpa.core.service.club.ClubService;
 import fr.huartgi.jpa.core.service.club.StadiumService;
 import fr.huartgi.jpa.initializer.run.DatabaseInitializer;
@@ -26,9 +25,8 @@ public class ClubImporter {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClubImporter.class);
 	
-	private List<Club> frenchClubs = new ArrayList<Club>();
-	private List<Club> europeanClubs = new ArrayList<Club>();
-	
+	private List<Club> clubs = new ArrayList<Club>();
+
 	@Inject
 	private ClubService clubService;
 	@Inject
@@ -51,12 +49,8 @@ public class ClubImporter {
 				String countryCode = columns[1];
 				String stadiumName = columns[2];
 				Integer stadiumCapacity = new Integer(columns[3]);
-				Boolean european = StringUtils.equals("Y", columns[4]);
-				Club club = createClub(clubName, countryCode, stadiumName, stadiumCapacity); 
-			    if (StringUtils.equals("FRA", countryCode))
-			    	frenchClubs.add(club);			
-			    if (european) 
-			    	europeanClubs.add(club);
+				Club club = createClub(clubName, countryCode, stadiumName, stadiumCapacity);
+			    clubs.add(club);
 			}
 		} 
         catch (IOException err) {
@@ -74,11 +68,8 @@ public class ClubImporter {
 		return club;
 	}
 
-	public List<Club> getFrenchClubs() {
-		return frenchClubs;
+	public List<Club> getClubs() {
+		return clubs;
 	}
 
-	public List<Club> getEuropeanClubs() {
-		return europeanClubs;
-	}
 }

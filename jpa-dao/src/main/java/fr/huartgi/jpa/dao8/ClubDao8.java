@@ -9,8 +9,8 @@ import javax.persistence.TypedQuery;
 
 import fr.huartgi.jpa.core.dao.club.ClubDao;
 import fr.huartgi.jpa.core.dao.fwk.GenericDao;
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Match;
 
 @Named
 public class ClubDao8 extends GenericDao<Long, Club> implements ClubDao {

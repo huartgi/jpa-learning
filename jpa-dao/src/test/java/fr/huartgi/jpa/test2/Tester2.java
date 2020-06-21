@@ -8,10 +8,10 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Country;
-import fr.huartgi.jpa.core.domain.club.Player;
-import fr.huartgi.jpa.core.domain.league.Match;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Country;
+import fr.huartgi.jpa.core.domain.Player;
+import fr.huartgi.jpa.core.domain.Match;
 import fr.huartgi.jpa.core.service.club.ClubService;
 import fr.huartgi.jpa.core.service.club.CountryService;
 import fr.huartgi.jpa.core.service.club.PlayerService;
@@ -55,13 +55,13 @@ public class Tester2 {
 	public void testQueries() {
 		
 		// test cache
-		logger.debug("Récupération pays FRA par code");
+		logger.debug("Rï¿½cupï¿½ration pays FRA par code");
 		Country france = countryService.findByCode("FRA");
-		logger.debug("Récupération pays FRA par id");
+		logger.debug("Rï¿½cupï¿½ration pays FRA par id");
 		countryService.findById(france.getId());
-		logger.debug("Récupération pays FRA par code");
+		logger.debug("Rï¿½cupï¿½ration pays FRA par code");
 		countryService.findByCode("FRA");
-		logger.debug("Récupération pays FRA par id");
+		logger.debug("Rï¿½cupï¿½ration pays FRA par id");
 		countryService.findById(france.getId());
 		
 		logger.debug("1. Loading clubs");

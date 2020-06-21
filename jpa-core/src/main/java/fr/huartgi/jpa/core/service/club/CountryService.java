@@ -8,7 +8,7 @@ import javax.inject.Named;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.huartgi.jpa.core.dao.club.CountryDao;
-import fr.huartgi.jpa.core.domain.club.Country;
+import fr.huartgi.jpa.core.domain.Country;
 
 @Named
 @Transactional

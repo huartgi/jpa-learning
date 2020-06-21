@@ -14,14 +14,11 @@ public class TechnicalDao {
     protected EntityManager entityManager;
     
     public void clearTables() {
-    	entityManager.createNativeQuery("update hibernate_sequence set next_val = 1").executeUpdate();
     	entityManager.createNativeQuery("delete from MATCHS").executeUpdate();
     	entityManager.createNativeQuery("delete from PLAYER").executeUpdate();
     	entityManager.createNativeQuery("delete from CLUB").executeUpdate();
     	entityManager.createNativeQuery("delete from STADIUM").executeUpdate();
     	entityManager.createNativeQuery("delete from COUNTRY").executeUpdate();
-    	entityManager.createNativeQuery("delete from SEASON").executeUpdate();
-    	entityManager.createNativeQuery("delete from COMPETITION").executeUpdate();
     }
 
 }

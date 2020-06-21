@@ -3,8 +3,8 @@ package fr.huartgi.jpa.core.dao.club;
 import java.util.List;
 
 import fr.huartgi.jpa.core.dao.fwk.IGenericDao;
-import fr.huartgi.jpa.core.domain.club.Club;
-import fr.huartgi.jpa.core.domain.club.Player;
+import fr.huartgi.jpa.core.domain.Club;
+import fr.huartgi.jpa.core.domain.Player;
 
 public interface PlayerDao extends IGenericDao<Long, Player> {
 	
