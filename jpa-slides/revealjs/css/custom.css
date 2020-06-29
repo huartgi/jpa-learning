@@ -1,0 +1,19 @@
+.reveal .no-transform {
+    text-transform: none;
+}
+.reveal pre {
+    width: 100%;
+}
+.reveal blockquote {
+    width: 100%;
+}
+
+.reveal section img.no-border {
+    border-width: 0;
+}
+
+.reveal section br {
+    display: block;
+    content: " ";
+    height: 8px;
+}

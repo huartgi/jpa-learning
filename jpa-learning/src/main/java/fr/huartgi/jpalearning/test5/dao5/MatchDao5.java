@@ -24,7 +24,7 @@ public class MatchDao5 extends GenericDao<Long, Match> implements MatchDao {
 		graph.addAttributeNodes("clubHome", "clubAway");
 
 		TypedQuery<Match> query = entityManager.createQuery(jpql, Match.class);
-		query.setHint("javax.persistence.fetchgraph", graph);
+		query.setHint("javax.persistence.loadgraph", graph);
 		return query.getResultList();
 		
 	}

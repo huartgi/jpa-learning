@@ -32,7 +32,7 @@ public class Tester6 {
 	
 	/**
 	 * No more "select n+1" problem.
-	 * Everything is loading by a single query, always using entity graphs.
+	 * Everything is loaded by a single query, always using entity graphs.
 	 * 
 	 */
 	public void testQueries() {

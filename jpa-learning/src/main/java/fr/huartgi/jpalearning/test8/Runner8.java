@@ -1,6 +1,5 @@
 package fr.huartgi.jpalearning.test8;
 
-import fr.huartgi.jpalearning.test1.Tester1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,9 +13,9 @@ public class Runner8 {
     public static void main(String[] args) {
         System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "cache");
         ApplicationContext context = SpringApplication.run(Runner8.class, args);
-        Tester1 tester = (Tester1) context.getBean("tester1");
+        Tester8 tester = (Tester8) context.getBean("tester8");
         tester.testQueries();
-//        SpringApplication.exit(context);
+        SpringApplication.exit(context);
     }
 
 }

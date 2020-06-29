@@ -26,7 +26,7 @@ public class ClubDao5 extends GenericDao<Long, Club> implements ClubDao {
 		graph.addAttributeNodes("stadium");
 
 		TypedQuery<Club> query = entityManager.createQuery(jpql, Club.class);
-		query.setHint("javax.persistence.fetchgraph", graph);
+		query.setHint("javax.persistence.loadgraph", graph);
 		return query.getResultList();
 		
 	}

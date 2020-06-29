@@ -26,7 +26,7 @@ public class PlayerDao5 extends GenericDao<Long, Player> implements PlayerDao {
 		graph.addAttributeNodes("club");
 
 		TypedQuery<Player> query = entityManager.createQuery(jpql, Player.class);
-		query.setHint("javax.persistence.fetchgraph", graph);
+		query.setHint("javax.persistence.loadgraph", graph);
 		return query.getResultList();
 		
 	}

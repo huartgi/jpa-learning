@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JPA Learning - Session 1</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="revealjs/css/reset.css">
+		<link rel="stylesheet" href="revealjs/css/reveal.css">
+		<link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="revealjs/lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="revealjs/css/custom.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<section>
+						<h1 class="no-transform">JPA Learning</h1>
+						<h3 class="no-transform">Session #1 : select N+1</h3>
+						<p>
+							<small>By <a href="#">Gildas Huart</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h2 class="no-transform">Objectives</h2>
+						<p>Better understand :</p>
+						<ul>
+							<li class="fragment">EAGER vs LAZY</li>
+							<li class="fragment">Select N+1</li>
+							<li class="fragment">Cache levels</li>
+							<li class="fragment">Fetching</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2 class="no-transform">Program</h2>
+						<ul>
+							<li class="fragment">JPA concepts</li>
+							<li class="fragment">Demonstration</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section data-transition="convex">
+
+					<section data-transition="convex">
+						<h2 class="no-transform">JPA concepts</h2>
+						<ul>
+							<li class="fragment">EntityManager</li>
+							<li class="fragment">Persistence context</li>
+							<li class="fragment">Cache</li>
+							<li class="fragment">Eager vs Lazy</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Entity Manager</h2>
+						<p class="fragment">JPA interface used to :</p>
+						<ul>
+							<li class="fragment">Create/Update/Delete entities</li>
+							<li class="fragment">Find entities by primary key</li>
+							<li class="fragment">Query over entities</li>
+						</ul>
+						<aside class="notes">Test</aside>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Persistence Context</h2>
+						<ul>
+							<li class="fragment">Set of entities managed by an Entity Manager</li>
+							<li class="fragment">Entities sorted by <a href="">ID</a> and <a href="">CLASS</a> (unique)</li>
+							<li class="fragment">1 EntityManager <-> 1 PersistenceContext</li>
+							<li class="fragment">Also called <a href="">1st level cache</a></li>
+						</ul>
+						<aside class="notes">
+							<p>Contains all entities fetched from the database or saved to the database.</p>
+							<p>Read 8 times same ID/CLASS entity, stored only once in PersistenceContext.</p>
+							<p>Entities are said to be 'managed'.</p>
+							<p>A managed entity modified is considered as 'dirty'</p>
+						</aside>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Persistence Context : Lifecycle</h2>
+						<p class="fragment">Same as Entity Manager</p>
+						<p class="fragment">Cleared when :</p>
+						<ul>
+							<li class="fragment">Entity Manager is <a>closed</a></li>
+							<li class="fragment">Transaction's <a>commit</a> or <a>rollback</a></li>
+						</ul>
+						<aside class="notes">
+							<p>Contains all entities fetched from the database or saved to the database.</p>
+							<p>Read 8 times same ID/CLASS entity, stored only once in PersistenceContext.</p>
+							<p>Entities are said to be 'managed'.</p>
+							<p>A managed entity modified is considered as 'dirty'</p>
+						</aside>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Cache</h2>
+						<p class="fragment">Also called, <a>2nd level cache</a></p>
+						<ul>
+							<li class="fragment">Storage for @Cacheable entities</li>
+							<li class="fragment">Shared by all EntityManager within an application</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">EAGER Fetching</h2>
+						<p class="fragment">A relationship marked as EAGER must be fetched with the entity</p>
+						<p class="fragment">Even if it is not needed !</p>
+						<ul>
+							<li class="fragment">Best case scenario : join fetch</li>
+							<li class="fragment">Worst case scenario : select on the fly (select N+1)</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Select N+1</h2>
+						<ul>
+							<li class="fragment">First query returns X entities</li>
+							<li class="fragment">Each entity has a relationship with another entity</li>
+							<li class="fragment">The relationship is fetched eagerly</li>
+							<li class="fragment">For that 1st query, we'll load N more (1<=N<=X)</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">LAZY loading</h2>
+						<p class="fragment">A relationship marked as LAZY is not fetched.</p>
+						<p class="fragment">But the loading is possible later...</p>
+						<p class="fragment">... if the entity is still in the persistence context !</p>
+						<p class="fragment">Else, we get the famous <a>LazyInitializationException</a></p>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2 class="no-transform">Application</h2>
+						<ul>
+							<li class="fragment">Configuration</li>
+							<li class="fragment">Data Model</li>
+							<li class="fragment">Data</li>
+							<li class="fragment">Demo</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2 class="no-transform">Configuration</h2>
+						<ul>
+							<li class="fragment">Spring Boot - 2.3.1</li>
+							<li class="fragment">JPA - 2.2</li>
+							<li class="fragment">Hibernate - 5.4.17</li>
+							<li class="fragment">EhCache - 3.8.1</li>
+							<li class="fragment">H2 database (in memory)</li>
+							<li class="fragment">Embedded Tomcat for H2 console</li>
+						</ul>
+
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Data Model</h2>
+						<img src="session1/datamodel.png" class="no-border">
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Data</h2>
+						<div>
+							<img style="vertical-align: top" src="session1/data-countries.png" class="no-border">
+							<img style="vertical-align: top" src="session1/data-clubs.png" class="no-border">
+							<img style="vertical-align: top" src="session1/data-stadiums.png" class="no-border">
+						</div>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Demo</h2>
+					</section>
+
+					<section data-transition="convex">
+						<img style="vertical-align: top" src="session1/persistence-context-1.png" class="no-border">
+					</section>
+
+					<section data-transition="convex">
+						<img style="vertical-align: top" src="session1/persistence-context-2.png" class="no-border">
+					</section>
+
+					<section data-transition="convex">
+						<img style="vertical-align: top" src="session1/persistence-context-3.png" class="no-border">
+					</section>
+
+					<section data-transition="convex">
+						<img style="vertical-align: top" src="session1/persistence-context-4.png" class="no-border">
+					</section>
+
+					<section data-transition="convex">
+						<img style="vertical-align: top" src="session1/cache-1.png" class="no-border">
+					</section>
+
+				</section>
+
+				<section data-transition="convex">
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Conclusions</h2>
+						<ul>
+							<li class="fragment">EAGER loading without join fetch leads to <a>select N+1</a></li>
+							<li class="fragment">Solving select N+1 leads to unreasonable <a>joins</a></li>
+							<li class="fragment">Best strategy : <a>good mapping</a> at start</li>
+							<li class="fragment">If too late : <a>Hibernate 5.4</a> + EntityGraph / <a>fetchgraph</a></li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">My advices</h2>
+						<ul>
+							<li class="fragment"><a>@Cacheable</a> entities : <a href="">EAGER</a></li>
+							<li class="fragment">Cache loaded at startup</li>
+							<li class="fragment">All the rest : LAZY</li>
+						</ul>
+					</section>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="revealjs/js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/highlight/highlight.js' },
+					{ src: 'revealjs/plugin/search/search.js', async: true },
+					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

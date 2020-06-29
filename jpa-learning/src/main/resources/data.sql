@@ -26,7 +26,7 @@ INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(24, 'WAL', ' Wales');
 
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(1, 50200, 'Stade Pierre Mauroy');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(2, 45000, 'Parc des princes');
-INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(3, 66000, 'Orange Vlodrome');
+INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(3, 66000, 'Orange Vélodrome');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(4, 60000, 'Groupama stadium');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(5, 90000, 'Camp Nou');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(6, 82000, 'Santiago Bernabeu');
@@ -42,7 +42,7 @@ INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(15, 80000, 'Westfalen St
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(16, 65000, 'Juventus Stadium');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(17, 55000, 'San Paolo');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(18, 72698, 'Stadio Olimpico');
-INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(19, 50033, 'Estdio do Drago');
+INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(19, 50033, 'Estdio do Dragão');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(20, 64642, 'Stade de Luz');
 
 
@@ -52,7 +52,7 @@ INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(3, 'Marseil
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(4, 'Lyon', 10, 4);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(5, 'Barcelona', 9, 5);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(6, 'Real Madrid', 9, 6);
-INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(7, 'Atltico Madrid', 9, 7);
+INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(7, 'Atlético Madrid', 9, 7);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(8, 'Manchester United', 11, 8);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(9, 'Chelsea', 11, 9);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(10, 'Arsenal', 11, 10);

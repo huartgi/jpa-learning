@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web Dev Meetings - Session 1</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="revealjs/css/reset.css">
+		<link rel="stylesheet" href="revealjs/css/reveal.css">
+		<link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="revealjs/lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="revealjs/css/custom.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Web Dev Meetings</h1>
+					<h3>Session #2</h3>
+					<p>
+						<small>By <a href="#">Nelson Costa</a> and <a href="#">Cherif Mellak</a></small>
+					</p>
+				</section>
+
+				<section data-transition="convex">
+					<h2>Menu</h2>
+					<ul>
+						<li class="fragment">AXWAY API Gateway: Why?</li>
+						<li class="fragment">Spring Security</li>
+						<ul>
+							<li class="fragment">Filter Chain</li>
+							<li class="fragment">Modify Filter Chain</li>
+						</ul>
+						<li class="fragment">AXWAY API Gateway</li>
+						<ul>
+							<li class="fragment">How to generate Swagger</li>
+							<li class="fragment">How to deploy</li>
+							<li class="fragment">How to monitor</li>
+							<li class="fragment">Solution to add big files</li>
+						</ul>
+						<li class="fragment">Coding games</li>
+					</ul>
+				</section>
+
+				<section data-transition="convex">
+					<section data-transition="convex">
+						<h2 class="no-transform">AXWAY API Gateway: Why?</h2>
+						<img src="session2/gateway1.PNG">
+					</section>
+					<section>
+						<img src="session2/gateway2.PNG">
+					</section>
+					<section>
+						<h2 class="no-transform">Natixis Portal API:</h2>
+						<p><a href="https://portalapi.mycloud.intranatixis.com/" target="_blank">https://portalapi.mycloud.intranatixis.com/</a></p>
+					</section>
+				</section>
+				<section data-transition="convex">
+					<section>
+						<h2 class="no-transform">Spring Security</h2>
+						<p>Filter Chain</p>
+						<img src="session2/spring-security-filter.png">
+					</section>
+				</section>
+				<section data-transition="convex">
+					<section>
+						<h2 class="no-transform">Modify Filter Chain</h2>
+						<img src="session2/spring-security-filter2.png">
+					</section>
+				</section>
+				<section data-transition="convex">
+					<section>
+						<h2 class="no-transform">WebSecurityConfigurerAdapter</h2>
+						<pre><code style="max-height: 550px;" class="hljs java" data-trim data-line-numbers="3|1|2|5,6|7-13">
+@Configuration
+@EnableWebSecurity
+public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+      web.ignoring().mvcMatchers("/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/swagger/**");
+    }
+
+...
+					</code></pre>
+					</section>
+					<section>
+						<h2 class="no-transform">WebSecurityConfigurerAdapter</h2>
+						<pre><code style="max-height: 550px;" class="hljs java" data-trim data-line-numbers="6-7|9-10|12|13|15,17|16">
+@Configuration
+@EnableWebSecurity
+public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
+...
+
+    @Value("${jwt.certificate.name}")
+    private String certificatePath;
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+
+        http.anyRequest()
+              .hasAuthority("readP01api")
+              .and()
+                .addFilterBefore(
+                  new JwtFilter(certificatePath)
+                  , BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuditFilter(), BasicAuthenticationFilter.class);
+
+    }
+}
+					</code></pre>
+					</section>
+				</section>
+
+				<section data-transition="convex">
+					<section>
+						<h2 class="no-transform">JwtFilter</h2>
+						<pre><code style="max-height: 550px;" class="hljs java" data-trim data-line-numbers="1|3-4|8|11-12|14-15">
+public class JwtFilter extends GenericFilterBean {
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+        String token = httpRequest.getHeader("X-Authorization");
+
+        try {
+            if (token == null)
+                throw new GeneralSecurityException("No token found in headers");
+
+            // Decoding the token with the secret key
+            Jws&lt;Claims&gt; claims = TokenVerifier.getClaims(token, jwtCertificatePath);
+...
+					</code></pre>
+					</section>
+					<section>
+						<h2 class="no-transform">TokenVerifier</h2>
+						<p>from: io.jsonwebtoken</p>
+						<pre><code style="max-height: 550px;" class="hljs java" data-trim data-line-numbers="1|3-4|6-8|11|10-12|14">
+public class TokenVerifier {
+
+    public static Jws&lt;Claims&gt; getClaims(String aToken, String certificatePath)
+            throws Exception{
+
+        InputStream certificateIS = new FileInputStream(new org.springframework.core.io.ClassPathResource(certificatePath).getFile());
+        CertificateFactory f = CertificateFactory.getInstance("X.509");
+        X509Certificate certificate = (X509Certificate)f.generateCertificate(certificateIS);
+
+        JwtParser lParser = Jwts.parser()
+                .setSigningKey(certificate.getPublicKey())
+                .setAllowedClockSkewSeconds(0l);
+
+        return lParser.parseClaimsJws(aToken);
+    }
+
+}
+					</code></pre>
+					</section>
+					<section>
+						<h2 class="no-transform">JwtFilter</h2>
+						<pre><code style="max-height: 550px;" class="hljs java" data-trim data-line-numbers="1|2-3|5-6|8,9|11|13|15-18">
+ Jws&lt;Claims&gt; claims = TokenVerifier.getClaims(token, jwtCertificatePath);
+ // Getting username from claims
+ String username = claims.getBody().get("appname").toString();
+
+ List&lt;GrantedAuthority> authorities = new ArrayList&lt;GrantedAuthority&gt;();
+ authorities.add(new SimpleGrantedAuthority("readP01api"));
+
+ UserDetails principal = new User(username, "none", authorities);
+ Authentication authentication = new AnonymousAuthenticationToken("key", principal, authorities);
+
+ SecurityContextHolder.getContext().setAuthentication(authentication);
+
+ chain.doFilter(request, response);
+
+} catch (Exception badJwt) {
+ SecurityContextHolder.clearContext();
+ logger.error("Token error : " + badJwt.getLocalizedMessage(), badJwt);
+ httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, badJwt.getLocalizedMessage());
+}
+					</code></pre>
+					</section>
+				</section>
+
+				<section data-transition="convex">
+					<h1 class="no-transform">AXWAY API Gateway</h1>
+				</section>
+
+				<section data-transition="convex">
+					<section>
+						<h1 class="no-transform">Coding Game</h1>
+						<ul>
+							<li class="fragment">Volunteers only</li>
+							<li class="fragment">Groups allowed</li>
+						</ul>
+					</section>
+					<section>
+						<h2 class="no-transform">1st game</h2>
+						<p class="fragment">
+							<a href="#">Traffic lights</a>
+						</p>
+						<ul>
+							<li class="fragment">Max speed on the road</li>
+							<li class="fragment">
+								Traffic lights
+								<ul>
+									<li class="fragment">Distance</li>
+									<li class="fragment">Duration</li>
+								</ul>
+							</li>
+						</ul>
+						<p class="fragment">
+							<a href="#">Objective</a>
+							<div class="fragment">Find the optimal speed that will allow the car to cross all the traffic lights to green.</div>
+						</p>
+						<p class="fragment">
+							<a href="https://www.codingame.com/training/medium/aneo">https://www.codingame.com/training/medium/aneo</a>
+						</p>
+					</section>
+
+				</section>
+
+				<section data-transition="convex">
+					<h1 class="no-transform">Questions</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="revealjs/js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/highlight/highlight.js' },
+					{ src: 'revealjs/plugin/search/search.js', async: true },
+					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
