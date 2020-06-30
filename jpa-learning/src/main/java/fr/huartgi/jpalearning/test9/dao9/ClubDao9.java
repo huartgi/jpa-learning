@@ -25,7 +25,7 @@ public class ClubDao9 extends GenericDao<Long, Club> implements ClubDao {
 				+ "from Club club ";
 		
 		EntityGraph<Club> graph = entityManager.createEntityGraph(Club.class);
-		graph.addAttributeNodes("stadium");
+		graph.addAttributeNodes("stadium", "country");
 		
 		TypedQuery<Club> query = entityManager.createQuery(jpql, Club.class);
 		query.setHint("javax.persistence.fetchgraph", graph);
@@ -41,7 +41,7 @@ public class ClubDao9 extends GenericDao<Long, Club> implements ClubDao {
 
 	private void fetchPlayers(List<Club> clubs) {
 		EntityGraph<Club> graph = entityManager.createEntityGraph(Club.class);
-		graph.addAttributeNodes("players");
+		graph.addSubgraph("players");
 		fetch(clubs, graph);
 	}
 	
