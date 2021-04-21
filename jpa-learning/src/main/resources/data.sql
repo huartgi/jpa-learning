@@ -23,6 +23,9 @@ INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(22, 'RUS', ' Russia');
 INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(23, 'SEN', ' Senegal');
 INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(24, 'WAL', ' Wales');
 
+/*drop sequence `country_seq`;*/
+create sequence `country_seq` start with 25 increment by 1;
+
 
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(1, 50200, 'Stade Pierre Mauroy');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(2, 45000, 'Parc des princes');
@@ -42,8 +45,11 @@ INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(15, 80000, 'Westfalen St
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(16, 65000, 'Juventus Stadium');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(17, 55000, 'San Paolo');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(18, 72698, 'Stadio Olimpico');
-INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(19, 50033, 'Estdio do Dragão');
+INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(19, 50033, 'Estadio do Dragão');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(20, 64642, 'Stade de Luz');
+
+drop sequence `stadium_seq`;
+create sequence `stadium_seq` start with 21 increment by 1;
 
 
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(1, 'Lille OSC', 10, 1);
