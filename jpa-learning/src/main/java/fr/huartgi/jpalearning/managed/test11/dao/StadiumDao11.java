@@ -3,12 +3,14 @@ package fr.huartgi.jpalearning.managed.test11.dao;
 import fr.huartgi.jpalearning.core.common.GenericDao;
 import fr.huartgi.jpalearning.core.dao.StadiumDao;
 import fr.huartgi.jpalearning.core.domain.Stadium;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Profile("Test11")
 public class StadiumDao11 extends GenericDao<Long, Stadium> implements StadiumDao {
 	
 	public StadiumDao11() {

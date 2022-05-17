@@ -3,6 +3,7 @@ package fr.huartgi.jpalearning.bags.test9.dao9;
 import fr.huartgi.jpalearning.core.common.GenericDao;
 import fr.huartgi.jpalearning.core.dao.MatchDao;
 import fr.huartgi.jpalearning.core.domain.Match;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityGraph;
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Profile("Test9")
 public class MatchDao9 extends GenericDao<Long, Match> implements MatchDao {
 	
 	public MatchDao9() {

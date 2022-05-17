@@ -3,12 +3,14 @@ package fr.huartgi.jpalearning.selectnplus1.test6.dao6;
 import fr.huartgi.jpalearning.core.common.GenericDao;
 import fr.huartgi.jpalearning.core.dao.CountryDao;
 import fr.huartgi.jpalearning.core.domain.Country;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Profile("Test6")
 public class CountryDao6 extends GenericDao<Long, Country> implements CountryDao {
 	
 	public CountryDao6() {

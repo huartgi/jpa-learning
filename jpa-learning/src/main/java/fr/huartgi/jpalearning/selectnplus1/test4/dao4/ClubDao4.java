@@ -3,12 +3,14 @@ package fr.huartgi.jpalearning.selectnplus1.test4.dao4;
 import fr.huartgi.jpalearning.core.common.GenericDao;
 import fr.huartgi.jpalearning.core.dao.ClubDao;
 import fr.huartgi.jpalearning.core.domain.Club;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Profile("Test4")
 public class ClubDao4 extends GenericDao<Long, Club> implements ClubDao {
 	
 	public ClubDao4() {

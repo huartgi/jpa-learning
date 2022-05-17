@@ -4,6 +4,7 @@ import fr.huartgi.jpalearning.core.common.GenericDao;
 import fr.huartgi.jpalearning.core.dao.PlayerDao;
 import fr.huartgi.jpalearning.core.domain.Club;
 import fr.huartgi.jpalearning.core.domain.Player;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityGraph;
@@ -11,6 +12,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Profile("Test7")
 public class PlayerDao7 extends GenericDao<Long, Player> implements PlayerDao {
 	
 	public PlayerDao7() {
