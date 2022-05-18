@@ -1,5 +1,6 @@
 package fr.huartgi.jpalearning.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -29,12 +30,15 @@ public class Club {
 	private Stadium stadium;
 	
 	@OneToMany(mappedBy="club", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Player> players;
 
 	@OneToMany(mappedBy="clubHome", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Match> matchesHome;
 	
 	@OneToMany(mappedBy="clubAway", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Match> matchesAway;
 	
 	

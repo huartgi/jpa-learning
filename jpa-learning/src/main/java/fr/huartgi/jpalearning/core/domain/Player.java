@@ -1,5 +1,6 @@
 package fr.huartgi.jpalearning.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -26,6 +27,7 @@ public class Player {
 	
 	@ManyToOne
 	@JoinColumn(name="FK_CLUB", nullable=false)
+	@JsonBackReference
 	private Club club;
 	
 	@Temporal(TemporalType.DATE)
