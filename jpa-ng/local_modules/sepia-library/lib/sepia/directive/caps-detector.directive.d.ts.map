@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "caps-detector.directive.d.ts",
+    "sources": [
+        "caps-detector.directive.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { EventEmitter } from '@angular/core';\r\nexport declare class CapsDetectorDirective {\r\n    capsLock: EventEmitter<boolean>;\r\n    constructor();\r\n    onKeyDown(event: KeyboardEvent): void;\r\n    onKeyUp(event: KeyboardEvent): void;\r\n}\r\n"
+    ]
+}

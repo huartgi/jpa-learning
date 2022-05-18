@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "language.service.d.ts",
+    "sources": [
+        "language.service.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { TranslateService } from '@ngx-translate/core';\r\nexport declare class LanguageService {\r\n    private translate;\r\n    constructor(translate: TranslateService);\r\n    isEnglish(): boolean;\r\n    isFrench(): boolean;\r\n}\r\n"
+    ]
+}

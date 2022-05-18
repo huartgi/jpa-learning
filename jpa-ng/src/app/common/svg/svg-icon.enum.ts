@@ -1,0 +1,23 @@
+export enum SvgIcon {
+    ARROW_DOWN,
+    ARROW_LEFT_RIGHT,
+    ARROW_REPEAT,
+    ARROW_UP,
+    CALENDAR,
+    CHECK_CIRCLE_FILL,
+    EYE,
+    FLAG,
+    GRID,
+    LIST,
+    PENCIL_SQUARE,
+    PERSON,
+    SEARCH,
+    X_CIRCLE,
+    X_CIRCLE_FILL,
+    GEAR,
+    BPCE_LOGO,
+    HAND_BAG,
+    BOOKMARKS,
+    HOME,
+    EURO_SYMBOL
+}

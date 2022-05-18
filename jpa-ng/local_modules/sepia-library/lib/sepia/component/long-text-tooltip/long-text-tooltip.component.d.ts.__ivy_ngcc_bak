@@ -1,0 +1,8 @@
+import { OnInit } from '@angular/core';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+export declare class LongTextTooltipComponent implements OnInit {
+    longText: string;
+    constructor();
+    ngOnInit(): void;
+    openTooltip(divElement: HTMLDivElement, t: NgbTooltip): void;
+}

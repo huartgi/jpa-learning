@@ -1,0 +1,527 @@
+{
+    "common": {
+        "buttons": {
+            "action": "Actions",
+            "add": "Add",
+            "back": "Back",
+            "cancel": "Cancel",
+            "clear": "Clear",
+            "confirm": "Confirm",
+            "create": "Create",
+            "deactivate": "Deactivate",
+            "delete": "Delete",
+            "disable": "Disable",
+            "edit": "Edit",
+            "enable": "Enable",
+            "next": "Next",
+            "not-allowed": "Not Allowed",
+            "ok": "Ok",
+            "previous": "Previous",
+            "reject": "Reject",
+            "remove": "Remove",
+            "replace": "Replace",
+            "save": "Save",
+            "search": "Search",
+            "select": "Select",
+            "submit": "Submit",
+            "validate": "Validate",
+            "view": "View"
+        },
+        "confirm": {
+            "cancel_creation": {
+                "message": "Cancel the creation : confirm ?",
+                "title": "Cancel Creation"
+            },
+            "cancel_modification": {
+                "message": "Cancel the modification : confirm ?",
+                "title": "Cancel modification"
+            },
+            "deactivate": {
+                "message": "Do you want to deactivate this record?",
+                "title": "Deactivate"
+            },
+            "delete": {
+                "message": "Delete this record : confirm ?",
+                "title": "Delete"
+            },
+            "delete-draft-application": {
+                "message": "Delete this draft : confirm ?",
+                "title": "Delete draft Application"
+            },
+            "proceed": "Do you want to proceed?",
+            "reject-application": {
+                "message": "Reject this Application : confirm ?",
+                "title": "Application rejection"
+            },
+            "submit-application": {
+                "message": "Submit this Application : confirm ?",
+                "title": "Application submission"
+            },
+            "validate-application": {
+                "message": "Validate this Application : confirm ?",
+                "title": "Application validation"
+            },
+            "validate-bpceit-data": {
+                "message": "Validate BPCE IT data : confirm ?",
+                "title": "BPCE IT data validation"
+            }
+        },
+        "fields": {
+            "added-by": "Added by",
+            "added-on": "Added on",
+            "application": "Application",
+            "audit": "Audit",
+            "code": "Code",
+            "creation": "Creation",
+            "date": "Date",
+            "description": "Description",
+            "id": "ID",
+            "information": "Information",
+            "label": "Label",
+            "labelEn": "English label",
+            "labelFr": "French label",
+            "modification": "Modification",
+            "name": "Name",
+            "status": {
+                "active": "Active",
+                "inactive": "Inactive",
+                "label": "Status"
+            },
+            "user": "User"
+        },
+        "footer": {
+            "appVersion": "Application version",
+            "legalNotice": "Legal information",
+            "provider": "Provider",
+            "userGuide": "User guide"
+        },
+        "login": {
+            "title": "Login"
+        },
+        "menu": {
+            "create": "Create",
+            "search": "Search",
+            "view": "View",
+            "edit": "Edit"
+        },
+        "pagination": {
+            "result-total": "Showing {{first}} to {{last}} of {{totalRecords}} entries"
+        },
+        "success": {
+            "activated": "Activated successfully",
+            "cancelled": "Cancelled successfully",
+            "created": "Creation successful",
+            "deactivated": "Deactivated successfully",
+            "disabled": "Disabled successfully",
+            "enabled": "Enabled successfully",
+            "modified": "Modification successful",
+            "removed": "Removal successful",
+            "replaced": "Replacement successful",
+            "updated": "Updated successfully",
+            "validation": "Validation successful"
+        },
+        "table": {
+            "numberOfResults": "Records"
+        },
+        "validation": {
+            "invalid-characters": "This field does not allow the use of: {{characters}}",
+            "length": "The length of the {{fieldName}} must be between {{min}} and {{max}}",
+            "length-max-min": {
+                "max": "The max length of the {{fieldName}} is {{max}}",
+                "min": "The min length of the {{fieldName}} is {{min}}"
+            },
+            "required": "The {{fieldName}} is required"
+        },
+        "values": {
+            "no": "No",
+            "unknown": "Unknown",
+            "yes": "Yes"
+        }
+    },
+    "menu": {
+        "console": {
+            "authorizations": "Authorizations",
+            "title": "Console"
+        },
+        "subscription": {
+            "create": "Create",
+            "import": "Import",
+            "search": "Search",
+            "title": "Subscriptions"
+        }
+    },
+    "person": {
+        "fields": {
+            "email": "Email",
+            "first-name": "First Name",
+            "iup": "IUP",
+            "last-name": "Last Name"
+        },
+        "search-title": "Search a client person"
+    },
+    "service": {
+        "fields": {
+            "businessRuleDescription": "Business rule description",
+            "format": "Type",
+            "is-criteria": "Can be filtered",
+            "is-public": "Is Public",
+            "is-required": "Is Required",
+            "length": "Length",
+            "position": "Order",
+            "valueExample": "Example value"
+        }
+    },
+    "subscription": {
+        "activated": {
+            "error": "Subscription could not be activated",
+            "success": "Subscription activated successfully"
+        },
+        "add-client": {
+            "available-persons": {
+                "title": "Available persons"
+            },
+            "title": "Manage clients",
+            "search-person": "Search person",
+            "selected-persons": {
+                "title": "Selected persons",
+                "person": "Person",
+                "email": "Email",
+                "active": "Active"
+            },
+            "messages": {
+                "duplicated": "Person already selected",
+                "emptyList": "At least one person must be selected."
+            },
+            "error": "Client could not be added",
+            "success": "Client added successfully"
+        },
+        "add-contributor": {
+            "error": "Contributor could not be added",
+            "success": "Contributor added successfully"
+        },
+        "br": {
+            "039": "The \"Provider\" parameter is required.",
+            "040": "The \"Service Type\" parameter is required.",
+            "041": "The \"Service Offer\" parameter is required.",
+            "042": "The \"Web Service\" parameter is required.",
+            "043": "The \"Client person\" parameter is required.",
+            "063": "The \"Client Application\" parameter is required.",
+            "086": "The subscription's status must be \"INIT\" to validate the initialization.",
+            "087": "You are not allowed to validate the initialization of a Subscription with this provider.",
+            "144": "Subscription is not in the correct state to be activated in Prod. Distribution type and status must comply with rule BR-144.",
+            "160": "Subscription status is not in the correct state.",
+            "229": "Subscription status is not in the correct state."
+        },
+        "buttons": {
+            "cancelSubscription": "Cancel subscription",
+            "createNewVersion": "Create new version",
+            "import": "Import"
+        },
+        "cancel": {
+            "error": "Subscription could not be cancelled",
+            "success": "Subscription canceled successfully",
+            "confirm": {
+                "header": "Confirm cancellation",
+                "message": "Cancel this subscription?"
+            }
+        },
+        "create-title": "Create a Subscription",
+        "create-version-title": "Create a new version of a Subscription",
+        "draft-create": {
+            "error": "Draft could not be created",
+            "success": "Draft created successfully",
+            "sample-file": {
+              "error": "Sample file could not be created",
+              "success": "Sample file downloaded successfully"
+            }
+        },
+        "draft-reject": {
+            "error": "Draft could not be rejected",
+            "success": "Draft rejected successfully"
+        },
+        "draft-submit": {
+            "error": "Draft could not be submitted",
+            "success": "Draft submitted successfully"
+        },
+        "draft-validated": {
+            "error": "Draft could not be validated",
+            "success": "Draft validated successfully"
+        },
+        "definition": {
+            "success": "Definition saved successfully"
+        },
+        "fields": {
+            "application": "Application",
+            "client-application": "Client Application",
+            "client-persons": "Client Persons",
+            "info": "Info",
+            "is-active": "Is Active",
+            "mail-recipients": "Mail recipients",
+            "person": "Person",
+            "provider": "Provider",
+            "request-id": "Request ID",
+            "service-id": "Service ID",
+            "service-offer": "Service Offer",
+            "status": "Status",
+            "step": "Step",
+            "type": "Type",
+            "validate-initialization": "Validate initialization",
+            "version": "Version",
+            "web-service": "Web Service"
+        },
+        "fieldset": {
+            "client": "Client",
+            "provider": "Provider",
+            "request": "Request",
+            "subscription": "Subscription"
+        },
+        "manage": {
+            "clients": "Manage Clients",
+            "contributors": "Manage Contributors",
+            "responsible": "Manage Responsible"
+        },
+        "redefine": {
+            "error": "Subscription could not be redefined",
+            "success": "Subscription redefined successfully"
+        },
+        "reject-definition": {
+            "error": "Definition could not be rejected",
+            "header": "Reason for rejecting",
+            "label": "Reason",
+            "success": "Definition rejected successfully"
+        },
+        "search-title": "Search Subscriptions",
+        "start-definition": {
+            "error": "Definition could not be initialized",
+            "success": "Definition initialized successfully"
+        },
+        "title": "Subscriptions",
+        "unlock-data": {
+            "available-title": "Available data",
+            "length": "Length",
+            "name": "Name",
+            "selected-title": "Selected data",
+            "success": "Data unlocked successfully",
+            "title": "Unlock data",
+            "type": "Type"
+        },
+        "validate-definition": {
+            "error": "Definition could not be validated",
+            "success": "Definition validated successfully"
+        },
+        "view": {
+            "tab": {
+                "general": {
+                    "api": {
+                        "header": "API",
+                        "method": "Operation"
+                    },
+                    "client": {
+                        "application": "Application",
+                        "contactBA": "Contact BA",
+                        "contactIT": "Contact IT",
+                        "description": "Description",
+                        "header": "Client",
+                        "status": "Status"
+                    },
+                    "clients": {
+                        "header": "Clients"
+                    },
+                    "fileSpecificities": {
+                        "day": "Day",
+                        "day-of-month": "Day in month",
+                        "extension": "File extension",
+                        "filename": "Filename",
+                        "format": "Encoding",
+                        "header": "File",
+                        "hour": "Hour",
+                        "is-last-day-of-month": "Is last day of month",
+                        "isFixedWidth": "Fixed width",
+                        "isTimestamped": "Timestamping",
+                        "periodicity": "Periodicity",
+                        "recovery": "Recovery during the day",
+                        "separator": "Separator",
+                        "status": "Status",
+                        "zipExtension": "Zip extension",
+                        "zipFilename": "Zip filename"
+                    },
+                    "flowSpecificities": {
+                        "bpce-settings": "BPCE Settings",
+                        "cross-environment": "Cross environment",
+                        "header": "Stream",
+                        "id": "Costream ID",
+                        "localization": "Localisation",
+                        "prd-encryption": "PROD encryption key",
+                        "prd-monitor": "PROD monitor",
+                        "qua-encryption": "BENCH encryption key",
+                        "qua-monitor": "BENCH monitor"
+                    },
+                    "header": "Information",
+                    "provider": {
+                        "application": "Application",
+                        "contactBA": "Contact BA",
+                        "contactIT": "Contact IT",
+                        "header": "Provider"
+                    },
+                    "responsibles": {
+                        "header": "Responsibles"
+                    },
+                    "scheduling": {
+                        "header": "Scheduling"
+                    },
+                    "service": {
+                        "description": "Description",
+                        "header": "Service",
+                        "name": "Name",
+                        "status": "Status"
+                    },
+                    "subscription": {
+                        "client": "Client",
+                        "comment": "Comment",
+                        "contractRead": "Contract read",
+                        "deactivationDate": "Deactivated on",
+                        "description": "Description",
+                        "businessNeeds": "Business needs",
+                        "contactsBa": "Business Analysts contacts",
+                        "contactsAo": "Application owner contacts",
+                        "header": "Subscription",
+                        "provider": "Provider",
+                        "releaseDate": "Released on",
+                        "requestDate": "Requested on",
+                        "requestId": "Request ID",
+                        "service": "Service",
+                        "status": "Status",
+                        "targetDateBench": "Target date in BENCH",
+                        "targetDateProd": "Target date in PROD",
+                        "type": "Type",
+                        "updateDate": "Last updated on"
+                    }
+                },
+                "history": {
+                    "event": {
+                        "activity": {
+                            "code": "Code",
+                            "label": "Label"
+                        },
+                        "activity-header": "Activity",
+                        "comment": "Comment",
+                        "date": "Date",
+                        "user": {
+                            "email": "Email",
+                            "id": "Id",
+                            "name": "Name"
+                        },
+                        "user-header": "User"
+                    },
+                    "header": "History"
+                },
+                "responsibles": {
+                    "errors": {
+                        "responsibles-not-found": "No responsibles found"
+                    },
+                    "fields": {
+                        "contributors": "Contributors",
+                        "responsibles": "Responsibles"
+                    },
+                    "header": "Responsibles"
+                },
+                "serviceData": {
+                    "header": "Available Data"
+                },
+                "subscriptionData": {
+                    "header": "Data"
+                }
+            }
+        },
+        "reorder": {
+            "emptyList": "Nothing to reorder"
+        },
+        "search": {
+            "reset": "Clear filters"
+        }
+    },
+    "subscription-data": {
+        "fields": {
+            "data-usage": "Usage",
+            "is-only-used-as-filter": "Filter only",
+            "operator": "Filter Operator",
+            "position": "Position",
+            "filter": "Filter",
+            "info": "Information"
+        }
+    },
+    "subscription-version": {
+        "br": {
+            "199": "if the zip file name is defined, the zip extension needs to be defined as well.",
+            "201": "if the periodicity is \"WEEKLY\", then \"Day\" is required.",
+            "202": "if subscription.compressedFileExtension in (\"pgp\", \"zipc\", \"zipcs\"), then subscription.encryptionProd is required.",
+            "342": "if subscription.compressedFileExtension in (\"pgp\", \"zipc\", \"zipcs\"), then subscription.encryptionBench is required.",
+            "203": "if the periodicity is \"MONTHLY\", then \"Day in month\" is required.",
+            "309": "the file extension used should contain isCompressed has false",
+            "310": "the file extension used for the compressed file extension should contain isCompressed has true",
+            "344": "All the required service data should be subscribed.",
+            "345": "All the private data can only be present in the subscription data if it is unlocked",
+            "346": "if is criteria is false the filter operator and value cant contain values",
+            "349": "Filters must respect the Oracle Sql syntax.",
+            "351": "if distribution type is API the filter operator and value can't contain values",
+            "357": "There is already a subscription with same attributes in the system.",
+            "198": {
+                "001": "Target Prod is required",
+                "004": "Target Bench is required",
+                "010": "Business needs is required",
+                "013": "Periodicity is required",
+                "016": "Stream identifier is required",
+                "019": "File name is required",
+                "022": "Data separator is required",
+                "025": "File extension is required",
+                "034": "Monitor prod is required",
+                "037": "Monitor bench is required",
+                "043": "Is day time restartable is required",
+                "049": "Encoding is required",
+                "055": "hasFixedWidth is required",
+                "073": "API Operation is required",
+                "015": "Periodicity needs to be null",
+                "018": "Stream identifier needs to be null",
+                "021": "File name needs to be null",
+                "024": "Data separator needs to be null",
+                "027": "File extension needs to be null",
+                "030": "Compressed file name needs to be null",
+                "033": "Compressed file extension needs to be null",
+                "036": "Monitor prod needs to be null",
+                "039": "Monitor bench needs to be null",
+                "042": "hasTimestamp needs to be null",
+                "045": "IsDayTimerestartable needs to be null",
+                "051": "File encoding needs to be null",
+                "057": "has fixed width needs to be null",
+                "075": "Api operation needs to be null",
+                "078": "Day of week needs to be null",
+                "081": "Encryption key prod needs to be null",
+                "084": "Encryption key bench needs to be null",
+                "087": "Is cross environment needs to be null",
+                "114": "Day of month needs to be null",
+                "117": "Refresh hours needs to be null",
+                "002": "Target Prod date is required",
+                "005": "Target Bench date is required",
+                "011": "Business needs is required",
+                "014": "Periodicity is required",
+                "020": "File name is required",
+                "023": "Data separator is required",
+                "026": "File extension is required",
+                "029": "Compressed file name is required",
+                "032": "Compressed file extension is required",
+                "050": "File encoding is required",
+                "017": "Stream identifier needs to be null",
+                "035": "Monitor production needs to be null",
+                "038": "Monitor bench needs to be null",
+                "044": "Is day time restartable needs to be null",
+                "056": "Fixed width needs to be null",
+                "080": "Encryption key for prod needs to be null",
+                "083": "Encryption key for bench needs to be null",
+                "086": "Is cross environment needs to be null",
+                "119": "BA contacts need to be null",
+                "122": "AO contacts need to be null"
+            }
+        }
+    },
+    "title": "Corsere"
+}

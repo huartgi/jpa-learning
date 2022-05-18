@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "center-modal.component.d.ts",
+    "sources": [
+        "center-modal.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { EventEmitter } from '@angular/core';\r\nimport { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';\r\nimport { ModalExitEnum } from '../../model/modal-exit.enum';\r\nexport declare class CenterModalComponent {\r\n    modal: NgbActiveModal;\r\n    id: string;\r\n    title: string;\r\n    message: string;\r\n    okButton: string;\r\n    cancelButton: string;\r\n    informationMessage: string;\r\n    okClickEvent: EventEmitter<any>;\r\n    resultOk: ModalExitEnum;\r\n    resultCancel: ModalExitEnum;\r\n    constructor(modal: NgbActiveModal);\r\n    okWasClicked(): void;\r\n}\r\n"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "disable-control.directive.d.ts",
+    "sources": [
+        "disable-control.directive.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { NgControl } from '@angular/forms';\r\nexport declare class DisableControlDirective {\r\n    private ngControl;\r\n    constructor(ngControl: NgControl);\r\n    disableControl: boolean;\r\n}\r\n"
+    ]
+}

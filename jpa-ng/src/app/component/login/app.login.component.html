@@ -1,0 +1,28 @@
+
+<div class="login-body">
+    <div class="login-wrapper">
+        <div class="login-panel">
+            <h1>{{ 'title' | translate }}</h1>
+            <form (ngSubmit)="login()" [formGroup]="form" class="login-form">
+                <h2>{{ 'common.login.title' | translate }}</h2>
+                <div class="p-field p-fluid">
+                    <input type="text" autocomplete="off" pInputText placeholder="Account" formControlName="username"
+                           [ngClass]="{'ng-invalid': submitted && f.username.errors}">
+                    <small *ngIf="submitted && f.username.errors" id="username-help" class="ng-invalid">Username is
+                        required</small>
+                </div>
+                <div class="p-field p-fluid">
+                    <input type="password" autocomplete="off" pInputText placeholder="Password"
+                           formControlName="password" [ngClass]="{'ng-invalid': submitted && f.password.errors}">
+                    <small *ngIf="submitted && f.password.errors" id="password-help" class="ng-invalid">Password is
+                        required</small>
+                </div>
+                <button pButton pRipple label="LOGIN" type="submit"></button>
+                <p-messages></p-messages>
+            </form>
+
+            <p>
+            </p>
+        </div>
+    </div>
+</div>

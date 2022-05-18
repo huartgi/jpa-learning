@@ -1,0 +1,8 @@
+import { OnInit } from '@angular/core';
+export declare class FieldErrorMessagesComponent implements OnInit {
+    fieldName: string;
+    fieldLabel: string;
+    errors: any;
+    constructor();
+    ngOnInit(): void;
+}

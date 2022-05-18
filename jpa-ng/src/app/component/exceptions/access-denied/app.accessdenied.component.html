@@ -1,0 +1,26 @@
+<div class="exception-body access-page">
+
+    <div class="exception-top">
+        <img src="../../../../assets/layout/images/icon-access.png" alt="poseidon-layout"/>
+    </div>
+
+    <div class="exception-bottom">
+        <div class="exception-wrapper">
+            <span class="exception-summary">{{ 'security.not-authorized.access-denied.title' | translate }}</span>
+            <div class="exception-detail">
+                <p>{{ 'security.not-authorized.access-denied.description' | translate }}</p>
+                <h3>{{ 'security.not-authorized.missing-authorization.title' | translate }}</h3>
+                <p>{{ 'security.not-authorized.missing-authorization.line1' | translate }}</p>
+                <p>{{ 'security.not-authorized.missing-authorization.line2' | translate }}</p>
+                <p>{{ 'security.not-authorized.missing-authorization.line3' | translate }}</p>
+            </div>
+
+            <button pButton pRipple [routerLink]="['/']" label="Dashboard" icon="pi pi-home"></button>
+
+            <a [routerLink]="['/']" class="logo">
+                <img src="../../../../assets/layout/images/logo.svg" alt="poseidon-layout" class="logo-icon"/>
+            </a>
+            <span class="exception-footer">PrimeNG Poseidon</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "table-filter-headers.component.d.ts",
+    "sources": [
+        "table-filter-headers.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { EventEmitter, OnInit } from '@angular/core';\r\nimport { ControlValueAccessor, FormControl, FormGroup, Validator } from '@angular/forms';\r\nimport { FilterInputTypeEnum } from '../../model/search/filtering/filter-input-type.enum';\r\nimport { SortableColumn } from '../../model/search/sorting/sortable-column';\r\nimport { SortingDirectionEnum } from '../../model/search/sorting/sorting-direction.enum';\r\nimport { SvgIcon } from '../svg/svg-icon.enum';\r\nexport declare class TableFilterHeadersComponent implements OnInit, ControlValueAccessor, Validator {\r\n    sortableColumns: Array<SortableColumn>;\r\n    actionsWidth: string;\r\n    sortEvent: EventEmitter<SortableColumn>;\r\n    searchEvent: EventEmitter<any>;\r\n    clearEvent: EventEmitter<any>;\r\n    inputText: FilterInputTypeEnum;\r\n    dropdown: FilterInputTypeEnum;\r\n    checkbox: FilterInputTypeEnum;\r\n    radiobuttons: FilterInputTypeEnum;\r\n    ascSortDirection: SortingDirectionEnum;\r\n    form: FormGroup;\r\n    onChange: any;\r\n    onTouched: any;\r\n    value: any;\r\n    constructor();\r\n    ngOnInit(): void;\r\n    sort(column: SortableColumn): void;\r\n    clear(): void;\r\n    search(): void;\r\n    registerOnValidatorChange(fn: () => void): void;\r\n    writeValue(value: any): void;\r\n    registerOnChange(fn: any): void;\r\n    registerOnTouched(fn: any): void;\r\n    validate(_: FormControl): {\r\n        filters: {\r\n            valid: boolean;\r\n        };\r\n    };\r\n    readonly SvgIcon: typeof SvgIcon;\r\n}\r\n"
+    ]
+}

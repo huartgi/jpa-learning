@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "sorting.service.d.ts",
+    "sources": [
+        "sorting.service.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { SortableColumn } from '../model/search/sorting/sortable-column';\r\nexport declare class SortingService {\r\n    constructor();\r\n    getSortableColumn(sortableColumns: SortableColumn[]): SortableColumn;\r\n    clearPreviousSorting(chosenColumn: SortableColumn, sortableColumns: SortableColumn[]): void;\r\n}\r\n"
+    ]
+}

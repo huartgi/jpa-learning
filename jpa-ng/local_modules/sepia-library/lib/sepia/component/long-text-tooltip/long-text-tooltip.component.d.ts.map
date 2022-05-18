@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "long-text-tooltip.component.d.ts",
+    "sources": [
+        "long-text-tooltip.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { OnInit } from '@angular/core';\r\nimport { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';\r\nexport declare class LongTextTooltipComponent implements OnInit {\r\n    longText: string;\r\n    constructor();\r\n    ngOnInit(): void;\r\n    openTooltip(divElement: HTMLDivElement, t: NgbTooltip): void;\r\n}\r\n"
+    ]
+}

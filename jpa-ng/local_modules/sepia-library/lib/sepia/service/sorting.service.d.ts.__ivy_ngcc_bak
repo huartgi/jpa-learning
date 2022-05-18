@@ -1,0 +1,6 @@
+import { SortableColumn } from '../model/search/sorting/sortable-column';
+export declare class SortingService {
+    constructor();
+    getSortableColumn(sortableColumns: SortableColumn[]): SortableColumn;
+    clearPreviousSorting(chosenColumn: SortableColumn, sortableColumns: SortableColumn[]): void;
+}

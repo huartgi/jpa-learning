@@ -1,0 +1,8 @@
+import { OnInit } from '@angular/core';
+import { SvgIcon } from '../svg-icon.enum';
+export declare class SvgIconComponent implements OnInit {
+    type: SvgIcon;
+    constructor();
+    ngOnInit(): void;
+    readonly SvgIcon: typeof SvgIcon;
+}

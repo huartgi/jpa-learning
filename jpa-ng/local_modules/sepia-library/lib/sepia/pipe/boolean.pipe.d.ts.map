@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "boolean.pipe.d.ts",
+    "sources": [
+        "boolean.pipe.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { PipeTransform } from '@angular/core';\r\nimport { TranslateService } from '@ngx-translate/core';\r\nexport declare class BooleanPipe implements PipeTransform {\r\n    private translate;\r\n    constructor(translate: TranslateService);\r\n    transform(value: boolean): any;\r\n}\r\n"
+    ]
+}

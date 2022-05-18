@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "enum-to-array.pipe.d.ts",
+    "sources": [
+        "enum-to-array.pipe.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { PipeTransform } from '@angular/core';\r\nexport declare class EnumToArrayPipe implements PipeTransform {\r\n    transform(value: any): any;\r\n}\r\n"
+    ]
+}

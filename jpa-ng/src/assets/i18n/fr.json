@@ -1,0 +1,431 @@
+{
+    "common": {
+        "buttons": {
+            "action": "Actions",
+            "add": "Ajouter",
+            "back": "Retour",
+            "cancel": "Annuler",
+            "clear": "Réinitialiser",
+            "confirm": "Confirmer",
+            "create": "Créer",
+            "deactivate": "Désactiver",
+            "delete": "Supprimer",
+            "disable": "Désactiver",
+            "edit": "Modifier",
+            "enable": "Activer",
+            "next": "Suivant",
+            "not-allowed": "Interdit",
+            "ok": "Ok",
+            "previous": "Précédent",
+            "reject": "Rejeter",
+            "remove": "Supprimer",
+            "replace": "Remplacer",
+            "save": "Enregistrer",
+            "search": "Rechercher",
+            "select": "Sélectionner",
+            "submit": "Soumettre",
+            "validate": "Valider",
+            "view": "Consulter"
+        },
+        "confirm": {
+            "cancel_creation": {
+                "message": "Annuler la création : confirmer ?",
+                "title": "Annuler création"
+            },
+            "cancel_modification": {
+                "message": "Annuler la modification : confirmer ?",
+                "title": "Annuler modification"
+            },
+            "deactivate": {
+                "message": "Voulez-vous désactiver cet élément?",
+                "title": "Désactiver"
+            },
+            "delete": {
+                "message": "Supprimer cet enregistrement : confirmer ?",
+                "title": "Supprimer"
+            },
+            "delete-draft-application": {
+                "message": "Supprimer le brouillon : confirmer ?",
+                "title": "Suppression d'Application en brouillon"
+            },
+            "proceed": "Voulez-vous continuer ?",
+            "reject-application": {
+                "message": "Rejeter l'Application : confirmer ?",
+                "title": "Rejet d'Application"
+            },
+            "submit-application": {
+                "message": "Soumettre l'Application : confirmer ?",
+                "title": "Soumission d'Application"
+            },
+            "validate-application": {
+                "message": "Valider l'Application : confirmer ?",
+                "title": "Validation d'Application"
+            },
+            "validate-bpceit-data": {
+                "message": "Valider les données BPCE IT : confirmer ?",
+                "title": "Validation des données BPCE IT"
+            }
+        },
+        "fields": {
+            "added-by": "Ajouté par",
+            "added-on": "Ajouté le",
+            "application": "Application",
+            "audit": "Audit",
+            "code": "Code",
+            "creation": "Création",
+            "date": "Date",
+            "description": "Description",
+            "id": "ID",
+            "information": "Information",
+            "label": "Libellé",
+            "labelEn": "Libellé anglais",
+            "labelFr": "Libellé français",
+            "modification": "Modification",
+            "name": "Nom",
+            "status": {
+                "active": "Actif",
+                "inactive": "Inactif",
+                "label": "Statut"
+            },
+            "user": "Utilisateur"
+        },
+        "footer": {
+            "appVersion": "Version de l'application",
+            "legalNotice": "Mentions légales",
+            "provider": "Référentiel",
+            "userGuide": "Manuel utilisateur"
+        },
+        "login": {
+            "title": "Login"
+        },
+        "menu": {
+            "create": "Créer",
+            "search": "Rechercher",
+            "view": "View"
+        },
+        "pagination": {
+            "result-total": "Afficher {{first}} à {{last}} de {{totalRecords}} lignes"
+        },
+        "success": {
+            "activated": "Activé effectuée",
+            "cancelled": "Canceled successfully",
+            "created": "Création effectuée",
+            "deactivated": "Désactivation effectuée",
+            "disabled": "Désactivation effectuée",
+            "enabled": "Activation effectuée",
+            "modified": "Modification effectuée",
+            "removed": "Suppression effectuée",
+            "replaced": "Remplacement effectué",
+            "updated": "Mise à jour effectuée",
+            "validation": "Validation effectuée"
+        },
+        "table": {
+            "numberOfResults": "Enregistrements"
+        },
+        "validation": {
+            "invalid-characters": "Ce champ ne peut contenir les caractères suivants: {{characters}}",
+            "length": "La longueur du champ {{fieldName}} doit être comprise entre {{min}} et {{max}}",
+            "length-max-min": {
+                "max": "Le longueur maximale du champ {{fieldName}} est {{max}}",
+                "min": "Le longueur minimale du champ {{fieldName}} est {{min}}"
+            },
+            "required": "Le champ {{fieldName}} est obligatoire"
+        },
+        "values": {
+            "no": "Non",
+            "unknown": "Inconnu",
+            "yes": "Oui"
+        }
+    },
+    "menu": {
+        "console": {
+            "authorizations": "Authorisations",
+            "title": "Console"
+        },
+        "subscription": {
+            "create": "Création",
+            "import": "Import",
+            "search": "Recherche",
+            "title": "Abonnements"
+        }
+    },
+    "person": {
+        "fields": {
+            "email": "Email",
+            "first-name": "Prénom",
+            "iup": "IUP",
+            "last-name": "Nom"
+        },
+        "search-title": "Rechercher une personne client"
+    },
+    "service": {
+        "fields": {
+            "businessRuleDescription": "Description de la Business Rule",
+            "format": "Type",
+            "is-criteria": "Filtrable",
+            "is-public": "Est Publique",
+            "is-required": "Est Obligatoire",
+            "length": "Longueur",
+            "position": "Ordre",
+            "valueExample": "Valeur d'exemple"
+        }
+    },
+    "subscription": {
+        "activated": {
+            "error": "L’abonnement n’a pas pu être activé",
+            "success": "Abonnement activé avec succès"
+        },
+        "add-client": {
+            "error": "Le client n’a pas pu être ajouté",
+            "success": "Client ajouté avec succès"
+        },
+        "add-contributor": {
+            "error": "Contributeur  n’a pas pu être ajouté",
+            "success": "Contributeur ajouté avec succès"
+        },
+        "br": {
+            "039": "Le paramètre \"Referentiel\" est obligatoire.",
+            "040": "Le paramètre \"Type\" est obligatoire.",
+            "041": "Le paramètre \"Offre de service\" est obligatoire.",
+            "042": "Le paramètre \"Web service\" est obligatoire.",
+            "043": "Le paramètre \"Personnes client\" est obligatoire.",
+            "063": "Le paramètre \"Application client\" est obligatoire.",
+            "086": "Le status de l'abonnement doit être \"INIT\" pour valider l'initialisation",
+            "087": "Vous n'êtes pas autorisé à valider l'initialisation d'un abonnement avec ce Referentiel.",
+            "144": "L’abonnement n’est pas dans l’état correct pour être activé dans Prod. Le type et le statut de distribution doivent être conformes à la règle BR-144.",
+            "160": "L’état de l’abonnement n’est pas correct.",
+            "229": "L’état de l’abonnement n’est pas correct."
+        },
+        "buttons": {
+            "cancelSubscription": "Annuler l'abonnement",
+            "createNewVersion": "Créer une nouvelle version",
+            "import": "Importer"
+        },
+        "cancel": {
+            "error": "L’abonnement n’a pas pu être annulé",
+            "success": "Abonnement annulé avec succès",
+            "confirm": {
+                "header": "Confirmer l’annulation",
+                "message": "Annuler cet abonnement?"
+            }
+        },
+        "create-title": "Create a Subscription",
+        "create-version-title": "Create a new version of a Subscription",
+        "draft-create": {
+            "error": "Draft could not be created",
+            "success": "Draft created successfully",
+            "sample-file": {
+                "error": "Sample file could not be created",
+                "success": "Sample file downloaded successfully"
+            }
+        },
+        "draft-submit": {
+            "error": "Le brouillon n'a pas pu être créé",
+            "success": "Le brouillon a été créé avec succès"
+        },
+        "draft-reject": {
+            "error": "Le brouillon n'a pas pu être rejeté",
+            "success": "Le brouillon a été rejeté avec succès"
+        },
+        "draft-validated": {
+            "error": "Le brouillon n'a pas pu être validé",
+            "success": "Le brouillon a été validé avec succès"
+        },
+        "fields": {
+            "application": "Application",
+            "client-application": "Application client",
+            "client-persons": "Personnes clients",
+            "info": "Info",
+            "is-active": "Is Actif",
+            "mail-recipients": "Mail recipients",
+            "person": "Personne",
+            "provider": "Fournisseur",
+            "request-id": "ID demande",
+            "service-id": "ID Service",
+            "service-offer": "Offre de service",
+            "status": "Statut",
+            "step": "Étape",
+            "type": "Type",
+            "validate-initialization": "Valider l'initialisation",
+            "version": "Version",
+            "web-service": "Web Service"
+        },
+        "fieldset": {
+            "client": "Client",
+            "provider": "Fournisseur",
+            "request": "Demande",
+            "subscription": "Abonnement"
+        },
+        "manage": {
+            "clients": "Gérer des clients",
+            "contributors": "Gestion des Contributeurs",
+            "responsible": "Gestion des Responsables"
+        },
+        "redefine": {
+            "error": "Abonnement ne pouvait pas être redéfini",
+            "success": "Abonnement redéfini avec succès"
+        },
+        "reject-definition": {
+            "error": "Définition non rejetée",
+            "header": "Raison pour rejeter",
+            "label": "Raison",
+            "success": "Définition rejetée avec succès"
+        },
+        "search-title": "Recherche d'abonnements",
+        "start-definition": {
+            "error": "La définition n'a pas pu être initialisée",
+            "success": "La définition a été initialisée avec succès"
+        },
+        "title": "Subscriptions",
+        "unlock-data": {
+            "available-title": "Données disponibles",
+            "length": "Long",
+            "name": "Nom",
+            "selected-title": "Données sélectionné",
+            "success": "Données déverrouillées avec succès",
+            "title": "Déverrouiller les données",
+            "type": "Type"
+        },
+        "validate-definition": {
+            "error": "Définition non validée",
+            "success": "Définition validée avec succès"
+        },
+        "view": {
+            "tab": {
+                "general": {
+                    "api": {
+                        "header": "API",
+                        "method": "Operation"
+                    },
+                    "client": {
+                        "application": "Application",
+                        "contactBA": "Contact MOA",
+                        "contactIT": "Contact MOE",
+                        "description": "Description",
+                        "header": "Client",
+                        "status": "Statut"
+                    },
+                    "clients": {
+                        "header": "Clients"
+                    },
+                    "fileSpecificities": {
+                        "day": "Jour de la semaine",
+                        "day-of-month": "Jour",
+                        "extension": "Extension du fichier",
+                        "filename": "Nom du fichier",
+                        "format": "Format",
+                        "header": "Fichier",
+                        "hour": "Heure",
+                        "is-last-day-of-month": "Dernier jour du mois",
+                        "isFixedWidth": "Largeur fixée",
+                        "isTimestamped": "Horodatage",
+                        "periodicity": "Périodicitée",
+                        "recovery": "Restauration durant la journée",
+                        "separator": "Séparateur",
+                        "status": "Status",
+                        "zipExtension": "Extension Zip",
+                        "zipFilename": "Fichier Zip"
+                    },
+                    "flowSpecificities": {
+                        "bpce-settings": "Réglages BPCE",
+                        "cross-environment": "Cross environnement",
+                        "header": "Flux",
+                        "id": "Id",
+                        "localization": "Localisation",
+                        "prd-encryption": "Clé de cryptage PROD",
+                        "prd-monitor": "Surveillance PROD",
+                        "qua-encryption": "Clé de cryptage BENCH",
+                        "qua-monitor": "Surveillance BENCH"
+                    },
+                    "header": "Informations",
+                    "provider": {
+                        "application": "Application",
+                        "contactBA": "Contact BA",
+                        "contactIT": "Contact IT",
+                        "header": "Fournisseur"
+                    },
+                    "responsibles": {
+                        "header": "Responsables"
+                    },
+                    "scheduling": {
+                        "header": "Planification"
+                    },
+                    "service": {
+                        "description": "Description",
+                        "header": "Service",
+                        "name": "Nom",
+                        "status": "Statut"
+                    },
+                    "subscription": {
+                        "client": "Client",
+                        "comment": "Commentaire",
+                        "contractRead": "Contrat Lecture",
+                        "deactivationDate": "Désactivé le",
+                        "description": "Description",
+                        "header": "Abonnement",
+                        "provider": "Fournisseur",
+                        "releaseDate": "Déployé le",
+                        "requestDate": "Demandé le",
+                        "requestId": "Request ID",
+                        "service": "Service",
+                        "status": "Statut",
+                        "targetDateBench": "Date cible en BENCH",
+                        "targetDateProd": "Date cible en PROD",
+                        "type": "Type",
+                        "updateDate": "Dernière modification le"
+                    }
+                },
+                "history": {
+                    "event": {
+                        "activity": {
+                            "code": "Code",
+                            "label": "Libellé"
+                        },
+                        "activity-header": "Événement",
+                        "comment": "Commentaire",
+                        "date": "Date",
+                        "user": {
+                            "email": "Email",
+                            "id": "Id",
+                            "name": "Nom"
+                        },
+                        "user-header": "Utilisateur"
+                    },
+                    "header": "Histoire"
+                },
+                "responsibles": {
+                    "errors": {
+                        "responsibles-not-found": "Aucun responsable trouvé"
+                    },
+                    "fields": {
+                        "contributors": "Contributeurs",
+                        "responsibles": "Responsables"
+                    },
+                    "header": "Responsables"
+                },
+                "serviceData": {
+                    "header": "Information disponible"
+                },
+                "subscriptionData": {
+                    "header": "Data"
+                }
+            }
+        },
+        "reorder": {
+            "emptyList": "Rien à réorganiser"
+        },
+        "search": {
+            "reset": "Supprimer des filtres"
+        }
+    },
+    "subscription-data": {
+        "fields": {
+            "data-usage": "Usage",
+            "filter": "Donnée de filtrage",
+            "is-only-used-as-filter": "Filtre uniquement",
+            "operator": "Opérateur de filtrage",
+            "position": "Position"
+        }
+    },
+    "title": "Corsere"
+}

@@ -1,0 +1,69 @@
+<div class="card step border-0" id="step1">
+
+    <div class="card-header p-0 collapsed" data-target="#collapseStep1" data-toggle="collapse" id="headerStep1">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="mb-0 inline">
+                    <button (click)="headerClick()" class="btn btn-link collapsed" id="btnStep1" type="button">
+                        Search Person
+                    </button>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapse show" data-parent="#accordion" id="collapseStep1">
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col">
+                    <table *ngIf="(sortableColumns$ | async) as sortableColumns" class="table table-striped table-hover"
+                           id="personsTable">
+                        <div [formGroup]="form">
+                            <sepia-table-filter-headers (searchEvent)="doSearch()"
+                                                        (sortEvent)="sort($event)"
+                                                        [sortableColumns]="sortableColumns"
+                                                        formControlName="filters"
+                                                        style="display: grid">
+                            </sepia-table-filter-headers>
+                        </div>
+                        <tbody *ngIf='(personsFound$ | async) as persons;' id="personsTableBody">
+                        <tr (click)="selectUser(person)" *ngFor='let person of persons' class="row clickable">
+                            <td class="col-md-2">{{ person.code }}</td>
+                            <td class="col-md-4">{{ person.firstname}}</td>
+                            <td class="col-md-4">{{ person.lastname}}</td>
+                            <td class="col-md-2 text-right">
+                                <button (click)="selectUser(person)" [id]="'selectButton' + person.code"
+                                        class="btn btn-outline-secondary py-0 selectPerson"
+                                        type="button">{{ 'common.buttons.select' | translate}}</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot class="pt-2">
+                        <tr *ngIf="pagination.totalResult >= 0" class="row">
+                            <td class="col-md-6 result-found"> {{ 'common.table.numberOfResults' | translate }}
+                                : {{ pagination.totalResult }}</td>
+                            <td class="col-md-6">
+                                <ngb-pagination
+                                    (pageChange)="paginate($event)"
+                                    *ngIf="pagination.totalResult > pagination.pageSize"
+                                    [(page)]="pagination.currentPage"
+                                    [boundaryLinks]="true"
+                                    [collectionSize]="pagination.totalResult"
+                                    [pageSize]="pagination.pageSize"
+                                    [rotate]="true"
+                                    class="d-flex justify-content-end"
+                                    maxSize="3"></ngb-pagination>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
