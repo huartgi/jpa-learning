@@ -47,9 +47,9 @@
 				<section>
 					<section>
 						<h1 class="no-transform">JPA Learning</h1>
-						<h3 class="no-transform">Session #1 : select N+1</h3>
+						<h3 class="no-transform">Session #1 : select 1+N</h3>
 						<p>
-							<small>By <a href="#">Gildas Huart</a></small>
+							<small><a href="#">Gildas Huart</a> - <a href="#">Nelson Costa</a></small>
 						</p>
 					</section>
 
@@ -58,7 +58,7 @@
 						<p>Better understand :</p>
 						<ul>
 							<li class="fragment">EAGER vs LAZY</li>
-							<li class="fragment">Select N+1</li>
+							<li class="fragment">Select 1+N</li>
 							<li class="fragment">Cache levels</li>
 							<li class="fragment">Fetching</li>
 						</ul>
@@ -133,7 +133,7 @@
 						<h2 class="no-transform">Cache</h2>
 						<p class="fragment">Also called, <a>2nd level cache</a></p>
 						<ul>
-							<li class="fragment">Storage for @Cacheable entities</li>
+							<li class="fragment">Storage for <a>@Cacheable</a> entities</li>
 							<li class="fragment">Shared by all EntityManager within an application</li>
 						</ul>
 					</section>
@@ -159,11 +159,40 @@
 					</section>
 
 					<section data-transition="convex">
+						<h2 class="no-transform">Select 1+N : example 1</h2>
+						<ul>
+							<li class="fragment">First query returns 20 contracts</li>
+							<li class="fragment">Contract has EAGER relationship with Client</li>
+							<li class="fragment">Each contract has a different client</li>
+							<li class="fragment">JPA will exectue 20 mores queries (1 for each client)</li>
+							<li class="fragment">Result : 1 + 20 = 21 queries !</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Select 1+N : example 2</h2>
+						<ul>
+							<li class="fragment">First query returns 20 contracts</li>
+							<li class="fragment">Contract has EAGER relationship with ContractType</li>
+							<li class="fragment">The 20 contracts have the same type</li>
+							<li class="fragment">JPA will exectue 1 query to get the type and then reuse it</li>
+							<li class="fragment">Result : 1 + 1 = 2 queries !</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
 						<h2 class="no-transform">LAZY loading</h2>
 						<p class="fragment">A relationship marked as LAZY is not fetched.</p>
-						<p class="fragment">But the loading is possible later...</p>
+						<p class="fragment">JPA returns an empty proxy which only contains the ID.</p>
+						<p class="fragment">The loading is possible later...</p>
 						<p class="fragment">... if the entity is still in the persistence context !</p>
 						<p class="fragment">Else, we get the famous <a>LazyInitializationException</a></p>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">LAZY loading</h2>
+						<p class="fragment">The relationship is loaded only when used...</p>
+						<p class="fragment">... but that's still one more query we could avoid with a join.</p>
 					</section>
 
 				</section>
