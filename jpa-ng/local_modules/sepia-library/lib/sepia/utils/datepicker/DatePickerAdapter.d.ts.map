@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "DatePickerAdapter.d.ts",
+    "sources": [
+        "DatePickerAdapter.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';\r\nexport declare class DatePickerAdapter extends NgbDateAdapter<string> {\r\n    readonly DELIMITER = \"/\";\r\n    fromModel(value: string | null): NgbDateStruct | null;\r\n    toModel(value: NgbDateStruct | null): string | null;\r\n}\r\n"
+    ]
+}

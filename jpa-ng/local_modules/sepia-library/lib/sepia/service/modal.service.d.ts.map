@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "modal.service.d.ts",
+    "sources": [
+        "modal.service.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';\r\nimport { EditModeEnum } from '../model/edit-mode.enum';\r\nimport { ModalTypeEnum } from '../model/modal-type.enum';\r\nexport declare class ModalService {\r\n    private ngbModal;\r\n    constructor(ngbModal: NgbModal);\r\n    getCancel(editMode: EditModeEnum): NgbModalRef;\r\n    getCancelCreation(): NgbModalRef;\r\n    getCancelModification(): NgbModalRef;\r\n    getDelete(): NgbModalRef;\r\n    getModal(modalType: ModalTypeEnum, informationMessage?: string): NgbModalRef;\r\n}\r\n"
+    ]
+}

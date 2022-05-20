@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "business-rule-error.component.d.ts",
+    "sources": [
+        "business-rule-error.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { OnInit } from '@angular/core';\r\nimport { BusinessRuleComponent } from '../business-rule-component';\r\nexport declare class BusinessRuleErrorComponent implements OnInit {\r\n    businessRuleComponent: BusinessRuleComponent;\r\n    constructor();\r\n    ngOnInit(): void;\r\n}\r\n"
+    ]
+}

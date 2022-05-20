@@ -1,0 +1,58 @@
+<div id="authorizationsTab" *appHasRole="Authorization.CONSOLE_MATRIX_VIEW">
+
+    <table *ngIf="matrix" class="table table-striped table-header-rotated">
+        <thead>
+        <tr>
+            <!-- First column header is not rotated -->
+            <th scope="col">
+                <button (click)="reload()" class="btn btn-success"
+                        *appHasRole="Authorization.CONSOLE_MATRIX_VIEW">
+                    <app-svg-icon [type]="SvgIcon.ARROW_REPEAT"></app-svg-icon>
+                    Reload
+                </button>
+                <button (click)="open(compBench)" class="btn btn-success ml-1"
+                        *appHasRole="Authorization.CONSOLE_MATRIX_COMPARE">
+                    Compare
+                </button>
+            </th>
+            <!-- Following headers are rotated -->
+            <th *ngFor="let profile of matrix.profiles" class="rotate-45" scope="col">
+                <div><span>{{profile}}</span></div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let auth of matrix.authorizations">
+            <th class="row-header" scope="col">{{auth}}</th>
+            <td *ngFor="let profile of matrix.profiles">
+                <div *ngIf="matrix.authorizationsByProfiles[profile].includes(auth)" class="hasAuth">&nbsp;</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<ng-template #compBench let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Compare environment to BENCH</h4>
+        <button (click)="modal.dismiss()" aria-label="Close" class="close" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="pwd">Bench pwd</label>
+                <div class="input-group">
+                    <input class="form-control" formControlName="pwd" id="pwd" type="password">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button (click)="modal.close()" class="btn btn-outline-primary" type="button">Compare</button>
+        <button (click)="modal.dismiss()" class="btn btn-outline-secondary" type="button">Cancel</button>
+    </div>
+</ng-template>

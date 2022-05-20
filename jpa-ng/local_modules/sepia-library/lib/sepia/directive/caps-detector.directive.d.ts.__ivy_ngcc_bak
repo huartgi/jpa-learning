@@ -1,0 +1,7 @@
+import { EventEmitter } from '@angular/core';
+export declare class CapsDetectorDirective {
+    capsLock: EventEmitter<boolean>;
+    constructor();
+    onKeyDown(event: KeyboardEvent): void;
+    onKeyUp(event: KeyboardEvent): void;
+}

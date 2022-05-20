@@ -1,0 +1,504 @@
+{
+    "activity": {
+        "field": {
+            "activities": "ActivitÃ©s",
+            "activity": "ActivitÃ©",
+            "grouping-sector": "Secteur de regroupement",
+            "grouping-sectors": "Secteurs de regroupement",
+            "sector": "Secteur",
+            "sectors": "Secteurs",
+            "sub-classe": "Sous Classe ActivitÃ©",
+            "sub-classes": "Sous Classes",
+            "level": "Niveau"
+        },
+        "sector-level": {
+            "sector": "Secteur",
+            "group": "Group"
+        },
+        "sub-class": {
+            "field": {
+                "activity-code": "Code de l'activitÃ©",
+                "activity-label": "LibellÃ© de l'activitÃ©",
+                "class": "Classe",
+                "division": "Division",
+                "group": "Groupe",
+                "section": "Section"
+            },
+            "br": {
+                "055": "Les libellÃ©s (franÃ§ais et anglais) de la Sub-class sont obligatoires.",
+                "060": "La Sous Class ActivitÃ© ne peut Ãªtre dÃ©sactivÃ©e car elle est utilisÃ©e et associÃ©e Ã  un code Secteur."
+            }
+        },
+        "view": {
+            "title": "Consultation activitÃ©:",
+            "fieldset": {
+                "properties": "PropriÃ©tÃ©s",
+                "activities": "DonnÃ©es INSEE",
+                "sector": "Secteurs BPCE"
+            }
+        },
+        "title": "ActivitÃ©s Ã©conomiques"
+    },
+    "common": {
+        "buttons": {
+            "action": "Actions",
+            "add": "Ajouter",
+            "back": "Retour",
+            "cancel": "Annuler",
+            "confirm": "Confirmer",
+            "create": "CrÃ©er",
+            "deactivate": "DÃ©sactiver",
+            "delete": "Supprimer",
+            "disable": "DÃ©sactiver",
+            "edit": "Modifier",
+            "enable": "Activer",
+            "next": "Suivant",
+            "not-allowed": "Interdit",
+            "ok": "Ok",
+            "previous": "PrÃ©cÃ©dent",
+            "replace": "Remplacer",
+            "save": "Enregistrer",
+            "search": "Rechercher",
+            "select": "SÃ©lectionner",
+            "view": "Consulter"
+        },
+        "confirm": {
+            "cancel_creation": {
+                "message": "Annuler la crÃ©ation : confirmer ?",
+                "title": "Annuler crÃ©ation"
+            },
+            "cancel_modification": {
+                "message": "Annuler la modification : confirmer ?",
+                "title": "Annuler modification"
+            },
+            "deactivate": {
+                "message": "Voulez-vous dÃ©sactiver cet Ã©lÃ©ment?",
+                "title": "DÃ©sactiver"
+            },
+            "delete": {
+                "message": "Supprimer cet enregistrement : confirmer ?",
+                "title": "Supprimer"
+            },
+            "proceed": "Voulez-vous continuer ?"
+        },
+        "fields": {
+            "information": "Information",
+            "added-by": "AjoutÃ© par",
+            "added-on": "AjoutÃ© le",
+            "code": "Code",
+            "creation": "CrÃ©ation",
+            "date": "Date",
+            "id": "ID",
+            "label": "LibellÃ©",
+            "labelEn": "LibellÃ© anglais",
+            "labelFr": "LibellÃ© franÃ§ais",
+            "modification": "Modification",
+            "status": {
+                "active": "Actif",
+                "inactive": "Inactif",
+                "label": "Statut"
+            },
+            "user": "Utilisateur"
+        },
+        "footer": {
+            "appVersion": "Version de l'application",
+            "legalNotice": "Mentions lÃ©gales",
+            "repository": "RÃ©fÃ©rentiel",
+            "userGuide": "Manuel utilisateur"
+        },
+        "menu": {
+            "create": "CrÃ©er",
+            "search": "Rechercher"
+        },
+        "success": {
+            "created": "CrÃ©ation effectuÃ©e",
+            "deactivated": "DÃ©sactivation effectuÃ©e",
+            "disabled": "DÃ©sactivation effectuÃ©e",
+            "enabled": "Activation effectuÃ©e",
+            "modified": "Modification effectuÃ©e",
+            "removed": "Suppression effectuÃ©e",
+            "replaced": "Remplacement effectuÃ©",
+            "updated": "Mise Ã  jour effectuÃ©e"
+        },
+        "table": {
+            "numberOfResults": "Enregistrements"
+        },
+        "validation": {
+            "length": "La longueur du champ {{fieldName}} doit Ãªtre comprise entre {{min}} et {{max}}",
+            "length-max-min": {
+                "max": "Le longueur maximale du champ {{fieldName}} est {{max}}",
+                "min": "Le longueur minimale du champ {{fieldName}} est {{min}}"
+            },
+            "required": "Le champ {{fieldName}} est obligatoire"
+        },
+        "values": {
+            "no": "Non",
+            "yes": "Oui"
+        }
+    },
+    "country": {
+        "create-title": "CrÃ©ation d'un pays",
+        "aeoi": {
+            "exchanges": {
+                "br": {
+                    "071": "La pÃ©riode de l'Ã©change doit s'inscrire dans la pÃ©riode d'adhÃ©sion Ã  l'AEOI de l'Ã©metteur.",
+                    "119": "Il y a dÃ©jÃ  un Ã©change entre ces deux pays dans une pÃ©riode chevauchante",
+                    "123": "La date de fin doit Ãªtre strictement postÃ©rieure Ã  la date de dÃ©but."
+                },
+                "field": {
+                    "emitter": "Fournisseur",
+                    "end": "Fin",
+                    "exchangingWith": "Echange avec",
+                    "mainCountryIs": " est",
+                    "receiver": "Destinataire",
+                    "start": "DÃ©but",
+                    "start-date": "Date de dÃ©but"
+                },
+                "title": {
+                    "creation": "CrÃ©ation d'un nouvel Ã©change",
+                    "modification": "Mettre Ã  jour un Ã©change",
+                    "view": "Echanges"
+                },
+                "warning": {
+                    "no-exchange": "Ce pays n'Ã©change avec aucun pays."
+                }
+            },
+            "membership": {
+                "br": {
+                    "068": "La date de fin doit Ãªtre strictement postÃ©rieure Ã  la date de dÃ©but.",
+                    "069": "La date de dÃ©but est obligatoire.",
+                    "072": "Le motif (suspension ou annulation) est obligatoire si la date de fin est renseignÃ©e.",
+                    "074": "La date de dÃ©but de la nouvelle adhÃ©sion doit se situer aprÃ¨s la date de fin de l'adhÃ©sion prÃ©cÃ©dente.",
+                    "122": "La date de fin de l'Ã©change doit se situer avant la date de fin de l'adhÃ©sion.",
+                    "170": "La pÃ©riode d'adhÃ©sion doit Ãªtre inclue dans la pÃ©riode d'existance du pays."
+                },
+                "create-title": "CrÃ©ation d'une nouvelle adhÃ©sion",
+                "edit-title": "Mettre Ã  jour une adhÃ©sion",
+                "field": {
+                    "entrance-date": "Date d'adhÃ©sion",
+                    "exit-date": "Date de sortie",
+                    "exit-reason": "Motif"
+                },
+                "title": "AdhÃ©sion",
+                "warning": {
+                    "no-member": "Ce pays n'est pas member de l'AEOI."
+                }
+            },
+            "tin": {
+                "title": "TIN"
+            },
+            "tin-format": {
+                "br": {
+                    "084": "La date de fin doit se situer aprÃ¨s la date de dÃ©but.",
+                    "087": "Le pattern est obligatoire.",
+                    "130": "Le format est obligatoire.",
+                    "134": "La date de dÃ©but est obligatoire.",
+                    "137": "Le type de personne est obligatoire.",
+                    "142": "Un format ne peut Ãªtre ajoutÃ© car il n'y a pas de rassemblement actif courant.",
+                    "143": "Seuls les types de personnes relatifs au rassemblement courant sont disponibles."
+                },
+                "create-title": "CrÃ©ation d'un nouveau format",
+                "edit-title": "Mettre Ã  jour un format",
+                "field": {
+                    "character-type": "Type de caractÃ¨res",
+                    "end-date": "Date de fin",
+                    "length": "Longueur",
+                    "pattern": "Masque",
+                    "person-type": "Type de personne",
+                    "rank": "Rang",
+                    "start-date": "Date dÃ©but"
+                },
+                "title": "Formats",
+                "warning": {
+                    "no-member": "Ce pays n'a pas de formats."
+                }
+            },
+            "tin-gathering": {
+                "br": {
+                    "125": "La date de fin doit se situer aprÃ¨s la date de dÃ©but.",
+                    "126": "Il ne peut y avoir qu'un seul rassemblement Ã  la fois pour un pays et une personne morale donnÃ©s.",
+                    "127": "Il ne peut y avoir qu'un seul rassemblement Ã  la fois pour un pays et une personne physique donnÃ©s.",
+                    "129": "La date de dÃ©but est obligatoire.",
+                    "133": "Le type de personne est obligatoire.",
+                    "136": "La collection est obligatoire.",
+                    "138": "La restitution est obligatoire.",
+                    "139": "Le rassemblement ne peut Ãªtre fermÃ© car il existe des Format Tin associÃ©s au mÃªme type de personne."
+                },
+                "create-title": "CrÃ©ation d'un nouveau rassemblement",
+                "edit-title": "Mettre Ã  jour un rassemblement",
+                "field": {
+                    "collection": "Collecte",
+                    "delivery": "Restitution car. spÃ©c.",
+                    "end-date": "Date de fin",
+                    "person-type": "Type de personne",
+                    "start-date": "Date dÃ©but"
+                },
+                "title": "Rassemblements",
+                "warning": {
+                    "no-member": "Ce pays n'a pas de rassemblements."
+                }
+            }
+        },
+        "classification": {
+            "field": {
+                "add-group": "Ajouter un groupe"
+            }
+        },
+        "deactivate": {
+            "br": {
+                "140": "La date de fin est obligatoire.",
+                "141": "La date de fin doit se situer aprÃ¨s la date d'apparition du pays.",
+                "144": "La pays ne peut Ãªtre dÃ©sactivÃ© car il est utilisÃ© en tant que pays de balance de paiement d'un autre pays.",
+                "145": "La pays ne peut Ãªtre dÃ©sactivÃ© car il est utilisÃ© en tant que pays de rattachement d'un autre pays."
+            },
+            "field": {
+                "endDate": "Date de fin"
+            },
+            "title": "DÃ©sactiver un pays"
+        },
+        "identification": {
+            "br": {
+                "005": "Veuillez renseigner tous les champs obligatoires.",
+                "109": "Le code ISO3 est dÃ©jÃ  utlisÃ©.",
+                "140": "La date de fin est obligatoire.",
+                "141": "La date de fin doit se situer aprÃ¨s la date d'apparition du pays.",
+                "144": "La pays ne peut Ãªtre dÃ©sactivÃ© car il est utilisÃ© en tant que pays de balance de paiement d'un autre pays.",
+                "145": "La pays ne peut Ãªtre dÃ©sactivÃ© car il est utilisÃ© en tant que pays de rattachement d'un autre pays.",
+                "165": "La longueur du code Iso3a ne peut Ãªtre de 2 charactÃ¨res que pour les typologies \"Organisation Internationale\" ou \"Pays Technique\".",
+                "166": "Le code IsoNum est obligatoire pour la typologie \"Pays\".",
+                "167": "Le code Insee est obligatoire pour la typologie \"Pays\".",
+                "168": "Le code Insee doit commencer par le prÃ©fixe 99 (00 pour la France) avec une longueur de 5.",
+                "174": "Le code ISO2 est dÃ©jÃ  utilisÃ©.",
+                "175": "Le code IsoNum est dÃ©jÃ  utilisÃ©."
+            },
+            "field": {
+                "endDate": "Date de dissolution",
+                "fullNameEn": "Nom long anglais",
+                "fullNameFr": "Nom long franÃ§ais",
+                "inseeCode": "Code",
+                "iso2aCode": "ISO2 (Alpha-2)",
+                "iso3aCode": "ISO3 (Alpha-3)",
+                "isoNumCode": "NumÃ©rique",
+                "replacement": {
+                    "country": "Pays de remplacement",
+                    "date": "Date de remplacement",
+                    "user": "RemplacÃ© par"
+                },
+                "shortNameEn": "Nom court anglais",
+                "shortNameFr": "Nom court franÃ§ais",
+                "startDate": "Date d'apparition",
+                "typology": "Typologie"
+            },
+            "fieldSet": {
+                "characteristics": "CaractÃ©ristiques",
+                "codes": "ISO 3166-1 - Codes de pays",
+                "insee": "INSEE",
+                "iso": "ISO 3166-1",
+                "names": "ISO 3166-1 - Noms",
+                "replacement": "Remplacement"
+            },
+            "warning": {
+                "replaced-country": "Ce pays a Ã©tÃ© remplacÃ©."
+            }
+        },
+        "mifid": {
+            "br": {
+                "066": "Le nombre maximum d'identifiants MIFID II est 3."
+            },
+            "fieldset": "MIFID II codes",
+            "rank": "PrioritÃ©",
+            "source": "MIFID disponibles",
+            "target": "MIFID sÃ©lectionnÃ©s"
+        },
+        "replace": {
+            "br": {
+                "059": "Le pays de remplacement est obligatoire.",
+                "060": "Le pays ne peut Ãªtre remplacÃ© que s'il est dÃ©sactivÃ©.",
+                "061": "Le pays de remplacement ne peut Ãªtre le pays Ã  remplacer.",
+                "062": "La date de fin du pays de remplacement doit Ãªtre vide ou se situer aprÃ¨s la date de fin du pays Ã  remplacer."
+            },
+            "field": {
+                "replacementCountry": "Pays de remplacement"
+            },
+            "title": "Remplacer un pays"
+        },
+        "riskop": {
+            "field": {
+                "operational": {
+                    "bafi-resident": "RÃ©sidence BAFI",
+                    "balance-payment-country": "Pays balance paiement",
+                    "french-resident": "RÃ©sident franÃ§ais?",
+                    "swift": "Swift?",
+                    "technical-validity": "ValiditÃ© technique?"
+                },
+                "risk": {
+                    "attachment-country": "Pays de rattachement",
+                    "branch-presence": "PrÃ©sence d'une succursale?",
+                    "calendar": "Calendrier",
+                    "document-language": "Langue de document",
+                    "embargo": "Embargo",
+                    "legal-situation": "Situation juridique",
+                    "mc-donough": {
+                        "date": "Date",
+                        "rating": "Notation",
+                        "validator": "Valideur"
+                    },
+                    "movement-authorization": "Autorisation de mouvement",
+                    "pnb-classification": "Classification PNB",
+                    "report-edition": "Edition d'un Ã©tat?",
+                    "risk-country": "Pays Ã  risque?",
+                    "tax-haven": "Paradis fiscal"
+                }
+            },
+            "fieldset": {
+                "mc-donough": "Mc Donough",
+                "operational": "OpÃ©rationel",
+                "risk": "Risque"
+            }
+        },
+        "search": {
+            "title": "Pays",
+            "identification": {
+                "fieldset": {
+                    "properties": "PropriÃ©tÃ©s"
+                },
+                "name": "Nom",
+                "name-en": "Nom Anglais",
+                "name-fr": "Nom FranÃ§ais",
+                "short-name": "LibellÃ© Court",
+                "full-name": "LibellÃ© Long",
+                "status": {
+                    "all": "Tout",
+                    "closed": "Pays fermÃ©s",
+                    "existing": "Pays existants",
+                    "label": "Statut"
+                },
+                "title": "Recherche de base"
+            }
+        },
+        "tab": {
+            "aeoi": "AEOI",
+            "identification": "Identification",
+            "mifid": "MIFID II",
+            "riskop": "Rique & OpÃ©rationel"
+        }
+    },
+    "country-classification": {
+        "menu-title": "Classification des pays",
+        "category": {
+            "view-title": "Consultation de la catÃ©gorie - {{label}}",
+            "create-title": "CrÃ©ation d'une categorie",
+            "edit-title": "Modification de la catÃ©gorie - {{label}}",
+            "fields": {
+                "category": "CatÃ©gorie",
+                "categories": "CatÃ©gories"
+            },
+            "br": {
+                "021": "Le champ code est obligatoire.",
+                "022": "Le champ libellÃ© anglais est obligatoire.",
+                "023": "Le champ libellÃ© franÃ§ais est obligatoire.",
+                "024": "Le code est dÃ©jÃ  utilisÃ©.",
+                "025": "La catÃ©gorie ne peut Ãªtre dÃ©sactivÃ©e car elle est associÃ©e Ã  un ou plusieurs usages."
+            }
+        },
+        "group": {
+            "create-title": "CrÃ©ation d'un groupe",
+            "fields": {
+                "group": "Groupe",
+                "groups": "Groupes",
+                "parent": "Parent",
+                "children": "Enfants",
+                "hierarchy": "HiÃ©rarchie",
+                "search-group": "Rechercher un groupe"
+            },
+            "confirmation": {
+                "step-title": "Confirmation"
+            },
+            "information": {
+                "step-title": "Information",
+                "br": {
+                    "001": "Le code est obligatoire.",
+                    "002": "Le libellÃ© anglais est obligatoire.",
+                    "003": "Le libellÃ© franÃ§ais est obligatoire.",
+                    "004": "L'usage est obligatoire.",
+                    "006": "Le code doit Ãªtre unique pour les groupes d'un mÃªme usage.",
+                    "010": "L'usage sÃ©lectionnÃ© est invalide. Veuillez sÃ©lectionner un usage de votre pÃ©rimÃ¨tre.",
+                    "011": "Un groupe ne peut Ãªtre dÃ©sactivÃ© que s'il n'a pas de pays ou descendants associÃ©s."
+                }
+            },
+            "parent": {
+                "parent": "PÃ¨re",
+                "select": "SÃ©lection",
+                "preview": "AperÃ§u",
+                "fields": {
+                    "search-parent": "Rechercher un parent"
+                }
+            },
+            "country": {
+                "add-country-warning-title": "Ajouter {{country}} au groupe {{group}} d'usage {{usage}}"
+                "br": {
+                    "007": "Ce pays est dÃ©jÃ  associÃ© Ã  un groupe du mÃªme usage. L'association sera remplacÃ©e par celle-ci."
+                }
+            }
+        },
+        "perimeter": {
+            "create-title": "CrÃ©ation d'un pÃ©rimÃ¨tre",
+            "edit-title": "Modification du pÃ©rimÃ¨tre - {{code}}",
+            "view-title": "Consultation du pÃ©rimÃ¨tre - {{label}}",
+            "fields": {
+                "perimeter": "PÃ©rimÃ¨tre",
+                "perimeters": "PÃ©rimÃ¨tres",
+                "users": {
+                    "title": "Utilisateurs",
+                    "iup": "Iup",
+                    "first-name": "PrÃ©nom",
+                    "last-name": "Nom",
+                    "email": "Email"
+                }
+            }
+        },
+        "usage": {
+            "create-title": "CrÃ©ation d'un usage",
+            "edit-title": "Usage {{code}} - {{label}}",
+            "fields": {
+                "usage": "Usage",
+                "usages": "Usages",
+                "search-usage": "Rechercher un usage"
+            },
+            "br": {
+                "013": "Le code est obligatoire.",
+                "014": "Le libellÃ© anglais est obligatoire.",
+                "015": "Le libellÃ© franÃ§ais est obligatoire.",
+                "016": "La catÃ©gorie est obligatoire.",
+                "018": "Le code doit Ãªtre unique pour des usages d'une mÃªme catÃ©gorie.",
+                "019": "L'usage ne peut Ãªtre dÃ©sactivÃ© car il est associÃ© Ã  un ou plusieurs groupes actifs."
+            }
+        }
+    },
+    "reference": {
+        "br": {
+            "code": {
+                "001": "Ce code existe dÃ©jÃ  pour ce type de rÃ©fÃ©rence."
+            },
+            "inactive": "Cette rÃ©fÃ©rence a Ã©tÃ© dÃ©sactivÃ©e"
+        },
+        "create-title": "CrÃ©ation d'une rÃ©fÃ©rence",
+        "defaul-value": "Valeur par dÃ©faut",
+        "edit-title": "Modification d'une rÃ©fÃ©rence: {{type}} - {{code}}",
+        "is-default-value": "Valeur par dÃ©faut?",
+        "search-title": "RÃ©fÃ©rences",
+        "type": "Type de rÃ©fÃ©rence",
+        "view-title": "Consultation du rÃ©fÃ©rence: {{type}} - {{code}}"
+    },
+    "title": "O39 - Nomenclature",
+    "user": {
+        "br": {
+            "code": {
+                "002": "Il existe dÃ©jÃ  une personne avec cet IUP."
+            }
+        },
+        "code": "IUP",
+        "firstName": "PrÃ©nom",
+        "lastName": "Nom"
+    }
+}

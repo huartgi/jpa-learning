@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "field-error-messages.component.d.ts",
+    "sources": [
+        "field-error-messages.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { OnInit } from '@angular/core';\r\nexport declare class FieldErrorMessagesComponent implements OnInit {\r\n    fieldName: string;\r\n    fieldLabel: string;\r\n    errors: any;\r\n    constructor();\r\n    ngOnInit(): void;\r\n}\r\n"
+    ]
+}

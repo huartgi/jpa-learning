@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "svg-icon.component.d.ts",
+    "sources": [
+        "svg-icon.component.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;AACA;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { OnInit } from '@angular/core';\r\nimport { SvgIcon } from '../svg-icon.enum';\r\nexport declare class SvgIconComponent implements OnInit {\r\n    type: SvgIcon;\r\n    constructor();\r\n    ngOnInit(): void;\r\n    readonly SvgIcon: typeof SvgIcon;\r\n}\r\n"
+    ]
+}

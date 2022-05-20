@@ -1,0 +1,8 @@
+import { PipeTransform } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Label } from '../model/label';
+export declare class LabelPipe implements PipeTransform {
+    private translate;
+    constructor(translate: TranslateService);
+    transform(label: Label): any;
+}

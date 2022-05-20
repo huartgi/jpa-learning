@@ -1,0 +1,101 @@
+<div class="card step border-0" id="step1">
+
+    <div class="card-header p-0" data-target="#collapseStep2" data-toggle="collapse" id="headerStep2">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="mb-0 inline">
+                    <button class="btn btn-link collapsed" id="btnStep2" type="button">
+                        View User
+                    </button>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapse" data-parent="#accordion" id="collapseStep2">
+
+        <div class="card-body">
+
+            <div class="form-row">
+                <div class="col-sm-6">
+
+                    <fieldset class="block">
+                        <legend>Account infos</legend>
+                        <div *ngIf="!user">
+                            User not found
+                        </div>
+                        <div *ngIf="user">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">IUP</label>
+                                <span class="value col-sm-9">{{ user.iup }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Login</label>
+                                <span class="value col-sm-9">{{ user.login }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Lastname</label>
+                                <span class="value col-sm-9">{{ user.lastname }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Firstname</label>
+                                <span class="value col-sm-9">{{ user.firstname }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                                <span class="value col-sm-9">{{ user.email }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Active ?</label>
+                                <div *ngIf="user.isActive" class="value col-sm-9 green">
+                                    <app-svg-icon [type]="SvgIcon.CHECK_CIRCLE_FILL"></app-svg-icon>
+                                </div>
+                                <div *ngIf="!user.isActive" class="value col-sm-9 red">
+                                    <app-svg-icon [type]="SvgIcon.X_CIRCLE_FILL"></app-svg-icon>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Allowed ?</label>
+                                <div *ngIf="user.isAllowed" class="value col-sm-9 green">
+                                    <app-svg-icon [type]="SvgIcon.CHECK_CIRCLE_FILL"></app-svg-icon>
+                                </div>
+                                <div *ngIf="!user.isAllowed" class="value col-sm-9 red">
+                                    <app-svg-icon [type]="SvgIcon.X_CIRCLE_FILL"></app-svg-icon>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Created on</label>
+                                <span
+                                    class="value col-sm-9">{{ user.creationDate | utcDate: 'dd/MM/yyyy hh:mm' }}</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Modified on</label>
+                                <span
+                                    class="value col-sm-9">{{ user.modificationDate | utcDate: 'dd/MM/yyyy hh:mm' }}</span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="col-sm-6">
+
+                    <fieldset class="block">
+                        <legend>Profiles</legend>
+                        <div *ngIf="user && user.profiles">
+                            <ul>
+                                <li *ngFor="let profile of user.profiles">{{ profile }}</li>
+                            </ul>
+                        </div>
+                        <div *ngIf="user && !user.profiles">
+                            No profiles
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

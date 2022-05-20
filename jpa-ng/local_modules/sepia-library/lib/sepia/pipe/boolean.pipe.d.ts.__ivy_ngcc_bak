@@ -1,0 +1,7 @@
+import { PipeTransform } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+export declare class BooleanPipe implements PipeTransform {
+    private translate;
+    constructor(translate: TranslateService);
+    transform(value: boolean): any;
+}

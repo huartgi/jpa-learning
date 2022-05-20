@@ -1,0 +1,19 @@
+.profile-picture {
+  height: 35px;
+  border-radius: 30px;
+  margin-right: 10px;
+}
+:host ::ng-deep {
+
+  .user-picture{
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    -moz-box-shadow: 0px 6px 5px #ccc;
+    -webkit-box-shadow: 0px 6px 5px #ccc;
+    box-shadow: 0px 0px 7px #ccc;
+  }
+
+}

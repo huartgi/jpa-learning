@@ -1,5 +1,7 @@
 package fr.huartgi.jpalearning.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class Match {
 	
 	@ManyToOne
 	@JoinColumn(name="FK_CLUB_HOME", nullable=false)
+	@JsonBackReference
 	private Club clubHome;
 	
 	@Column(name="GOAL_HOME")
@@ -22,6 +25,7 @@ public class Match {
 	
 	@ManyToOne
 	@JoinColumn(name="FK_CLUB_AWAY", nullable=false)
+	@JsonBackReference
 	private Club clubAway;
 	
 	@Column(name="GOAL_AWAY")

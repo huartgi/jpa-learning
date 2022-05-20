@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "DatePickerParserFormatter.d.ts",
+    "sources": [
+        "DatePickerParserFormatter.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';\r\nexport declare class DatePickerParserFormatter extends NgbDateParserFormatter {\r\n    readonly DELIMITER = \"/\";\r\n    parse(value: string): NgbDateStruct | null;\r\n    format(date: NgbDateStruct | null): string;\r\n}\r\n"
+    ]
+}

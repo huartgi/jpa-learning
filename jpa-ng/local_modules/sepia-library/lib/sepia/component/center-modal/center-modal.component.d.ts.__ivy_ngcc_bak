@@ -1,0 +1,17 @@
+import { EventEmitter } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalExitEnum } from '../../model/modal-exit.enum';
+export declare class CenterModalComponent {
+    modal: NgbActiveModal;
+    id: string;
+    title: string;
+    message: string;
+    okButton: string;
+    cancelButton: string;
+    informationMessage: string;
+    okClickEvent: EventEmitter<any>;
+    resultOk: ModalExitEnum;
+    resultCancel: ModalExitEnum;
+    constructor(modal: NgbActiveModal);
+    okWasClicked(): void;
+}

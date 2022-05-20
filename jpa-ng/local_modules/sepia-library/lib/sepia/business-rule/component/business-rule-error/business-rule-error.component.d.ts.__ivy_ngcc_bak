@@ -1,0 +1,7 @@
+import { OnInit } from '@angular/core';
+import { BusinessRuleComponent } from '../business-rule-component';
+export declare class BusinessRuleErrorComponent implements OnInit {
+    businessRuleComponent: BusinessRuleComponent;
+    constructor();
+    ngOnInit(): void;
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "ErrorsHandler.d.ts",
+    "sources": [
+        "ErrorsHandler.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;;AACA;AACA;;;AACA",
+    "sourcesContent": [
+        "import { ErrorHandler } from '@angular/core';\r\nexport declare class ErrorsHandler implements ErrorHandler {\r\n    handleError(error: Error): void;\r\n}\r\n"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "file": "sepia-library.module.d.ts",
+    "sources": [
+        "sepia-library.module.d.ts"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;;;;;;;;;;;;;;;;;AACA;;;AACA;AACA",
+    "sourcesContent": [
+        "import { HttpClient } from '@angular/common/http';\r\nimport { TranslateHttpLoader } from '@ngx-translate/http-loader';\r\nexport declare class SepiaLibraryModule {\r\n}\r\nexport declare function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader;\r\n"
+    ]
+}
