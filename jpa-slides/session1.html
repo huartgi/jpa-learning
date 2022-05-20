@@ -149,7 +149,7 @@
 					</section>
 
 					<section data-transition="convex">
-						<h2 class="no-transform">Select N+1</h2>
+						<h2 class="no-transform">Select 1+N</h2>
 						<ul>
 							<li class="fragment">First query returns X entities</li>
 							<li class="fragment">Each entity has a relationship with another entity</li>
@@ -241,7 +241,7 @@
 							<li class="fragment">EAGER loading without join fetch leads to <a>select N+1</a></li>
 							<li class="fragment">Solving select N+1 leads to unreasonable <a>joins</a></li>
 							<li class="fragment">Best strategy : <a>good mapping</a> at start</li>
-							<li class="fragment">If too late : <a>Hibernate 5.4</a> + EntityGraph / <a>fetchgraph</a></li>
+							<li class="fragment">Else : <a>Hibernate 5.4.11+</a> + EntityGraph / <a>fetchgraph</a></li>
 						</ul>
 					</section>
 
