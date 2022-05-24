@@ -23,10 +23,6 @@ INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(22, 'RUS', ' Russia');
 INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(23, 'SEN', ' Senegal');
 INSERT INTO `country` (`ID`, `CODE`, `NAME`) VALUES(24, 'WAL', ' Wales');
 
-/*drop sequence `country_seq`;*/
-create sequence `country_seq` start with 25 increment by 1;
-
-
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(1, 50200, 'Stade Pierre Mauroy');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(2, 45000, 'Parc des princes');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(3, 66000, 'Orange Vélodrome');
@@ -48,10 +44,6 @@ INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(18, 72698, 'Stadio Olimp
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(19, 50033, 'Estadio do Dragão');
 INSERT INTO `stadium` (`ID`, `CAPACITY`, `NAME`) VALUES(20, 64642, 'Stade de Luz');
 
-drop sequence `stadium_seq`;
-create sequence `stadium_seq` start with 21 increment by 1;
-
-
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(1, 'Lille OSC', 10, 1);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(2, 'Paris SG', 10, 2);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(3, 'Marseille', 10, 3);
@@ -72,7 +64,6 @@ INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(17, 'Napoli
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(18, 'Roma', 13, 18);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(19, 'Porto', 20, 19);
 INSERT INTO `club` (`ID`, `NAME`, `FK_COUNTRY`, `FK_STADIUM`) VALUES(20, 'Benfica', 20, 20);
-
 
 INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_HOME`) VALUES(1, 3, 2, 2, 1);
 INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_HOME`) VALUES(2, 5, 4, 3, 1);
@@ -454,10 +445,6 @@ INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_H
 INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_HOME`) VALUES(378, 0, 2, 17, 20);
 INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_HOME`) VALUES(379, 4, 5, 18, 20);
 INSERT INTO `matchs` (`ID`, `GOAL_AWAY`, `GOAL_HOME`, `FK_CLUB_AWAY`, `FK_CLUB_HOME`) VALUES(380, 0, 1, 19, 20);
-
---
--- Déchargement des données de la table `player`
---
 
 INSERT INTO `player` (`ID`, `BIRTHDATE`, `NAME`, `FK_CLUB`, `FK_COUNTRY`) VALUES(1, '1978-04-18', 'Cassin', 1, 10);
 INSERT INTO `player` (`ID`, `BIRTHDATE`, `NAME`, `FK_CLUB`, `FK_COUNTRY`) VALUES(2, '1981-10-20', 'Davis', 1, 10);

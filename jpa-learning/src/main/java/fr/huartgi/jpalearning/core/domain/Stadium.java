@@ -13,8 +13,7 @@ public class Stadium {
 	
 	@Id
 	@Column(name="ID", unique=true, nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stadiumSeqGen")
-	@SequenceGenerator(name = "stadiumSeqGen", sequenceName = "stadium_seq", allocationSize = 100)
+	@GeneratedValue
 	private Long id;
 	
 	@Column(name="NAME")
