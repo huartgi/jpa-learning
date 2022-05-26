@@ -47,10 +47,10 @@ public class PlayerService {
 		club.setPlayers(players);
 	}
 
-	public void loadPlayers(Long id) {
-		Club club =clubDao.findById(id);
-		List<Player> players = findByClub(club);
-		club.setPlayers(players);
-	}
+	public void loadPlayers(Integer id) {
+        Club club = clubDao.findById(id);
+        List<Player> players = findByClub(club);
+        club.setPlayers(players);
+    }
 	
 }

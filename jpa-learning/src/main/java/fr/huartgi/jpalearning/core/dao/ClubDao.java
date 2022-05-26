@@ -5,8 +5,10 @@ import fr.huartgi.jpalearning.core.domain.Club;
 
 import java.util.List;
 
-public interface ClubDao extends IGenericDao<Long, Club> {
-	
+public interface ClubDao extends IGenericDao<Integer, Club> {
+
 	public List<Club> findAll();
+
+	public List<Club> findByIds(Integer... ids);
 
 }

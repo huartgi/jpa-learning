@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>JPA Learning - Session 1</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="revealjs/css/reset.css">
+	<link rel="stylesheet" href="revealjs/css/reveal.css">
+	<link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="revealjs/lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="revealjs/css/custom.css">
+</head>
+
+<body>
+
+<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+
+		<section>
+			<section data-notes="What is JPA? Java Persistence API..///
+It's an ORM (object relational mapping) that allows comunicate with database using java objects. ///
+The most used implementation of JPA is Hibernate, and in this session I will use it.">
+				<h1 class="no-transform">JPA Learning</h1>
+				<h3 class="no-transform">Session #1 : select 1+N</h3>
+				<p>
+					<small><a href="#">Gildas Huart</a> - <a href="#">Nelson Costa</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2 class="no-transform">Objectives</h2>
+				<p>Better understand :</p>
+				<ul>
+					<li class="fragment">EAGER vs LAZY</li>
+					<li class="fragment">Select 1+N</li>
+					<li class="fragment">Cache levels</li>
+					<li class="fragment">Fetching</li>
+				</ul>
+			</section>
+
+		</section>
+
+		<section data-transition="convex">
+			<section data-transition="convex" data-notes="I will use this datamodel to show you with real examples how JPA works.
+As you can see, the data emulates a football club.
+In this reality, the club is linked to a stadium and a country.">
+
+				<h2 class="no-transform">Data Model</h2>
+				<img src="img/session1/datamodel%20-%20basic.png" class="no-border">
+
+			</section>
+
+			<section data-transition="convex" data-notes="
+This is how we represent a table in Java objects using JPA.
+@Entity is used to say to JPA that this class represents a query object. //
+@Table is to link the java class to the table in the database
+It's required to have and @ID //
+@Column to map to simple column //
+@ManyToOne, @OneToMany to map a relationships">
+				<h2 class="no-transform">Club Entity</h2>
+				<img src="img/session1/entities/club.PNG" class="no-border">
+
+			</section>
+
+			<section data-transition="convex">
+				<h2 class="no-transform">Country Entity</h2>
+				<img src="img/session1/entities/country.PNG" class="no-border">
+			</section>
+
+			<section data-transition="convex">
+				<h2 class="no-transform">Stadium Entity</h2>
+				<img src="img/session1/entities/stadium.PNG" class="no-border">
+			</section>
+
+		</section>
+
+		<section data-notes="All the cases we will see in this session are public in this repository">
+			<h2 class="no-transform">Github public project</h2>
+			<p><a href="https://github.com/huartgi/jpa-learning/">https://github.com/huartgi/jpa-learning</a></p>
+
+		</section>
+
+		<section data-transition="convex">
+
+			<section>
+				<h2 class="no-transform">Test Case 1</h2>
+				<ul>
+					<li>Loads Clubs with id #1 and #2</li>
+				</ul>
+			</section>
+
+			<section data-transition="none" data-notes="
+Looking into the code we expect that only one query will be executed.
+If you pay attention, the query string is not NATIVE SQL, we are using the name of the java classes and attributes to query.
+This is called JPQL.
+
+Let's see the results.
+">
+				<img style="vertical-align: top" src="img/session1/test1/code.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+We can see that our query was executed, but after,
+Someone is getting a country by id, and 2 stadiums by id as well.
+
+Why 1 country and 2 stadiums were loaded?">
+				<img style="vertical-align: top" src="img/session1/test1/result.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="On club entity, we can see those relations.
+I can tell you that the queries are being executed because the relationship is set as EAGER.
+But you could ask, where??">
+				<img style="vertical-align: top" src="img/session1/test1/club_relations.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="Having no fetch or EAGER for ManytoOne is the same.
+Eager is the default value for this type of relationship.
+Eager means that when we load one club, the stadium and the country must be loaded as well.
+This is exactly the select 1+N issue occuring. You want to execute just 1 query, but N queries are being executed behing the scene.
+Let's see how it works behind.
+
+The other type of fetching is LAZY. Lazy means that we don't want to load the relationship at the time we load the club, but maybe I will load it after.">
+				<img style="vertical-align: top" src="img/session1/test1/club_relations_explicit_eager.PNG"
+					 class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="Imagine that this is how JPA looks inside the JVM when we start our case.
+At the bottom you can see all the data involved in this case.
+2 clubs in yellow, 1 country in red, 2 stadiums in green.
+
+At the top you can find the second level of cache of JPA (It's not used on this test - i will came back to it later).
+
+In the middle you have Entity Manager, the interface exposing methods to communicate with the database.
+The entity manager is not thread safe, this means, that each thread will need to work in a different instance of it.
+
+Inside the Entity Manager, we have the Persistence Context (also called 1st level of cache).
+Basically it stores in memory all the entity instances of the objects being manipulated within an Entity Manager.
+
+On the right side we have the database.
+">
+				<img style="vertical-align: top" src="img/session1/test1/step0.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. The query is executed in the database
+2. Entity Manager receives the result
+3. It store both clubs in the peristence context">
+				<img style="vertical-align: top" src="img/session1/test1/step1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager realizes that he needs to load the country for the club 1 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test1/step2.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. For the club one he will get the country with id 10">
+				<img style="vertical-align: top" src="img/session1/test1/step2.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager receive the country with id 10 (FRANCE)">
+				<img style="vertical-align: top" src="img/session1/test1/step2.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Entity Manager stores the country with id 10 in the persistence context and link it to the club 1">
+				<img style="vertical-align: top" src="img/session1/test1/step2.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager realizes that he needs to load the stadium for the club 1 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test1/step3.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. For the club 1 he will get the stadium with id 1">
+				<img style="vertical-align: top" src="img/session1/test1/step3.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager receive the stadium with id 1 (Stade Pierre Mauroy)">
+				<img style="vertical-align: top" src="img/session1/test1/step3.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Entity Manager stores the stadium with id 1 in the persistence context and link it to the club 1">
+				<img style="vertical-align: top" src="img/session1/test1/step3.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager realizes that he needs to load the country for the club 2 (it's eager)
+2. He also noticed that such country is already present in the persistence context,
+so he does not need to load it again, he just need to link it
+
+In this case Entity Manager used the first level o cache to retrieve the country for the club 2.
+The country was loaded in the club 1 process and reused in the club 2.">
+				<img style="vertical-align: top" src="img/session1/test1/step4.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager realizes that he needs to load the stadium for the club 2 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test1/step5.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. For the club 2 he will get the stadium with id 2">
+				<img style="vertical-align: top" src="img/session1/test1/step5.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager receive the stadium with id 2 (Parc des Princes)">
+				<img style="vertical-align: top" src="img/session1/test1/step5.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Entity Manager stores the stadium with id 2 in the persistence context and link it to the club 2
+
+And we just saw why 4 queries were being executed.">
+				<img style="vertical-align: top" src="img/session1/test1/step5.4.png" class="no-border">
+			</section>
+
+		</section>
+
+		<section data-transition="convex">
+
+			<section data-transition="convex">
+				<h2 class="no-transform">Test Case 2</h2>
+				<ul>
+					<li class="fragment">Loads Clubs with id #1 and #2 taking advantages of 2nd level of cache</li>
+				</ul>
+			</section>
+
+			<section data-transition="none" data-notes="
+I don't know if you noticed, but when I presented to you the entities, the country Entity was anotated with
+@Cacheable.
+This means what??
+This means that the instances of this entity will be persisted in the 2nd level of cache of JPA.">
+				<img style="vertical-align: top" src="img/session1/test2/country_cacheable.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+Looking into the code we expect 3 queries will be executed.
+1 to load all the countries.
+2 to load all the stadiums.
+3 to load the clubs.
+
+Let's see the results.
+">
+				<img style="vertical-align: top" src="img/session1/test2/code.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+We can see that 5 queries were executed.
+The first 3 are ok.
+But after, JPA is loading twice the stadium by Id.
+
+Why??">
+				<img style="vertical-align: top" src="img/session1/test2/results.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+Because in the Stadium entity we do not have the annotation @Cacheable.
+Let's see how it works.">
+				<img style="vertical-align: top" src="img/session1/test2/stadium_no_cacheable.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none">
+				<img style="vertical-align: top" src="img/session1/test2/step0.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager executes the query to load all countries
+2. Entity Manager receives all the countries">
+				<img style="vertical-align: top" src="img/session1/test2/step1.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager store all the countries in the persistence context.">
+				<img style="vertical-align: top" src="img/session1/test2/step1.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Since Country entity is annotated with @Cacheable, Entity Manager stores all the countries in the 2nd Level of cache.">
+				<img style="vertical-align: top" src="img/session1/test2/step1.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager executes the query to load all stadiums
+2. Entity Manager receives all the stadiums">
+				<img style="vertical-align: top" src="img/session1/test2/step1.5.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager store all the stadiums in the persistence context.">
+				<img style="vertical-align: top" src="img/session1/test2/step1.6.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+You can notice that the load of the stadiums was useless since they were not stored in the 2nd level of cache.
+They were just store in the first level of cache (Persistence Context) that is cleared when the transaction is closed.
+
+1. Entity Manager execute query to load the club 1 and 2
+2. Entity Manager receives the result
+3. Entity Manager stores the result in the Persistence Context">
+				<img style="vertical-align: top" src="img/session1/test2/step2.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test2/step3.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. Since Cache is enables and Country is annotated with @Cacheable, entity manager will check if the country 10 exists in the 2nd level of cache">
+				<img style="vertical-align: top" src="img/session1/test2/step3.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. He find it, so Entity manager add it to the Persistence Context and link club 1 with country 10">
+				<img style="vertical-align: top" src="img/session1/test2/step3.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager notice he needs to load the stadium 1 for the club 1 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test2/step4.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. Entity Manager can't use the second level of cache since the entity is not Cacheable, so he executes the query to load the stadium 1">
+				<img style="vertical-align: top" src="img/session1/test2/step4.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager receive the stadium 1">
+				<img style="vertical-align: top" src="img/session1/test2/step4.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Entity Manager add the stadium 1 to the persitence context and link it to the club 1">
+				<img style="vertical-align: top" src="img/session1/test2/step4.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager notice he needs to load country 10 for the club 2.
+But, he also notice that such country is already in the persitence context, so he does not need to load it again, just link it.">
+				<img style="vertical-align: top" src="img/session1/test2/step5.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager realizes that he needs to load the stadium 2 for the club 2 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test2/step6.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. For the club 2 he will get the stadium with id 2">
+				<img style="vertical-align: top" src="img/session1/test2/step6.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager receive the stadium with id 2 (Parc des Princes)">
+				<img style="vertical-align: top" src="img/session1/test2/step6.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Entity Manager stores the stadium with id 2 in the persistence context and link it to the club 2
+
+And we just saw why 5 queries were being executed.">
+				<img style="vertical-align: top" src="img/session1/test2/step6.4.png" class="no-border">
+			</section>
+
+		</section>
+
+
+		<section data-transition="convex">
+
+			<section data-transition="convex">
+				<h2 class="no-transform">Test Case 3</h2>
+				<ul>
+					<li class="fragment">Loads Clubs with id #1 and #2</li>
+					<li class="fragment">Taking advantages of 2nd level of cache</li>
+					<li class="fragment">Joining the stadiums</li>
+				</ul>
+			</section>
+
+			<section data-transition="none" data-notes="
+Looking into the code we expect 2 queries to be executed.
+1 to load all the countries.
+2 to load the clubs joining with stadiums.
+
+We are joining using EntityGraphs strategy.
+An Entity Graphs indicates to the query what relations should be loaded using joins.
+The relation is identified by the name of the property in the class (in our case 'Stadium').
+
+(Show how to create a graph and use it with the setHint)
+
+Let's see the results.
+">
+				<img style="vertical-align: top" src="img/session1/test3/code.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+We can see that we were right.
+Let's see how it works">
+				<img style="vertical-align: top" src="img/session1/test3/results.PNG" class="no-border">
+			</section>
+
+			<section data-transition="none">
+				<img style="vertical-align: top" src="img/session1/test3/step0.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager executes the query to load all countries
+2. Entity Manager receives all the countries">
+				<img style="vertical-align: top" src="img/session1/test3/step1.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. Entity Manager store all the countries in the persistence context.">
+				<img style="vertical-align: top" src="img/session1/test3/step1.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+4. Since Country entity is annotated with @Cacheable, Entity Manager stores all the countries in the 2nd Level of cache.">
+				<img style="vertical-align: top" src="img/session1/test3/step1.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager execute query to load the club 1 and 2 joining with stadium
+2. Entity Manager receives the result
+3. Entity Manager stores the result in the Persistence Context
+	- 2 clubs and 2 stadiums">
+				<img style="vertical-align: top" src="img/session1/test3/step2.1.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)">
+				<img style="vertical-align: top" src="img/session1/test3/step2.2.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+2. Since Cache is enables and Country is annotated with @Cacheable, entity manager will check if the country 10 exists in the 2nd level of cache">
+				<img style="vertical-align: top" src="img/session1/test3/step2.3.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+3. He find it, so Entity manager add it to the Persistence Context and link club 1 with country 10">
+				<img style="vertical-align: top" src="img/session1/test3/step2.4.png" class="no-border">
+			</section>
+
+			<section data-transition="none" data-notes="
+1. Entity Manager notice he needs to load country 10 for the club 2.
+But, he also notice that such country is already in the persistence context, so he does not need to load it again, just link it.
+
+And we just saw why 2 queries were being executed.">
+				<img style="vertical-align: top" src="img/session1/test3/step2.5.png" class="no-border">
+			</section>
+
+		</section>
+
+		<section data-transition="convex">
+
+			<section data-transition="convex">
+				<h2 class="no-transform">Conclusions</h2>
+				<ul>
+					<li class="fragment">EAGER loading without join fetch leads to <a>select N+1</a></li>
+					<li class="fragment">Solving select N+1 leads to unreasonable <a>joins</a></li>
+					<li class="fragment">Best strategy : <a>good mapping</a> at start</li>
+					<li class="fragment">Else : <a>Hibernate 5.4.11+</a> + EntityGraph / <a>fetchgraph</a></li>
+				</ul>
+			</section>
+
+			<section data-transition="convex">
+				<h2 class="no-transform">My advices</h2>
+				<ul>
+					<li class="fragment"><a>@Cacheable</a> entities : <a href="">EAGER</a></li>
+					<li class="fragment">Cache loaded at startup</li>
+					<li class="fragment">All the rest : LAZY</li>
+				</ul>
+			</section>
+
+		</section>
+
+	</div>
+
+</div>
+
+<script src="revealjs/js/reveal.js"></script>
+
+<script>
+
+	// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		center: true,
+		hash: true,
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+			{
+				src: 'revealjs/plugin/markdown/marked.js', condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			},
+			{
+				src: 'revealjs/plugin/markdown/markdown.js', condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			},
+			{src: 'revealjs/plugin/highlight/highlight.js'},
+			{src: 'revealjs/plugin/search/search.js', async: true},
+			{src: 'revealjs/plugin/zoom-js/zoom.js', async: true},
+			{src: 'revealjs/plugin/notes/notes.js', async: true}
+		]
+	});
+
+	Reveal.configure({pdfSeparateFragments: false});
+
+</script>
+
+</body>
+</html>

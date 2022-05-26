@@ -22,9 +22,9 @@ public class CountryService {
 	}
 
 	public List<Country> findAll() {
-		log.debug("Loading countries");
+		//log.debug("Loading countries");
 		List<Country> countries = countryDao.findAll();
-		log.debug("{}  countries found\n\n\n", countries.size());
+        //log.debug("{}  countries found\n\n\n", countries.size());
 		return countries;
 	}
 

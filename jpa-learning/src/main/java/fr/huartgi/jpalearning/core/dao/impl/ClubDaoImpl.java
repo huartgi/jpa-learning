@@ -9,19 +9,20 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityGraph;
 import javax.persistence.Subgraph;
 import javax.persistence.TypedQuery;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
 @Profile("local")
-public class ClubDaoImpl extends GenericDao<Long, Club> implements ClubDao {
-	
+public class ClubDaoImpl extends GenericDao<Integer, Club> implements ClubDao {
+
 	public ClubDaoImpl() {
 		super(Club.class);
 	}
 
 	@Override
 	public List<Club> findAll() {
-		
+
 		String jpql = "select club "
 				+ "from Club club ";
 		
@@ -67,8 +68,16 @@ public class ClubDaoImpl extends GenericDao<Long, Club> implements ClubDao {
 		matchesAwayQuery.getResultList();
 
 		 */
-		
+
 		return clubs;
+	}
+
+	@Override
+	public List<Club> findByIds(Integer... ids) {
+		String jpql = "select club from Club club where club.id in :ids";
+		TypedQuery<Club> query = entityManager.createQuery(jpql, Club.class);
+		query.setParameter("ids", Arrays.asList(ids));
+		return query.getResultList();
 	}
 
 }

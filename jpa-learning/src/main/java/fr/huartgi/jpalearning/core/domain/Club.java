@@ -14,9 +14,9 @@ public class Club {
 	// ========== ATTRIBUTES ==========
 	
 	@Id
-	@Column(name="ID", unique=true, nullable=false)
+	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 	
 	@Column(name="NAME", unique=true, nullable=false)
 	private String name;
@@ -28,16 +28,16 @@ public class Club {
 	@ManyToOne
 	@JoinColumn(name="FK_STADIUM", nullable=false)
 	private Stadium stadium;
-	
-	@OneToMany(mappedBy="club", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "club")
 	@JsonManagedReference
 	private List<Player> players;
 
-	@OneToMany(mappedBy="clubHome", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "clubHome")
 	@JsonManagedReference
 	private List<Match> matchesHome;
-	
-	@OneToMany(mappedBy="clubAway", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "clubAway")
 	@JsonManagedReference
 	private List<Match> matchesAway;
 	
@@ -66,13 +66,15 @@ public class Club {
 	}	
 	
 	// ========== GETTERS & SETTERS ==========
-	
-	public Long getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}

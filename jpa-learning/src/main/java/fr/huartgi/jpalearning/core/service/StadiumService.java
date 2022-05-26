@@ -22,9 +22,9 @@ public class StadiumService {
 	}
 
 	public List<Stadium> findAll() {
-		log.debug("Loading stadiums");
+		//log.debug("Loading stadiums");
 		List<Stadium> stadiums = stadiumDao.findAll();
-		log.debug("{}  stadiums found\n\n\n", stadiums.size());
+        //log.debug("{}  stadiums found\n\n\n", stadiums.size());
 		return stadiums;
 	}
 	

@@ -1,8 +1,7 @@
-package fr.huartgi.jpalearning;
+package fr.huartgi.jpalearning.basic;
 
+import fr.huartgi.jpalearning.JpaLearningBootApplication;
 import fr.huartgi.jpalearning.core.service.ClubService;
-import fr.huartgi.jpalearning.core.service.MatchService;
-import fr.huartgi.jpalearning.core.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,23 +15,16 @@ import org.springframework.test.context.ActiveProfiles;
 class TestCase1 {
 
     private final ClubService clubService;
-    private final MatchService matchService;
-    private final PlayerService playerService;
 
     /**
      * Project context : bad JPA mapping with every relationships marked as EAGER !
-     *
+     * <p>
      * In this scenario : we execute the following queries :
-     * - load all clubs
-     * - load all matches
-     * - load all players.
-     *
+     * - load the clubs 1 and 2
      */
     @Test
     void testQueries() {
 
-        clubService.findAll();
-        matchService.findAll();
-        playerService.findAll();
+        clubService.findByIds(1, 2);
     }
 }

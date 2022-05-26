@@ -16,16 +16,20 @@ import java.util.List;
 public class ClubService {
 
 	private final ClubDao clubDao;
-	
-	public void create(Club club) {
-		clubDao.create(club);
-	}
 
-	public List<Club> findAll() {
-		log.debug("Loading clubs");
-		List<Club> clubs = clubDao.findAll();
-		log.debug("{}  clubs found\n\n\n", clubs.size());
-		return clubs;
-	}
-	
+    public void create(Club club) {
+        clubDao.create(club);
+    }
+
+    public List<Club> findAll() {
+        log.debug("Loading clubs");
+        List<Club> clubs = clubDao.findAll();
+        log.debug("{}  clubs found\n\n\n", clubs.size());
+        return clubs;
+    }
+
+    public List<Club> findByIds(Integer... ids) {
+        return this.clubDao.findByIds(ids);
+    }
+
 }
