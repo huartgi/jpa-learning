@@ -125,7 +125,7 @@ This is called JPQL.
 
 Let's see the results.
 ">
-				<img style="vertical-align: top" src="img/session1/test1/code.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test1/code.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
@@ -133,14 +133,14 @@ We can see that our query was executed, but after,
 Someone is getting a country by id, and 2 stadiums by id as well.
 
 Why 1 country and 2 stadiums were loaded?">
-				<img style="vertical-align: top" src="img/session1/test1/result.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test1/result.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
 On club entity, we can see those relations.
 I can tell you that the queries are being executed because the relationship is set as EAGER.
 But you could ask, where??">
-				<img style="vertical-align: top" src="img/session1/test1/club_relations.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test1/club_relations.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
@@ -150,7 +150,7 @@ This is exactly the select 1+N issue occuring. You want to execute just 1 query,
 Let's see how it works behind.
 
 The other type of fetching is LAZY. Lazy means that we don't want to load the relationship at the time we load the club, but maybe I will load it after.">
-				<img style="vertical-align: top" src="img/session1/test1/club_relations_explicit_eager.PNG"
+				<img style="vertical-align: top" src="img/session1/test1/club_relations_explicit_eager.png"
 					 class="no-border">
 			</section>
 
@@ -274,7 +274,7 @@ I don't know if you noticed, but when I presented to you the entities, the count
 This means what??
 This means that the instances of this entity will be persisted in the 2nd level of cache of JPA.
 IF the second level of cache is enabled.">
-				<img style="vertical-align: top" src="img/session1/test2/country_cacheable.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test2/country_cacheable.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
@@ -285,7 +285,7 @@ Looking into the code we expect 3 queries will be executed.
 
 Let's see the results.
 ">
-				<img style="vertical-align: top" src="img/session1/test2/code.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test2/code.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
@@ -294,13 +294,13 @@ The first 3 are ok.
 But after, JPA is loading twice the stadium by Id.
 
 Why??">
-				<img style="vertical-align: top" src="img/session1/test2/results.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test2/results.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
 Because in the Stadium entity we do not have the annotation @Cacheable.
 Let's see how it works.">
-				<img style="vertical-align: top" src="img/session1/test2/stadium_no_cacheable.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test2/stadium_no_cacheable.png" class="no-border">
 			</section>
 
 			<section data-transition="none">
@@ -443,7 +443,7 @@ Let's see the results.
 			<section data-transition="none" data-notes="
 We can see that we were right.
 Let's see how it works">
-				<img style="vertical-align: top" src="img/session1/test3/results.PNG" class="no-border">
+				<img style="vertical-align: top" src="img/session1/test3/results.png" class="no-border">
 			</section>
 
 			<section data-transition="none">
