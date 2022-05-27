@@ -136,14 +136,15 @@ Why 1 country and 2 stadiums were loaded?">
 				<img style="vertical-align: top" src="img/session1/test1/result.PNG" class="no-border">
 			</section>
 
-			<section data-transition="none" data-notes="On club entity, we can see those relations.
+			<section data-transition="none" data-notes="
+On club entity, we can see those relations.
 I can tell you that the queries are being executed because the relationship is set as EAGER.
 But you could ask, where??">
 				<img style="vertical-align: top" src="img/session1/test1/club_relations.PNG" class="no-border">
 			</section>
 
-			<section data-transition="none" data-notes="Having no fetch or EAGER for ManytoOne is the same.
-Eager is the default value for this type of relationship.
+			<section data-transition="none" data-notes="
+if you don't define the fetch (mode) on ManytoOne default value is EAGER.
 Eager means that when we load one club, the stadium and the country must be loaded as well.
 This is exactly the select 1+N issue occuring. You want to execute just 1 query, but N queries are being executed behing the scene.
 Let's see how it works behind.
@@ -153,7 +154,8 @@ The other type of fetching is LAZY. Lazy means that we don't want to load the re
 					 class="no-border">
 			</section>
 
-			<section data-transition="none" data-notes="Imagine that this is how JPA looks inside the JVM when we start our case.
+			<section data-transition="none" data-notes="
+Imagine that this is how JPA looks inside the JVM when we start our case.
 At the bottom you can see all the data involved in this case.
 2 clubs in yellow, 1 country in red, 2 stadiums in green.
 
@@ -173,17 +175,19 @@ On the right side we have the database.
 			<section data-transition="none" data-notes="
 1. The query is executed in the database
 2. Entity Manager receives the result
-3. It store both clubs in the peristence context">
+3. It store both clubs in the persistence context">
 				<img style="vertical-align: top" src="img/session1/test1/step1.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager realizes that he needs to load the country for the club 1 (it's eager)">
+1. Entity Manager realizes that he needs to load the country for the club 1 (it's eager)
+2. He will check if that country is in the Persistence Context, since is not...
+">
 				<img style="vertical-align: top" src="img/session1/test1/step2.1.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-2. For the club one he will get the country with id 10">
+2. Entity Manager needs to execute the query to load it">
 				<img style="vertical-align: top" src="img/session1/test1/step2.2.png" class="no-border">
 			</section>
 
@@ -198,7 +202,9 @@ On the right side we have the database.
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager realizes that he needs to load the stadium for the club 1 (it's eager)">
+1. Entity Manager realizes that he needs to load the stadium for the club 1 (it's eager)
+2. He will check if that stadium is in the Persistence Context, since is not...
+">
 				<img style="vertical-align: top" src="img/session1/test1/step3.1.png" class="no-border">
 			</section>
 
@@ -228,7 +234,8 @@ The country was loaded in the club 1 process and reused in the club 2.">
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager realizes that he needs to load the stadium for the club 2 (it's eager)">
+1. Entity Manager realizes that he needs to load the stadium for the club 2 (it's eager)
+2. He will check if that stadium is in the Persistence Context, since is not...">
 				<img style="vertical-align: top" src="img/session1/test1/step5.1.png" class="no-border">
 			</section>
 
@@ -256,7 +263,8 @@ And we just saw why 4 queries were being executed.">
 			<section data-transition="convex">
 				<h2 class="no-transform">Test Case 2</h2>
 				<ul>
-					<li class="fragment">Loads Clubs with id #1 and #2 taking advantages of 2nd level of cache</li>
+					<li class="fragment">Loads Clubs with id #1 and #2</li>
+					<li class="fragment">2nd level of cache is enabled</li>
 				</ul>
 			</section>
 
@@ -264,7 +272,8 @@ And we just saw why 4 queries were being executed.">
 I don't know if you noticed, but when I presented to you the entities, the country Entity was anotated with
 @Cacheable.
 This means what??
-This means that the instances of this entity will be persisted in the 2nd level of cache of JPA.">
+This means that the instances of this entity will be persisted in the 2nd level of cache of JPA.
+IF the second level of cache is enabled.">
 				<img style="vertical-align: top" src="img/session1/test2/country_cacheable.PNG" class="no-border">
 			</section>
 
@@ -310,7 +319,7 @@ Let's see how it works.">
 			</section>
 
 			<section data-transition="none" data-notes="
-4. Since Country entity is annotated with @Cacheable, Entity Manager stores all the countries in the 2nd Level of cache.">
+4. Since Country entity is annotated with @Cacheable and 2nd Level of cache is enabled, Entity Manager stores all the countries in the 2nd Level of cache.">
 				<img style="vertical-align: top" src="img/session1/test2/step1.4.png" class="no-border">
 			</section>
 
@@ -336,27 +345,29 @@ They were just store in the first level of cache (Persistence Context) that is c
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)">
+1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)
+2. He will check if that country is in the Persistence Context">
 				<img style="vertical-align: top" src="img/session1/test2/step3.1.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-2. Since Cache is enables and Country is annotated with @Cacheable, entity manager will check if the country 10 exists in the 2nd level of cache">
+2. Since Cache is enabled and Country is annotated with @Cacheable, entity manager will also check if the country 10 exists in the 2nd level of cache">
 				<img style="vertical-align: top" src="img/session1/test2/step3.2.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-3. He find it, so Entity manager add it to the Persistence Context and link club 1 with country 10">
+3. He finds it, so Entity manager add it to the Persistence Context and link club 1 with country 10">
 				<img style="vertical-align: top" src="img/session1/test2/step3.3.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager notice he needs to load the stadium 1 for the club 1 (it's eager)">
+1. Entity Manager notice he needs to load the stadium 1 for the club 1 (it's eager)
+2. He will check if that stadium is in the Persistence Context, since is not...">
 				<img style="vertical-align: top" src="img/session1/test2/step4.1.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-2. Entity Manager can't use the second level of cache since the entity is not Cacheable, so he executes the query to load the stadium 1">
+2. Since he can't use the second level of cache for this entity (is not Cacheable), he executes the query to load the stadium 1">
 				<img style="vertical-align: top" src="img/session1/test2/step4.2.png" class="no-border">
 			</section>
 
@@ -366,18 +377,19 @@ They were just store in the first level of cache (Persistence Context) that is c
 			</section>
 
 			<section data-transition="none" data-notes="
-4. Entity Manager add the stadium 1 to the persitence context and link it to the club 1">
+4. Entity Manager add the stadium 1 to the persistence context and link it to the club 1">
 				<img style="vertical-align: top" src="img/session1/test2/step4.4.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
 1. Entity Manager notice he needs to load country 10 for the club 2.
-But, he also notice that such country is already in the persitence context, so he does not need to load it again, just link it.">
+But, he also notice that such country is already in the persistence context, so he does not need to load it again, just link it.">
 				<img style="vertical-align: top" src="img/session1/test2/step5.1.png" class="no-border">
 			</section>
 
 			<section data-transition="none" data-notes="
-1. Entity Manager realizes that he needs to load the stadium 2 for the club 2 (it's eager)">
+1. Entity Manager realizes that he needs to load the stadium 2 for the club 2 (it's eager)
+2. He will check if that stadium is in the Persistence Context, since is not...">
 				<img style="vertical-align: top" src="img/session1/test2/step6.1.png" class="no-border">
 			</section>
 
@@ -407,8 +419,8 @@ And we just saw why 5 queries were being executed.">
 				<h2 class="no-transform">Test Case 3</h2>
 				<ul>
 					<li class="fragment">Loads Clubs with id #1 and #2</li>
-					<li class="fragment">Taking advantages of 2nd level of cache</li>
-					<li class="fragment">Joining the stadiums</li>
+					<li class="fragment">2nd level of cache is enabled</li>
+					<li class="fragment">Join Fetch the stadiums</li>
 				</ul>
 			</section>
 
@@ -458,7 +470,9 @@ Let's see how it works">
 1. Entity Manager execute query to load the club 1 and 2 joining with stadium
 2. Entity Manager receives the result
 3. Entity Manager stores the result in the Persistence Context
-	- 2 clubs and 2 stadiums">
+	- 2 clubs and 2 stadiums
+
+Since we use join fetch the association between the clubs and the stadiums will be done.">
 				<img style="vertical-align: top" src="img/session1/test3/step2.1.png" class="no-border">
 			</section>
 
@@ -487,28 +501,21 @@ And we just saw why 2 queries were being executed.">
 
 		</section>
 
-		<section data-transition="convex">
-
-			<section data-transition="convex">
-				<h2 class="no-transform">Conclusions</h2>
-				<ul>
-					<li class="fragment">EAGER loading without join fetch leads to <a>select N+1</a></li>
-					<li class="fragment">Solving select N+1 leads to unreasonable <a>joins</a></li>
-					<li class="fragment">Best strategy : <a>good mapping</a> at start</li>
-					<li class="fragment">Else : <a>Hibernate 5.4.11+</a> + EntityGraph / <a>fetchgraph</a></li>
-				</ul>
-			</section>
-
-			<section data-transition="convex">
-				<h2 class="no-transform">My advices</h2>
-				<ul>
-					<li class="fragment"><a>@Cacheable</a> entities : <a href="">EAGER</a></li>
-					<li class="fragment">Cache loaded at startup</li>
-					<li class="fragment">All the rest : LAZY</li>
-				</ul>
-			</section>
-
-		</section>
+        <section data-transition="convex">
+            <h2 class="no-transform">Conclusions</h2>
+            <ul>
+                <li class="fragment">EAGER loading without join fetch leads to <a>select N+1</a></li>
+                <li class="fragment">Solving select N+1 leads to unreasonable <a>joins</a></li>
+                <li class="fragment">Best strategy :
+                    <ul>
+                        <li><a>@Cacheable</a> entities as <a>EAGER</a></li>
+                        <li>Everything else as <a>Lazy</a></li>
+                        <li>Load the cache at the startup</li>
+                    </ul>
+                </li>
+                <li class="fragment">Else : <a>Hibernate 5.4.11+</a> + EntityGraph / <a>fetchgraph</a></li>
+            </ul>
+        </section>
 
 	</div>
 
