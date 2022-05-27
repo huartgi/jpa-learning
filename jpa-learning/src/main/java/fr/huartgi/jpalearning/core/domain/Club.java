@@ -10,23 +10,21 @@ import java.util.List;
 @Entity
 @Table(name="CLUB")
 public class Club {
-	
-	// ========== ATTRIBUTES ==========
-	
+
 	@Id
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "ID")
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(name="NAME", unique=true, nullable=false)
+	@Column(name="NAME")
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name="FK_COUNTRY", nullable=false)
+	@JoinColumn(name="FK_COUNTRY")
 	private Country country;
 	
 	@ManyToOne
-	@JoinColumn(name="FK_STADIUM", nullable=false)
+	@JoinColumn(name="FK_STADIUM")
 	private Stadium stadium;
 
 	@OneToMany(mappedBy = "club")

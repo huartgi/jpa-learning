@@ -8,11 +8,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="STADIUM")
 public class Stadium {
-	
-	// ========== ATTRIBUTES ==========
-	
+
 	@Id
-	@Column(name="ID", unique=true, nullable=false)
+	@Column(name="ID")
 	@GeneratedValue
 	private Long id;
 	

@@ -9,11 +9,9 @@ import javax.persistence.*;
 @Table(name="COUNTRY")
 @Cacheable
 public class Country {
-	
-	// ========== ATTRIBUTES ==========
-	
+
 	@Id
-	@Column(name="ID", unique=true, nullable=false)
+	@Column(name="ID")
 	@GeneratedValue
 	private Long id;
 	
