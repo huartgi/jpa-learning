@@ -24,7 +24,6 @@ class TestCase1 {
      */
     @Test
     void testQueries() {
-
         clubService.findByIds(1, 2);
     }
 }
