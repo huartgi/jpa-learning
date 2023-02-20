@@ -33,14 +33,12 @@ public class ClubDao4 extends GenericDao<Integer, Club> implements ClubDao {
 
 	@Override
 	public List<Club> findByIds(Integer... ids) {
-		String jpql = "select club from Club club where club.id in :ids";
-
-		EntityGraph<Club> graph = entityManager.createEntityGraph(Club.class);
-		graph.addAttributeNodes("stadium");
+		String jpql = "select club "
+				+ "from Club club "
+				+ "join fetch club.stadium "
+				+ "where club.id in :ids";
 
 		TypedQuery<Club> query = entityManager.createQuery(jpql, Club.class);
-		query.setHint("javax.persistence.loadgraph", graph);
-
 		query.setParameter("ids", Arrays.asList(ids));
 
 		return query.getResultList();

@@ -32,8 +32,7 @@ class TestCase3 {
     @Test
     void testQueries() {
 
-        // test cache
-        log.debug("Cache loaded at beginning");
+        log.debug("Loading cache at startup");
         countryService.findAll();
 
         log.debug("Retrieving Clubs with 1, 2 joining with stadium");

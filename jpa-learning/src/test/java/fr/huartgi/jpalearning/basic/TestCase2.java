@@ -35,8 +35,7 @@ class TestCase2 {
     @Test
     void testQueries() {
 
-        // test cache
-        log.debug("Cache loaded at beginning");
+        log.debug("Loading some data at startup");
         countryService.findAll();
         stadiumService.findAll();
 

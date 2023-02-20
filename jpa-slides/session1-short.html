@@ -1,0 +1,1063 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JPA Learning - Session 1</title>
+
+		<link rel="stylesheet" href="revealjs-4.3.1/dist/reset.css">
+		<link rel="stylesheet" href="revealjs-4.3.1/dist/reveal.css">
+		<link rel="stylesheet" href="revealjs-4.3.1/dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="revealjs-4.3.1/plugin/highlight/monokai.css">
+
+		<link rel="stylesheet" href="revealjs-4.3.1/dist/custom.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<section data-markdown data-separator-notes="^\nNote:">
+						# JPA Learning
+						### Session #1 : select 1+N
+						[Gildas Huart]() - [Nelson Costa]()
+
+						Note:
+						This presentation is for a public that already knows and uses JPA.
+					</section>
+
+					<section data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Objectives
+							Select 1+N :
+							* Understand <!-- .element: class="fragment" data-fragment-index="1" -->
+							* Avoid <!-- .element: class="fragment" data-fragment-index="2" -->
+							* Remediate <!-- .element: class="fragment" data-fragment-index="3" -->
+						</textarea>
+					</section>
+
+					<section data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Program
+							* JPA concepts <!-- .element: class="fragment" data-fragment-index="1" -->
+							* Demo <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+				</section>
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## JPA concepts
+
+							* Entity Manager <!-- .element: class="fragment disc" data-fragment-index="1" -->
+							* Persistence Context <!-- .element: class="fragment disc" data-fragment-index="2" -->
+							* Cache <!-- .element: class="fragment disc" data-fragment-index="3" -->
+							* Eager vs Lazy <!-- .element: class="fragment disc" data-fragment-index="4" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Entity Manager
+							JPA interface used to :
+							- Query over entities (JPQL) <!-- .element: class="fragment disc" data-fragment-index="1" -->
+							- Find entities by primary key & class <!-- .element: class="fragment disc" data-fragment-index="2" -->
+							- Create/Update/Delete entities <!-- .element: class="fragment disc" data-fragment-index="3" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Persistence Context
+							- Set of entities managed by an Entity Manager <!-- .element: class="fragment disc" data-fragment-index="1" -->
+							- Entities sorted by ID and CLASS (unique) <!-- .element: class="fragment disc" data-fragment-index="2" -->
+							- 1 EntityManager <-> 1 PersistenceContext <!-- .element: class="fragment disc" data-fragment-index="3" -->
+							- Also called 1st level cache <!-- .element: class="fragment disc" data-fragment-index="4" -->
+
+							Note:
+							Contains all entities fetched from the database or saved to the database.
+							Read 8 times same ID/CLASS entity, stored only once in PersistenceContext.
+							Entities are said to be 'managed'.
+							A managed entity modified is considered as 'dirty'
+						</textarea>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Persistence Context : Lifecycle</h2>
+						<p class="fragment">Same as Entity Manager</p>
+						<p class="fragment">Cleared when :</p>
+						<ul>
+							<li class="fragment">Entity Manager is <a>closed</a></li>
+							<li class="fragment">Transaction's <a>commit</a> or <a>rollback</a></li>
+						</ul>
+						<aside class="notes">
+							<p>Contains all entities fetched from the database or saved to the database.</p>
+							<p>Read 8 times same ID/CLASS entity, stored only once in PersistenceContext.</p>
+							<p>Entities are said to be 'managed'.</p>
+							<p>A managed entity modified is considered as 'dirty'</p>
+						</aside>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Cache</h2>
+						<p class="fragment">Also called, <a>2nd level cache</a></p>
+						<ul>
+							<li class="fragment">Storage for <a>@Cacheable</a> entities</li>
+							<li class="fragment">Shared by all EntityManager within an application</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">EAGER Fetching</h2>
+						<p class="fragment">A relationship marked as EAGER must be fetched with the entity</p>
+						<p class="fragment">Even if it is not needed !</p>
+						<ul>
+							<li class="fragment">Best case scenario : join fetch</li>
+							<li class="fragment">Worst case scenario : select on the fly (select N+1)</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Select 1+N</h2>
+						<ul>
+							<li class="fragment">First query returns X entities</li>
+							<li class="fragment">Each entity has a relationship with another entity</li>
+							<li class="fragment">The relationship is fetched eagerly</li>
+							<li class="fragment">For that 1st query, we'll load N more (1<=N<=X)</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Select 1+N : example 1</h2>
+						<ul>
+							<li class="fragment">First query returns 20 contracts</li>
+							<li class="fragment">Contract has EAGER relationship with Client</li>
+							<li class="fragment">Each contract has a different client</li>
+							<li class="fragment">JPA will exectue 20 mores queries (1 for each client)</li>
+							<li class="fragment">Result : 1 + 20 = 21 queries !</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">Select 1+N : example 2</h2>
+						<ul>
+							<li class="fragment">First query returns 20 contracts</li>
+							<li class="fragment">Contract has EAGER relationship with ContractType</li>
+							<li class="fragment">The 20 contracts have the same type</li>
+							<li class="fragment">JPA will exectue 1 query to get the type and then reuse it</li>
+							<li class="fragment">Result : 1 + 1 = 2 queries !</li>
+						</ul>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">LAZY loading</h2>
+						<p class="fragment">A relationship marked as LAZY is not fetched.</p>
+						<p class="fragment">JPA returns an empty proxy which only contains the ID.</p>
+						<p class="fragment">The loading is possible later...</p>
+						<p class="fragment">... if the entity is still in the persistence context !</p>
+						<p class="fragment">Else, we get the famous <a>LazyInitializationException</a></p>
+					</section>
+
+					<section data-transition="convex">
+						<h2 class="no-transform">LAZY loading</h2>
+						<p class="fragment">The relationship is loaded only when used...</p>
+						<p class="fragment">... but that's still one more query we could avoid with a join.</p>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy0.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy1.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy2.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy3.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy4.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/lazy/lazy5.png)
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Data Model
+							![](img/session1/short/datamodel.png)
+
+							Note:
+							I will use this datamodel to show you with real examples how JPA works.\
+							As you can see, the data emulates a football club.\
+							In this reality, the club is linked to a stadium and a country.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Country Entity
+							![](img/session1/short/entities/country.png) <!-- .element: style="height: 400px" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Stadium Entity
+							![](img/session1/short/entities/stadium.png) <!-- .element: style="height: 400px" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Club Entity
+							![](img/session1/short/entities/club.png) <!-- .element: style="height: 500px" -->
+
+							Note:
+							- This is how we represent a table in Java objects using JPA.
+							- @Entity is used to say to JPA that this class represents a query object.
+							- @Table is to link the java class to the table in the database
+							- It's required to have and @ID
+							- @Column to map to simple column
+							- @ManyToOne, @OneToMany to map a relationships
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Relationships
+							![](img/session1/short/test1/club_relations.png)
+
+							Note:
+							On club entity, we can see these relationships.
+							The fetch type is not defined.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Default fetch type : EAGER
+							![](img/session1/short/test1/club_relations_explicit_eager.png)
+
+							Note:
+							It's equivalent to this mapping since the default fetch type on ManyToOne is EAGER.\
+							Eager means that when we load one club, the stadium and the country must be loaded as well.
+							This is exactly the select 1+N issue occuring. You want to execute just 1 query, but N queries are being executed behing the scene.
+							Let's see how it works behind.
+
+							The other type of fetching is LAZY. Lazy means that we don't want to load the relationship at the time we load the club, but maybe I will load it after.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<img src="img/session1/data-clubs.png" alt="">
+						<textarea data-template>
+							## Data
+							![](img/session1/data-clubs.png) <!-- .element: style="height: 400px" -->
+							![](img/session1/data-stadiums.png) <!-- .element: style="height: 400px" -->
+							![](img/session1/data-countries.png) <!-- .element: style="height: 480px; vertical-align: top" -->
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test Case 1
+							- Loads Clubs with id #1 and #2 <!-- .element: class="fragment" data-fragment-index="1" -->
+								- Naive queries <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test
+							![](img/session1/short/test1/code_test.png)
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## DAO
+							![](img/session1/short/test1/code.png)
+
+							Note:
+							Looking into the code we expect that only one query will be executed.
+							If you pay attention, the query string is not NATIVE SQL, we are using the name of the java classes and attributes to query.
+							This is called JPQL.
+
+							Let's see the results.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Result
+							![](img/session1/short/test1/result.png)
+
+							Note:
+							We can see that our query was executed, but after,
+							Someone is getting a country by id, and 2 stadiums by id as well.
+							Why 1 country and 2 stadiums were loaded?
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step0.png)
+
+							Note:
+							This is the initial situation of JPA inside the JVM when we start our case :
+							* on top, we have the 2nd level cache (shared by all entity managers)
+							* below, we have 2 threads containing each an EntityManager and its persistence context (1st level cache)
+
+							On the right side we have the database.\
+							At the bottom you can see all the data involved in this case :
+							* 2 clubs in yellow
+							* 1 country in red
+							* 2 stadiums in green.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step1.png)
+
+							Note:
+							1. The query is executed in the database
+							2. Entity Manager receives the result
+							3. It store both clubs in the persistence context
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step2.1.png)
+
+							Note:
+							1. Entity Manager realizes that he needs to load the country for the club 1 (it's eager)
+							2. He will check if that country is in the Persistence Context, since is not...
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step2.2.png)
+
+							Note:
+							Entity Manager needs to execute the query to load it
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step2.3.png)
+
+							Note:
+							Entity Manager receive the country with id 10 (FRANCE)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step2.4.png)
+
+							Note:
+							Entity Manager stores the country with id 10 in the persistence context and link it to the club 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step3.1.png)
+
+							Note:
+							1. Entity Manager realizes that he needs to load the stadium for the club 1 (it's eager)
+							2. He will check if that stadium is in the Persistence Context, since is not...
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step3.2.png)
+
+							Note:
+							2. For the club 1 he will get the stadium with id 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step3.3.png)
+
+							Note:
+							3. Entity Manager receive the stadium with id 1 (Stade Pierre Mauroy)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step3.4.png)
+
+							Note:
+							4. Entity Manager stores the stadium with id 1 in the persistence context and link it to the club 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step4.1.png)
+
+							Note:
+							1. Entity Manager realizes that he needs to load the country for the club 2 (it's eager)
+							2. He also noticed that such country is already present in the persistence context,
+							so he does not need to load it again, he just need to link it
+
+							In this case Entity Manager used the first level o cache to retrieve the country for the club 2.
+							The country was loaded in the club 1 process and reused in the club 2.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step5.1.png)
+
+							Note:
+							1. Entity Manager realizes that he needs to load the stadium for the club 2 (it's eager)
+							2. He will check if that stadium is in the Persistence Context, since is not...
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step5.2.png)
+
+							Note:
+							2. For the club 2 he will get the stadium with id 2
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step5.3.png)
+
+							Note:
+							3. Entity Manager receive the stadium with id 2 (Parc des Princes)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test1/step5.4.png)
+
+							Note:
+							4. Entity Manager stores the stadium with id 2 in the persistence context and link it to the club 2
+							And we just saw why 4 queries were being executed.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							#### Result with 2 clubs
+							![](img/session1/short/test1/result.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							#### Result with 20 clubs
+							![](img/session1/short/test1/result_findall.png) <!-- .element: style="height: 600px" -->
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test Case 2
+							- 2nd level cache is enabled <!-- .element: class="fragment disc" data-fragment-index="1" -->
+								- Country is Cacheable <!-- .element: class="fragment disc" data-fragment-index="2" -->
+							- Loading data at startup <!-- .element: class="fragment disc" data-fragment-index="3" -->
+								- Countries <!-- .element: class="fragment disc" data-fragment-index="4" -->
+								- Stadiums <!-- .element: class="fragment disc" data-fragment-index="5" -->
+							- Loads Clubs with id #1 and #2
+								- Naive queries <!-- .element: class="disc" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Country is Cacheable
+							![](img/session1/short/test2/country_cacheable.png)
+
+							Note:
+							I don't know if you noticed, but when I presented to you the entities, the country Entity was anotated with @Cacheable.\
+							This means what??\
+							This means that the instances of this entity will be persisted in the 2nd level of cache of JPA.\
+							IF the second level of cache is enabled.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Stadium is not Cacheable
+							![](img/session1/short/test2/stadium_no_cacheable.png)
+
+							Note:
+							Because in the Stadium entity we do not have the annotation @Cacheable.
+							Let's see how it works.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test case 2
+							![](img/session1/short/test2/code.png) <!-- .element: style="height: 400px" -->
+
+							Note:
+							Looking into the code, we expect 3 queries to be executed.\
+							1. load all the countries.
+							2. load all the stadiums.
+							3. load the clubs.
+							Let's see the results.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Result
+							![](img/session1/short/test2/results.png)
+
+							Note:
+							We can see that 5 queries were executed.
+							The first 3 are ok.
+							But after, JPA is loading twice the stadium by Id.
+
+							Why??.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step0.png)
+
+							Note:
+							Because in the Stadium entity we do not have the annotation @Cacheable.
+							Let's see how it works.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step1.2.png)
+
+							Note:
+							1. Entity Manager executes the query to load all countries
+							2. Entity Manager receives all the countries
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step1.3.png)
+
+							Note:
+							3. Entity Manager store all the countries in the persistence context.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step1.4.png)
+
+							Note:
+							4. Since Country entity is annotated with @Cacheable and 2nd Level of cache is enabled, Entity Manager stores all the countries in the 2nd Level of cache.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step1.5.png)
+
+							Note:
+							1. Entity Manager executes the query to load all stadiums
+							2. Entity Manager receives all the stadiums
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step1.6.png)
+
+							Note:
+							3. Entity Manager store all the stadiums in the persistence context
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step2.3.png)
+
+							Note:
+							You can notice that the load of the stadiums was useless since they were not stored in the 2nd level of cache.
+							They were just store in the first level of cache (Persistence Context) that is cleared when the transaction is closed.
+
+							1. Entity Manager execute query to load the club 1 and 2
+							2. Entity Manager receives the result
+							3. Entity Manager stores the result in the Persistence Context
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step3.1.png)
+
+							Note:
+							1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)
+							2. He will check if that country is in the Persistence Context
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step3.2.png)
+
+							Note:
+							2. Since Cache is enabled and Country is annotated with @Cacheable, entity manager will also check if the country 10 exists in the 2nd level of cache
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step3.3.png)
+
+							Note:
+							3. He finds it, so Entity manager add it to the Persistence Context and link club 1 with country 10
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step4.1.png)
+
+							Note:
+							1. Entity Manager notice he needs to load the stadium 1 for the club 1 (it's eager)
+							2. He will check if that stadium is in the Persistence Context, since is not...
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step4.2.png)
+
+							Note:
+							2. Since he can't use the second level of cache for this entity (is not Cacheable), he executes the query to load the stadium 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step4.3.png)
+
+							Note:
+							3. Entity Manager receive the stadium 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step4.4.png)
+
+							Note:
+							4. Entity Manager add the stadium 1 to the persistence context and link it to the club 1
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step5.1.png)
+
+							Note:
+							1. Entity Manager notice he needs to load country 10 for the club 2.
+							But, he also notice that such country is already in the persistence context, so he does not need to load it again, just link it.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step6.1.png)
+
+							Note:
+							1. Entity Manager realizes that he needs to load the stadium 2 for the club 2 (it's eager)
+							2. He will check if that stadium is in the Persistence Context, since is not...
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step6.2.png)
+
+							Note:
+							2. For the club 2 he will get the stadium with id 2
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step6.3.png)
+
+							Note:
+							3. Entity Manager receive the stadium with id 2 (Parc des Princes)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test2/step6.4.png)
+
+							Note:
+							4. Entity Manager stores the stadium with id 2 in the persistence context and link it to the club 2
+
+							And we just saw why 5 queries were being executed.
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Result
+							![](img/session1/short/test2/results.png)
+
+							Note:
+							This explains why we have 5 queries
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test Case 3
+							- 2nd level cache is enabled
+								- Country is Cacheable <!-- .element: class="disc" -->
+								- Countries loaded at startup <!-- .element: class="disc" -->
+							- Loads Clubs with id #1 and #2 <!-- .element: class="fragment disc" data-fragment-index="1" -->
+								- Querying with join fetch <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test
+							![](img/session1/short/test3/code_testQueries.png)
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## DAO
+							![](img/session1/short/test3/code_dao.png) <!-- .element: style="height: 300px" -->
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Results
+							![](img/session1/short/test3/results.png)
+
+							Note:
+							We can see that we were right.
+							Let's see how it works
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step0.png)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step1.2.png)
+
+							Note:
+							1. Entity Manager executes the query to load all countries
+							2. Entity Manager receives all the countries
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step1.3.png)
+
+							Note:
+							3. Entity Manager store all the countries in the persistence context.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step1.4.png)
+
+							Note:
+							4. Since Country entity is annotated with @Cacheable, Entity Manager stores all the countries in the 2nd Level of cache.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step2.1.png)
+
+							Note:
+							1. Entity Manager execute query to load the club 1 and 2 joining with stadium
+							2. Entity Manager receives the result
+							3. Entity Manager stores the result in the Persistence Context
+								- 2 clubs and 2 stadiums
+
+							Since we use join fetch the association between the clubs and the stadiums will be done.
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step2.2.png)
+
+							Note:
+							1. Entity Manager notice he needs to load the country 10 or the club 1 (it's eager)
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step2.3.png)
+
+							Note:
+							2. Since Cache is enables and Country is annotated with @Cacheable, entity manager will check if the country 10 exists in the 2nd level of cache
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step2.4.png)
+
+							Note:
+							3. He find it, so Entity manager add it to the Persistence Context and link club 1 with country 10
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							![](img/session1/short/test3/step2.5.png)
+
+							Note:
+							1. Entity Manager notice he needs to load country 10 for the club 2.
+							But, he also notice that such country is already in the persistence context, so he does not need to load it again, just link it.
+
+							And we just saw why 2 queries were being executed.
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test Case 4
+							- Same as Test Case 3
+							- Loads Clubs with id #1 and #2 <!-- .element: class="fragment disc" data-fragment-index="1" -->
+								- EntityGraph (loadgraph) <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test
+							![](img/session1/short/test4/code_testQueries.png)
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## DAO
+							![](img/session1/short/test4/code_dao.png)
+
+							Note:
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## EntityGraph
+							Equivalent to **join fetch**.
+
+							2 modes : <!-- .element: class="fragment" data-fragment-index="1" -->
+							- loadgraph : graph + mapping (EAGER) <!-- .element: class="fragment" data-fragment-index="1" -->
+							- fetchgraph : graph only <!-- .element: class="fragment" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Results
+							![](img/session1/short/test3/results.png)
+
+							Note:
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test Case 5
+							- Same as Test Case 3
+							- Loads Clubs with id #1 and #2 <!-- .element: class="fragment disc" data-fragment-index="1" -->
+								- EntityGraph (fetchgraph) <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test
+							![](img/session1/short/test4/code_testQueries.png)
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## DAO
+							![](img/session1/short/test5/code_dao.png)
+
+							Note:
+						</textarea>
+					</section>
+
+					<section data-transition="none" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Results
+							![](img/session1/short/test5/results.png)
+
+							Note:
+							We can see that we were right.
+							Let's see how it works
+						</textarea>
+					</section>
+
+				</section>
+
+
+				<section data-transition="convex">
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Test cases summary
+							1. Naive queries <!-- .element: class="fragment" data-fragment-index="1" -->
+							2. Enabling cache <!-- .element: class="fragment" data-fragment-index="2" -->
+							3. Join fetch <!-- .element: class="fragment" data-fragment-index="3" -->
+							4. EntityGraph - loadgraph <!-- .element: class="fragment" data-fragment-index="4" -->
+							5. EntityGraph - fetchgraph <!-- .element: class="fragment" data-fragment-index="5" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Conclusions
+							- EAGER is bad
+								- no join fetch --> [select N+1]()
+								- avoid select N+1 --> many useless joins
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Best practice
+							- Fetch type -> LAZY everywhere <!-- .element: class="fragment" data-fragment-index="1" -->
+							- @Cacheable entities -> EAGER <!-- .element: class="fragment disc" data-fragment-index="2" -->
+								- Loaded at startup <!-- .element: class="fragment disc" data-fragment-index="3" -->
+							- Fetch data with : <!-- .element: class="fragment disc" data-fragment-index="4" -->
+								- join fetch queries <!-- .element: class="fragment disc" data-fragment-index="5" -->
+								- EntityGraph (loadgraph mode) <!-- .element: class="fragment disc" data-fragment-index="6" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+						<textarea data-template>
+							## Remediation
+							- EntityGraph (fetchgraph mode) <!-- .element: class="fragment disc" data-fragment-index="1" -->
+							- Use Hibernate 5.4.11+ <!-- .element: class="fragment disc" data-fragment-index="2" -->
+						</textarea>
+					</section>
+
+					<section data-transition="convex" data-markdown data-separator-notes="^\nNote:">
+					<textarea data-template>
+						## Github public project
+						[https://github.com/huartgi/jpa-learning/](https://github.com/huartgi/jpa-learning)
+
+						Note:
+						All the cases we saw in this session are public in this repository.
+					</textarea>
+					</section>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="revealjs-4.3.1/dist/reveal.js"></script>
+		<script src="revealjs-4.3.1/plugin/notes/notes.js"></script>
+		<script src="revealjs-4.3.1/plugin/markdown/markdown.js"></script>
+		<script src="revealjs-4.3.1/plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
